@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { User, Training } = require('../database')
+const { TrainingProfile, Training } = require('../database')
 
 
 router.get('/', function(req, res, next) {
@@ -9,12 +9,12 @@ router.get('/', function(req, res, next) {
 
 // create a user
 router.post('/api/users', (req, res) => {
-  User.create(req.body)
+  TrainingProfile.create(req.body)
       .then(user => res.json(user))
 })
 // get all users
 router.get('/api/users', (req, res) => {
-  User.findAll().then(users => res.json(users))
+  TrainingProfile.findAll().then(users => res.json(users))
 })
 
 

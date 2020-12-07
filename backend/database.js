@@ -1,20 +1,20 @@
 const { Sequelize } = require('sequelize');
-const UserModel = require("./models/User.js");
-const TrainingModel = require("./models/Training.js");
-const TrainingDataModel = require("./models/TrainingData.js");
-const ExerciseModel = require("./models/Exercise.js");
-const ExerciseSetModel = require("./models/ExerciseSet.js");
-const NamedExerciseSetModel = require("./models/NamedExerciseSet.js");
+const TrainingProfileModel = require("./models/Fitness/TrainingProfile.js");
+const TrainingModel = require("./models/Fitness/Training.js");
+const TrainingDataModel = require("./models/Fitness/TrainingData.js");
+const ExerciseModel = require("./models/Fitness/Exercise.js");
+const ExerciseSetModel = require("./models/Fitness/ExerciseSet.js");
+const NamedExerciseSetModel = require("./models/Fitness/NamedExerciseSet.js");
 // const ExerciseModel = require('./models/Exercise.js');
 
 
-const sequelize = new Sequelize('jpec_home', 'root', 'root', {
+const sequelize = new Sequelize('jpec_home', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   storage: './database.sqlite'
 });
 
-const User = UserModel(sequelize, Sequelize)
+const TrainingProfile = TrainingProfileModel(sequelize, Sequelize)
 const Training = TrainingModel(sequelize, Sequelize)
 const TrainingData = TrainingDataModel(sequelize, Sequelize)
 const Exercise = ExerciseModel(sequelize, Sequelize)
@@ -22,9 +22,9 @@ const ExerciseSet = ExerciseSetModel(sequelize, Sequelize)
 const NamedExerciseSet = NamedExerciseSetModel(sequelize, Sequelize)
 
 
-User.hasMany(Training)
+TrainingProfile.hasMany(Training)
 Training.hasMany(TrainingData);
-Training.belongsTo(User);
+Training.belongsTo(TrainingProfile);
 TrainingData.belongsTo(Training);
 Exercise.belongsToMany(Training, {through: 'training_exercise'})
 Training.hasMany(Exercise)
@@ -54,7 +54,7 @@ sequelize.sync().then(() => {
 });
 
 module.exports = {
-  User,
+  TrainingProfile,
   Training
 };
 
