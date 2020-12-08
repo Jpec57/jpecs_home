@@ -1,13 +1,13 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>Val{{val}} - {{ msg }}</h1>
     Toto 
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'JpecComponent',
   props: {
     msg: String
   }

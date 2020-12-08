@@ -1,15 +1,18 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <JpecComponent msg="Its working!"/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import JpecComponent from './components/JpecComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    JpecComponent
   }
 }
 </script>
