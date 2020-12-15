@@ -1,0 +1,8 @@
+#header-container{
+	display: flex;
+	justify-content: center;
+}
+#footer-container{
+	display: flex;
+	justify-content: center;
+}
