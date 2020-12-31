@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div id="bannier">
-      <h1>Jpec's Japanese Home</h1>
-    </div>
+    <h2>Jpec's Japanese Home</h2>
   </div>
 </template>
 

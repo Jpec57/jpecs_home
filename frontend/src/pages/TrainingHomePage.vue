@@ -1,24 +1,12 @@
 <template>
   <div>
-    <div id="bannier">
-      <h1>Jpec's Training Home</h1>
-    </div>
-    <div id="routing-container">
-      <Module title="Training" />
-      <Module title="Japanese" />
-      <Module title="Math" />
-    </div>
+    <h2>Jpec's Training Home</h2>
   </div>
 </template>
 
 <script>
-import Module from "../components/Module.vue";
-
 export default {
   name: "TrainingHomePage",
-  components: {
-    Module,
-  },
 };
 </script>
 
