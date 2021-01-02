@@ -1,0 +1,62 @@
+<template>
+  <router-link :to="'/article/' + article.id">
+    <div class="article-preview">
+      <div>
+        <img
+          alt="img"
+          src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/cb6d15ee-9f60-434a-9a5d-d91026e33e0a/d7til5w-2f3260a3-7092-47b4-aad3-d921b361cc4b.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvY2I2ZDE1ZWUtOWY2MC00MzRhLTlhNWQtZDkxMDI2ZTMzZTBhXC9kN3RpbDV3LTJmMzI2MGEzLTcwOTItNDdiNC1hYWQzLWQ5MjFiMzYxY2M0Yi5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.Mu3saLvb8Mln3Cw5Ue1sypPqHFCVAyVrtYuYSmqle_w"
+        />
+      </div>
+      <div class="article-preview-content">
+        <div class="article-preview-header" v-on:click="show(article)">
+          {{ article.title }}
+        </div>
+        <div class="article-preview-body">Content</div>
+      </div>
+    </div>
+  </router-link>
+</template>
+<script>
+import Article from "../models/Article";
+
+export default {
+  name: "ArticlePreviewCard",
+  props: { article: Article },
+  methods: {
+    show: function (article) {
+      return console.log(article);
+    },
+  },
+};
+</script>
+<style lang="scss" scoped>
+a {
+  text-decoration: none;
+  color: black;
+}
+img {
+  height: 100%;
+}
+.article-preview-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.article-preview {
+  background-color: #e7e7de;
+  margin-bottom: 30px;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+
+  .article-preview-header {
+    padding: 10px;
+    font-weight: bold;
+    background-color: #0f3057;
+    color: white;
+  }
+  .article-preview-body {
+    padding: 10px;
+  }
+}
+</style>
