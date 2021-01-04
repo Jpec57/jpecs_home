@@ -26,4 +26,17 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+
+
+.left-side-container, .right-side-container {
+  display: flex;
+  flex: 1;
+}
+
+.main-container{
+  display: flex;
+    flex: 4;
+    flex-direction: column;
+}
 </style>

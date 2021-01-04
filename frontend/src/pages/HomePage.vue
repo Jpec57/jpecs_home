@@ -1,14 +1,21 @@
 <template>
-  <div>
+  <div class="body">
+    <div class="left-side-container"></div>
+        <div class="main-container">
     <h2>News</h2>
 
-    <div class="body">
+      <div class="article-container">
       <ArticlePreview
         v-for="article in articles"
         v-bind:key="article"
         :article="article"
       />
+      </div>
     </div>
+        <div class="right-side-container">
+
+        </div>
+
   </div>
 </template>
 
@@ -67,8 +74,11 @@ export default {
   border-radius: 5px;
 }
 
-.body {
-  margin-left: 30px;
-  margin-right: 30px;
+.article-container{
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>

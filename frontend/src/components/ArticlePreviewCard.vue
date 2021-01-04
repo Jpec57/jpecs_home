@@ -11,7 +11,11 @@
         <div class="article-preview-header" v-on:click="show(article)">
           {{ article.title }}
         </div>
-        <div class="article-preview-body">Content</div>
+        <div class="article-preview-body">
+          
+          Afin d'aligner verticalement la boîte d'un élément en ligne à l'intérieur de la boîte en ligne de son conteneur (par exemple pour aligner verticalement une image (<img> sur une ligne de texte)
+ou pour aligner verticalement le contenu d'une cellule dans un tableau
+        </div>
       </div>
     </div>
   </router-link>
@@ -44,9 +48,17 @@ img {
 }
 .article-preview {
   background-color: #e7e7de;
-  margin-bottom: 30px;
+      box-shadow: 7px 7px 5px grey;
+
   display: flex;
   border-radius: 10px;
+    max-height: 200px;
+        max-width: 1000px;
+        margin: auto;
+          margin-bottom: 30px;
+
+
+
   overflow: hidden;
 
   .article-preview-header {
@@ -56,7 +68,7 @@ img {
     color: white;
   }
   .article-preview-body {
-    padding: 10px;
+    padding: 30px;
   }
 }
 </style>

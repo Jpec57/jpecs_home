@@ -17,6 +17,7 @@ export default {
 .article-header {
 }
 .article-body {
+  vertical-align: center;
 }
 .article-footer {
 }
