@@ -1,7 +1,6 @@
 <template>
   <div>
     <div id="bannier">
-      <h1>Jpec's Home</h1>
       <NavBar />
     </div>
     <router-view />
@@ -28,6 +27,13 @@ export default {
 }
 
 
+#bannier {
+  display: flex;
+  background-color: #0f3057;
+  color: #e7e7de;
+  padding: 20px;
+  border-radius: 5px;
+}
 
 .left-side-container, .right-side-container {
   display: flex;

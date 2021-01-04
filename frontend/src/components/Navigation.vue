@@ -1,11 +1,11 @@
 <template>
   <div id="routing-container">
-    <router-link to="/" class="router-link icon">
-      <font-awesome-icon icon="home" size="2x" />
+              <router-link to="/" class="router-link icon">
+      <h1>Jpec's Home</h1>
     </router-link>
-    <NavBarLink title="Japanese" path="/japanese" />
-    <NavBarLink title="Workout" path="/fitness" />
-    <NavBarLink title="Math" path="/math" />
+    <NavBarLink title="Japanese" path="/japanese" icon="globe-asia" />
+    <NavBarLink title="Workout" path="/fitness" icon="dumbbell" />
+    <NavBarLink title="Math" path="/math" icon="calculator"/>
   </div>
 </template>
 
@@ -22,10 +22,6 @@ export default {
 
 <style scoped>
 #routing-container {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-content: center;
   align-items: center;
 }
 
@@ -50,5 +46,9 @@ export default {
 }
 .icon.router-link-active {
   color: #696767;
+}
+
+.router-link {
+    text-decoration: none;
 }
 </style>

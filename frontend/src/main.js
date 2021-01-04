@@ -1,11 +1,16 @@
 import App from './App.vue'
 import { createApp } from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faGlobeAsia, faDumbbell, faCalculator } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import router from './router'
 
 library.add(faHome)
+library.add(faGlobeAsia)
+library.add(faCalculator)
+library.add(faDumbbell)
+
+
 
 
 /*
