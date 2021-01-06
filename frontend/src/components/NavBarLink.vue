@@ -37,7 +37,9 @@ a {
   padding: 10px;
   font-weight: bold;
   border-radius: 5px;
-  margin: 10px;
+  margin-left: 10px;
+    margin-right: 10px;
+
     text-decoration: none;
 
 }

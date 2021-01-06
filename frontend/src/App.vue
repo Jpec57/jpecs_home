@@ -26,12 +26,19 @@ export default {
   color: #2c3e50;
 }
 
+.flex-1{
+  display: flex;
+  flex: 1;
+}
+.flex-4{
+  display: flex;
+  flex: 4;
+}
 
 #bannier {
   display: flex;
   background-color: #0f3057;
   color: #e7e7de;
-  padding: 20px;
   border-radius: 5px;
 }
 
