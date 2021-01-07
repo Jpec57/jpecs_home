@@ -1,6 +1,7 @@
 <template>
-  <router-link :to="'/article/' + article.id">
     <div class="article-preview">
+
+  <router-link :to="'/article/' + article.id">
       <div>
         <img
           alt="img"
@@ -17,8 +18,9 @@
 ou pour aligner verticalement le contenu d'une cellule dans un tableau
         </div>
       </div>
+        </router-link>
+
     </div>
-  </router-link>
 </template>
 <script>
 import Article from "../models/Article";
@@ -37,6 +39,7 @@ export default {
 a {
   text-decoration: none;
   color: black;
+  display: flex;
 }
 img {
   height: 100%;

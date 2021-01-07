@@ -1,13 +1,15 @@
 <template>
-  <router-link :to="{ path: path }" class="router-link">
     <div class="module">
+
+  <router-link :to="{ path: path }" class="router-link">
       <div class="icon">
-                  <font-awesome-icon :icon="icon" size="2x" />
+                  <font-awesome-icon :icon="icon" size="1x" />
       </div>
   
       {{ title }}
-    </div>
   </router-link>
+      </div>
+
 </template>
 
 <script>
