@@ -1,5 +1,7 @@
 const fs = require('fs');
-var webpack = require('webpack');
+// const path = require('path')
+
+// var webpack = require('webpack');
 
 // var utils = require('./services/utils');
 
@@ -9,14 +11,13 @@ const someFileContents = fs.readFileSync('./src/assets/articles/flutter_introduc
 console.log(someFileContents);
 module.exports = {
     lintOnSave: true,
-
-    configureWebpack: config => {
-        return {
-          plugins: [
-            new webpack.DefinePlugin({
-              'flutter': someFileContents,
-            })
-          ]
-        }
-      },
+    // configureWebpack: config => {
+    //     return {
+    //       plugins: [
+    //         new webpack.DefinePlugin({
+    //           'flutter': someFileContents,
+    //         })
+    //       ]
+    //     }
+    //   },
   }

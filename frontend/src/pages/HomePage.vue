@@ -29,7 +29,6 @@ import Article from "../models/Article";
 
 import ArticlePreview from "../components/ArticlePreviewCard";
 
-var utils = require('../services/utils');
 // var marked = require('marked');
 const RELATIVE_PATH_TO_MD_FILES = '../assets/articles';
 
@@ -49,9 +48,9 @@ export default {
   },
   methods: {
     async fetchArticles(){
-      // const files = await fs.readdir(__dirname + RELATIVE_PATH_TO_MD_FILES);
+      const files = [];
 
-      const files = await utils.getFiles(__dirname + RELATIVE_PATH_TO_MD_FILES);
+      // const files = await utils.getFiles(__dirname + RELATIVE_PATH_TO_MD_FILES);
       console.log(files);
 
 var i = 0;
