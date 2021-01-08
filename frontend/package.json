@@ -12,8 +12,10 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/vue-fontawesome": "^3.0.0-3",
     "core-js": "^3.6.5",
+    "marked": "^1.2.7",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.2"
+    "vue-router": "^4.0.2",
+    "webpack": "^5.11.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.9.0",

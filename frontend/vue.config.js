@@ -1,0 +1,22 @@
+const fs = require('fs');
+var webpack = require('webpack');
+
+// var utils = require('./services/utils');
+
+// const files = await utils.getFiles(__dirname + "./src/assets/articles/");
+// console.log(files);
+const someFileContents = fs.readFileSync('./src/assets/articles/flutter_introduction.md');
+console.log(someFileContents);
+module.exports = {
+    lintOnSave: true,
+
+    configureWebpack: config => {
+        return {
+          plugins: [
+            new webpack.DefinePlugin({
+              'flutter': someFileContents,
+            })
+          ]
+        }
+      },
+  }
