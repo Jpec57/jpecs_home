@@ -3,7 +3,7 @@
     <div class="article-header">
       {{ article.title }}
     </div>
-    <div class="article-body">{{ article.body }}</div>
+    <div class="article-body" v-html="article.body"></div>
     <div class="article-footer"></div>
   </div>
 </template>
