@@ -6,11 +6,11 @@ This is a first article going on Flutter
 
 ## What is Flutter ?
 
-According to the official Website 
-
+According to the official Website:
+```
 Flutter is Google’s UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.
-
-
+```
+D'après le site officiel, Flutter est une boîte à outils permettant de créer nativement des applications mobile, web et bureau.
 ## Why Flutter ?
 
 With Flutter you can write code once in Dart, and run it on multiple platforms.
