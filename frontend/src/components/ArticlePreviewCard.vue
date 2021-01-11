@@ -1,7 +1,6 @@
 <template>
-    <div class="article-preview">
-
-  <router-link :to="'/article/' + article.id">
+  <div class="article-preview">
+    <router-link :to="'/article/' + article.slug + '/' + id">
       <div>
         <img
           alt="img"
@@ -13,21 +12,22 @@
           {{ article.title }}
         </div>
         <div class="article-preview-body">
-          
-          Afin d'aligner verticalement la boîte d'un élément en ligne à l'intérieur de la boîte en ligne de son conteneur (par exemple pour aligner verticalement une image (<img> sur une ligne de texte)
-ou pour aligner verticalement le contenu d'une cellule dans un tableau
+          {{ article.preview }}
+          <!-- Afin d'aligner verticalement la boîte d'un élément en ligne à
+          l'intérieur de la boîte en ligne de son conteneur (par exemple pour
+          aligner verticalement une image (<img /> sur une ligne de texte) ou
+          pour aligner verticalement le contenu d'une cellule dans un tableau -->
         </div>
       </div>
-        </router-link>
-
-    </div>
+    </router-link>
+  </div>
 </template>
 <script>
 import Article from "../models/Article";
 
 export default {
   name: "ArticlePreviewCard",
-  props: { article: Article },
+  props: { article: Article, id: Number },
   methods: {
     show: function (article) {
       return console.log(article);
@@ -48,19 +48,18 @@ img {
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-width: 400px;
 }
 .article-preview {
   background-color: #e7e7de;
-      box-shadow: 7px 7px 5px grey;
+  box-shadow: 7px 7px 5px grey;
 
   display: flex;
   border-radius: 10px;
-    max-height: 200px;
-        max-width: 1000px;
-        margin: auto;
-          margin-bottom: 30px;
-
-
+  max-height: 200px;
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 30px;
 
   overflow: hidden;
 

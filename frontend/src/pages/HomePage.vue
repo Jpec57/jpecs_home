@@ -1,36 +1,31 @@
 <template>
   <div class="body">
     <div class="left-side-container"></div>
-        <div class="main-container">
-    <h2>News</h2>
+    <div class="main-container">
+      <h2>News</h2>
 
       <div class="article-container">
-      <ArticlePreview
-        v-for="article in articles"
-        v-bind:key="article"
-        :article="article"
-      />
-            <ArticlePreview
-        v-for="article in hardcodedArticles"
-        v-bind:key="article"
-        :article="article"
-      />
+        <ArticlePreview
+          v-for="(article, index) in articles"
+          v-bind:key="article"
+          :article="article"
+          :id="index"
+        />
+        <ArticlePreview
+          v-for="article in hardcodedArticles"
+          v-bind:key="article"
+          :article="article"
+        />
       </div>
     </div>
-        <div class="right-side-container">
-
-        </div>
-
+    <div class="right-side-container"></div>
   </div>
 </template>
 
 <script>
-import Article from "../models/Article";
+import articles from "../articles/articles";
 
 import ArticlePreview from "../components/ArticlePreviewCard";
-
-// var marked = require('marked');
-const RELATIVE_PATH_TO_MD_FILES = '../assets/articles';
 
 export default {
   name: "HomePage",
@@ -40,46 +35,27 @@ export default {
   data() {
     return {
       hardcodedArticles: [],
-      articles: [
-        new Article(1, "First", "Hello"),
-        new Article(2, "Second", "Hello"),
-      ],
+      articles: articles,
     };
   },
   methods: {
-    async fetchArticles(){
-      const files = [];
-
+    async fetchArticles() {
       // const files = await utils.getFiles(__dirname + RELATIVE_PATH_TO_MD_FILES);
-      console.log(files);
-
-var i = 0;
-      var articles = [];
-      files.forEach(file => {
-        articles.push(new Article(i, "Article " + i, file));
-        i++;
-      });
-
-// var articles = [
-//         new Article(1, "First", "Hello"),
-//         new Article(2, "Second", "Hello"),
-//       ];
-      this.hardcodedArticles = articles;
+      // this.articles = [
+      //   new Article("First", "Hello"),
+      //   new Article("Second", "Hello"),
+      // ];
       console.log("fetching...");
       return articles;
-    }
+    },
   },
   mounted() {
-    const hello = "Hello World!";
     this.fetchArticles();
-    console.log(hello);
-    console.log(this.articles);
   },
 };
 </script>
 
 <style>
-
 /* #routing-container {
   display: flex;
   flex: 1;
@@ -93,8 +69,7 @@ var i = 0;
   color: #696767;
 }
 
-
-.article-container{
+.article-container {
   margin-left: 5%;
   margin-right: 5%;
   display: flex;

@@ -12,7 +12,7 @@ const routes = [
   { path: '/fitness', component: TrainingHomePage, name: "Fitness Home" },
 { path: '/japanese', component: JapaneseHomePage, name: "Japanese Home" },
    { path: '/math', component: MathHomePage, name: "Math Home" },
-      { path: '/article/:id', component: ArticlePage, name: "Article" },
+      { path: '/article/:slug/:id', component: ArticlePage, name: "Article" },
 // {
 //   path: '*', component: NotFoundPage
 // }
