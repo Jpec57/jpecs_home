@@ -44,3 +44,6 @@ Plates-formes : Android, Android TV, iOS, macOS, tvOS, Web platform, Microsoft W
 
 
 https://fr.wikipedia.org/wiki/Skia
+
+https://relevant.software/blog/top-8-flutter-advantages-and-why-you-should-try-flutter-on-your-next-project/
+
