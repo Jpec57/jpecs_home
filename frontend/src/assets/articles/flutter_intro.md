@@ -3,7 +3,7 @@ Flutter
 # Présentation générale
 
 D'après le site officiel, Flutter est une boîte à outils permettant de créer nativement des applications mobile, web et bureau.
-La notion d'application native étant elle même sujet à controverse, nous considérons dans cet article qu'une application est native si le code des composants est compilé selon le système d'opération dans un langage qui lui permet d'être le plus performant (ex: Pour Flutter, le Dart est compilé en C++; pour ReactNative, le JS est compilé en Java sur Android, Objective C pour iOS et C# pour Windows).
+La notion d'application native étant elle même sujet à controverse, nous considérons dans cet article qu'une application est native si le code des composants est compilé ou interprété selon le système d'opération dans un langage qui lui permet d'être le plus performant (ex: Pour Flutter, le Dart est compilé en C++; pour ReactNative, le JS est interprété en Java sur Android, Objective C pour iOS et C# pour Windows).
 
 ## Un code, plusieurs plateformes
 
