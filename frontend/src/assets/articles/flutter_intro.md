@@ -1,19 +1,25 @@
 # Pourquoi j'estime que Flutter est le meilleur choix actuel pour le développement mobile
 
-Que vous soyez développeur ou non, vous connaissez tous un ami qui a "une idée révolutionnaire" et qui "ne veut pas en parler par message de peur de se faire voler l'idée", à la recherche d'un développeur courtois qui pourra lui construire son application en espérant pas plus que des parts dans son projet. 
+Que vous soyez développeur ou non, vous connaissez tous un ami qui a "une idée révolutionnaire" et qui "ne veut pas en parler par message de peur de se faire voler l'idée", à la recherche d'un développeur courtois qui pourra lui construire son application en n'espérant pas plus pour compensation que des parts dans son projet. 
 
 Que vous soyez simplement agacé par cet ami qui rabache toujours son projet sans jamais le tenter, victime de son harcèlement, ou encore même l'ami en question; vous pourrez, à la fin de cette présentation, lui recommander l'outil de développement que vous considérez comme le meilleur.
 
+![New app idea](../images/no_more_idea.jpg "New app idea")
+
+
 # J'ai lu Flutter dans le titre... Mais c'est quoi ?
 
-D'après le site officiel, Flutter est une boîte à outils permettant de créer nativement des applications mobile, web et bureau.
+D'après le site officiel, Flutter est une boîte à outils permettant de créer **nativement** des applications mobile, web et bureau.
 
-Grosso modo, il s'agit d'une structure logicielle permettant d'écrire du code de façon simplifiée car se basant sur un squelette applicatif et des outils.
+Par boîte à outils (ou framework), on entend une structure logicielle permettant d'écrire du code de façon simplifiée car se basant sur un ensemble de principes et un squelette applicatif qui lui sont propres.
 
+![New framework](../images/new_framework.png "New framework")
 
-La notion d'application native étant elle même sujet à controverse, nous considérons dans cet article qu'une application est native si le code des composants est compilé ou interprété selon le système d'opération dans un langage qui lui permet d'être le plus performant (ex: Pour Flutter, le Dart est compilé en C++; pour ReactNative, le JS est interprété en Java sur Android, Objective C pour iOS et C# pour Windows) à l'inverse des Frameworks (outils de développement) hybrides tels qu'Ionic reposant sur une surcouche Web pour construire ses composants.
+La notion d'application native étant elle même sujet à controverse, nous considérons dans cet article qu'une application est **native si le code des composants est compilé ou interprété selon le système d'opération dans un langage qui lui permet d'être le plus performant** (ex: Pour Flutter, le Dart est compilé en C++; pour ReactNative, le JS est interprété en Java sur Android, Objective C pour iOS et C# pour Windows) à l'inverse des Frameworks (outils de développement) hybrides tels qu'Ionic reposant sur une surcouche Web pour construire ses composants.
 
 ## Un code, plusieurs plateformes
+
+![New framework](../images/one_code.jpg "New framework")
 
 Ce concept n'est pas nouveau. React Native, Xamarin ou encore Ionic sont des frameworks proposants déjà ce type service. Il s'agit sûrement de l'un des arguments principaux poussant les entreprises et les développeurs à s'intéresser à ces technologies.
 
@@ -21,18 +27,17 @@ La **réduction drastique du temps de développement** induite par la **mutualis
 
 ## Mais alors, pourquoi toutes les entreprises ne le font pas ...?
 
-Bien entendu, dans les faits, ce n'est pas si simple (sinon il n'existerait plus d'embauche de spécialistes...). En effet, l'utilisation de ces frameworks n'est pas forcément adaptée à tous les projets. On pourra retenir, en guise de simplification, qu'**une application dite "complexe" a plus d'intérêts à être développée nativement (ie avec un code distinct selon les plateformes)** pour l'instant. On entend ici par "complexe" une application nécessitant beaucoup d'outils liés au hardware (géolocalisation, utilisation de capteurs, utilisation poussée de la caméra...), dont **le rendu visuel doit être IMPERATIVEMENT conforme aux maquettes** ou encore nécessitant de **"gros calculs"**.
+Bien entendu, dans les faits, ce n'est pas si simple (sinon il n'existerait plus d'embauche de spécialistes...). En effet, l'utilisation de ces frameworks n'est pas forcément adaptée à tous les projets. On pourra retenir, en guise de simplification, qu'**une application dite "complexe" a plus d'intérêts à être développée nativement (ie avec un code distinct selon les plateformes)** pour l'instant. On entend ici par "complexe" une application reposant sur le hardware (géolocalisation, utilisation de capteurs, utilisation poussée de la caméra...), dont **le rendu visuel doit être IMPERATIVEMENT conforme à des maquettes** ou encore nécessitant de **"gros calculs"**.
 
 Ceci s'explique par le fait que le code de ces fonctionnalités est **intrinsèquement dépendant du support utilisé**, il est donc difficile d'avoir une entrée unique pour chacun des différents cas qui pourraient se présenter sans devoir faire **un compromis au niveau des performances**. 
 
 **Ce problème de performance** provient de la **surcouche** nécessaire à traduire l'unique code écrit par le développeur en plusieurs qui s'adaptent au mieux au support utilisé. Heureusement, cette surcouche a tendance à s'amoindrir avec le temps et les problèmes de performance autrefois connus avec les applications hybrides, sont beaucoup moins flagrants sur les frameworks actuels.
 
-
-De nos jours, la grande majorité des applications (95% des applications que vous utilisez) est codée à l'aide de frameworks n'utilisant qu'un seul et unique code. 
+**De nos jours, la très grande majorité des applications est codée à l'aide de frameworks n'utilisant qu'un seul et unique code.**
 
 *Exemples d'applications utilisant un unique code:* 
 
-Instagram (ReactNative), UberEats (ReactNative) Facebook (ReactNative), Discord (ReactNative), Alibaba (Flutter), Groupon (Flutter), Ebay (Flutter).
+Instagram (ReactNative partiel), UberEats (ReactNative) Facebook (ReactNative), Discord (ReactNative), Alibaba (Flutter), Groupon (Flutter), Ebay (Flutter).
 
 *Exemples d'applications utilisant un code différent selon les plateformes:* 
 
@@ -47,6 +52,7 @@ Passionné de développement mobile, j'ai très vite voulu faire un tour d'horiz
 Ionic a été le premier Framework que j'ai eu l'occasion d'essayer. Ayant développé jusqu'alors uniquement des applications Android natives en Java, il faut avouer que j'étais relativement content de découvrir une alternative JavaScript. Mes besoins étaient faibles : pas de pression au niveau des performances, aucune inquiétude quant aux visuels, je voulais simplement découvrir une autre façon de faire afin de pouvoir en tirer une comparaison. 
 
 Le développement de l'application était relativement satisfaisant. On sent dès le début une approche beaucoup plus orientée Web que mobile. Je découvrai également le **"Live Reload"**.
+
 ![Compiling nightmare](../images/compiling.jpeg "Compiling nightmare")
 
 Cette option permet de recharger automatiquement l'application lorsque des changements sont détectés et, soyons clair ici, cela a révolutionné ma vision du développement qui reposait jusqu'alors sur des builds relativement longs de l'application (je n'avais, à l'époque, pas connaissance des joies de la compilation iOS, partenaire officiel de mes pauses cafés...). Outre cette fonctionalité, la **courbe d'apprentissage** m'a paru relativement faible : on en vient rapidement à maîtriser les fondamentaux pour pouvoir réaliser une application correcte, même sans aucune connaissance préalable. 
@@ -57,27 +63,39 @@ Malgré tout, l'**ajout de fonctionnalités nécessitant l'API Native était dan
 
 Une chose est sûre toutefois, le chargement initial d'ouverture l'application était long. Un manque de fluidité globale (lors de changement de page notamment) donnait une **expérience utilisateur amoindrie**. 
 
-Si je devais résumer en un mot mon expérience avec Ionic, j'utiliserai le mot "Avenir". Une impression de "brouillon" était toujours présent. Nous en étions encore très tôt au niveau de développement d'Ionic, aussi je pense bon de redonner une chance à ce Framework. Je n'étais toutefois pas mécontent de mon expérience et **il m'a poussé à croire en cette nouvelle vague de Frameworks** et à tester le nouveau géant de ce domaine : ReactNative.
+Si je devais résumer en un mot mon expérience avec Ionic, j'utiliserai le mot "Avenir". Une impression de "brouillon" était toujours présent. Nous en étions encore très tôt au niveau de développement d'Ionic, aussi je pense bon de redonner une chance à ce Framework. Un gros travail de performance semble avoir été donné, une majeure partie de l'API Native a été complétée et un support de nouveaux Frameworks JS (React, Vue et Angular disponibles) a vu le jour ! Autant de bonnes raisons de ne pas rester sur cette "mauvaise" expérience. 
+
+![Ionic New](../images/ionic_new.png "Ionic New")
+
+
+De plus, il m'a tout de même **poussé à croire en cette nouvelle vague de Frameworks** et à tester le nouveau géant de ce domaine : ReactNative.
 
 #### La montée en puissance avec ReactNative (~2017/2018)
 
 Globalement, j'ai vu ReactNative comme une **version améliorée d'Ionic**. Les principes de développement me paraissaient plus clairs avec ReactNative et poussent les personnes à utiliser rapidement les bonnes pratiques. 
 
-De plus, l'existence d'**Expo**, une plateforme sous la forme d'application permettait de faire tourner son application mobile sur n'importe quel support ayant téléchargé Expo et ainsi, s'abstraire des stores. Très intéressante pour faire tourner une application rapidement sur le portable d'un ami, avec du recul je pense que cet atout est négligeable car, soyons honnête, qui ici a Expo de télécharger sur son téléphone ? 
+De plus, l'existence d'**Expo** (une plateforme sous la forme d'application) permettait de faire tourner son application mobile sur n'importe quel support ayant téléchargé Expo et ainsi, s'abstraire des stores. Très intéressante pour faire tourner une application rapidement sur le portable d'un ami, avec du recul je pense que cet atout est négligeable car, soyons honnête, qui ici a Expo de télécharger sur son téléphone ? 
 
 Si le **rendu visuel était plus fidèle** d'un téléphone à l'autre et que la **fluidité** était bien au rendez-vous, un gros point négatif m'a cependant découragé de l'utilisation de ReactNative pour mes projets : **les mises à jours**. A la moindre mise à jour, c'était reparti pour une soirée à débugguer quelles versions étaient compatibles entre elles, pourquoi un composant était cassé...  
 
 ![React Update](../images/updating-react-native.jpg "React Update")
 
-Finalement, je ne pensais redonner ma chance à ReactNative qu'une fois la v1 validée. D'autant plus que le développement natif Android s'est vu grandement amélioré avec l'arrivée de Kotlin (en Beta puis de façon officielle). Cependant, c'était avant d'avoir découvert le nouveau bijou de Google : Flutter.
-
+Finalement, je ne pensais redonner ma chance à ReactNative qu'une fois la v1 validée. D'autant plus que le développement natif Android s'est vu grandement amélioré entre temps avec l'arrivée de Kotlin (en Beta puis de façon officielle). Il a toutefois su répondre à l'ensemble de mes attentes avec brio, mais l'instabilité du Framework me laissait penser que le développement mobile cross-platform méritait peut-être plus de temps pour arriver à maturité. Cependant, c'était avant d'avoir découvert le nouveau bijou de Google : **Flutter**.
 
 
 #### Les sommets avec Flutter (~2019)
 
+
 ![Flutter's better](../images/flutter-better.png "Flutter's better")
 
 https://stackoverflow.com/questions/54401851/what-is-the-difference-between-react-native-and-flutter
+
+"React Native c'est mieux car je maîtrise déjà le JS"  -> ok mais pas natif et on ne doit pas s'orienter autour d'un langage mais choisir l'outil qui correspont le mieux à un usage donné. 
+1/ Vraiment natif
+2/ Pourquoi Dart ? 
+3/ On maîtrise tout à l'écran
+3/ Fuchsia : un OS dedié à Flutter ? 
+
 
 Flutter uses Dart, a typed language that offers both "Just in time" (JIT) and "Ahead of time" (AOT) compilation (with tree-shaking included)
 
@@ -87,9 +105,10 @@ React-Native uses Javascript enhanced by some syntax sugar called JSX.
 
 JSX being a different language, it compiles to JS, then evaluated at runtime.
 
-https://medium.com/flutter-community/flutters-key-difference-owning-every-pixel-e2135b44c8a
 
 
+
+## Resumé
 
 Fonctionnalité | Ionic | ReactNative | Flutter | Native (Android/iOS)
 --- | --- | --- | --- | ---
@@ -119,11 +138,19 @@ https://stackoverflow.com/questions/52050660/difference-between-androids-instant
 Skia (Flutter):
 https://fr.wikipedia.org/wiki/Skia
 
+
 Why you should try Flutter: 
 https://relevant.software/blog/top-8-flutter-advantages-and-why-you-should-try-flutter-on-your-next-project/
 
+Dart: a very good choice
+https://medium.com/hackernoon/why-flutter-uses-dart-dd635a054ebf
 
 Dart for Flutter, a good choice ? : 
 https://medium.com/swlh/13-reasons-why-dart-is-worse-than-kotlin-9d315301528f
 
+Flutter experience:
 https://dev.to/scastiel/i-tried-flutter-for-a-week-and-made-an-app-2fa
+
+Flutter master every pixel on screen:
+
+https://medium.com/flutter-community/flutters-key-difference-owning-every-pixel-e2135b44c8a
