@@ -1,8 +1,16 @@
-Flutter 
+# Pourquoi j'estime que Flutter est le meilleur choix actuel pour le développement mobile
 
-# Présentation générale
+Que vous soyez développeur ou non, vous connaissez tous un ami qui a "une idée révolutionnaire" et qui "ne veut pas en parler par message de peur de se faire voler l'idée", à la recherche d'un développeur courtois qui pourra lui construire son application en espérant pas plus que des parts dans son projet. 
+
+Que vous soyez simplement agacé par cet ami qui rabache toujours son projet sans jamais le tenter, victime de son harcèlement, ou encore même l'ami en question; vous pourrez, à la fin de cette présentation, lui recommander l'outil de développement que vous considérez comme le meilleur.
+
+# J'ai lu Flutter dans le titre... Mais c'est quoi ?
 
 D'après le site officiel, Flutter est une boîte à outils permettant de créer nativement des applications mobile, web et bureau.
+
+Grosso modo, il s'agit d'une structure logicielle permettant d'écrire du code de façon simplifiée car se basant sur un squelette applicatif et des outils.
+
+
 La notion d'application native étant elle même sujet à controverse, nous considérons dans cet article qu'une application est native si le code des composants est compilé ou interprété selon le système d'opération dans un langage qui lui permet d'être le plus performant (ex: Pour Flutter, le Dart est compilé en C++; pour ReactNative, le JS est interprété en Java sur Android, Objective C pour iOS et C# pour Windows) à l'inverse des Frameworks (outils de développement) hybrides tels qu'Ionic reposant sur une surcouche Web pour construire ses composants.
 
 ## Un code, plusieurs plateformes
@@ -95,16 +103,27 @@ API (native) | - (?) | ++ | ++ |
 Coût | -- | -- | - | + |
 
 
-https://stackoverflow.com/questions/52050660/difference-between-androids-instant-run-vs-flutters-hot-reload-and-react-nativ
-
 
 
 # Références utilisées
 
+
+
+React Native not really native:
+https://hub.packtpub.com/react-native-really-native-framework/
+
+Instant Run/Hot Reload:
+https://stackoverflow.com/questions/52050660/difference-between-androids-instant-run-vs-flutters-hot-reload-and-react-nativ
+
+
+Skia (Flutter):
 https://fr.wikipedia.org/wiki/Skia
 
+Why you should try Flutter: 
 https://relevant.software/blog/top-8-flutter-advantages-and-why-you-should-try-flutter-on-your-next-project/
 
 
+Dart for Flutter, a good choice ? : 
+https://medium.com/swlh/13-reasons-why-dart-is-worse-than-kotlin-9d315301528f
 
-https://hub.packtpub.com/react-native-really-native-framework/
+https://dev.to/scastiel/i-tried-flutter-for-a-week-and-made-an-app-2fa
