@@ -18,6 +18,8 @@ Par boîte à outils (ou framework), on entend une structure logicielle permetta
 La notion d'application native étant elle même sujet à controverse, nous considérons dans cet article qu'une application est **native si le code des composants est compilé ou interprété selon le système d'opération dans un langage qui lui permet d'être le plus performant** (ex: Pour Flutter, le Dart est compilé en C++; pour ReactNative, le JS est interprété en Java sur Android, Objective C pour iOS et C# pour Windows) à l'inverse des Frameworks (outils de développement) hybrides tels qu'Ionic reposant sur une surcouche Web pour construire ses composants.
 
 ## Un code, plusieurs plateformes
+---
+
 
 ![New framework](../images/one_code.jpg "New framework")
 
@@ -26,6 +28,7 @@ Ce concept n'est pas nouveau. React Native, Xamarin ou encore Ionic sont des fra
 La **réduction drastique du temps de développement** induite par la **mutualisation du code** va de pair avec la **simplification** globale de la complexité de l'application. Fini la recherche couplée de spécialistes Android et de spécialistes iOS, un unique développeur sera capable de modifier le code responsable d'une fonctionnalité. Une **réduction des coûts de développement** est alors évidente.
 
 ## Mais alors, pourquoi toutes les entreprises ne le font pas ...?
+---
 
 Bien entendu, dans les faits, ce n'est pas si simple (sinon il n'existerait plus d'embauche de spécialistes...). En effet, l'utilisation de ces frameworks n'est pas forcément adaptée à tous les projets. On pourra retenir, en guise de simplification, qu'**une application dite "complexe" a plus d'intérêts à être développée nativement (ie avec un code distinct selon les plateformes)** pour l'instant. On entend ici par "complexe" une application reposant sur le hardware (géolocalisation, utilisation de capteurs, utilisation poussée de la caméra...), dont **le rendu visuel doit être IMPERATIVEMENT conforme à des maquettes** ou encore nécessitant de **"gros calculs"**.
 
@@ -44,6 +47,7 @@ Instagram (ReactNative partiel), UberEats (ReactNative) Facebook (ReactNative), 
 OuiSNCF (Java/Swift), PokemonGo, Google Maps.
 
 ## Ok, mais alors pourquoi Flutter et pas les autres ? 
+---
 
 Passionné de développement mobile, j'ai très vite voulu faire un tour d'horizon des différents outils mis à ma disposition afin de me forger ma propre idée sur ces derniers et ainsi choisir sur lesquels de ces Frameworks je souhaiterais davantage me pencher. **Propriétaire d'un Android**, je m'étais au préalable formé au développement sur Android en Java et je n'avais alors **aucune expérience Web** si ce n'est que la création de sites statiques. Je pense que cette information est à noter afin d'expliquer au mieux les choix et les ressentis que j'ai pu avoir lors de ce parcours, bien que je me baserai principalement sur des éléments que je considère objectif.
 
@@ -83,7 +87,8 @@ Si le **rendu visuel était plus fidèle** d'un téléphone à l'autre et que la
 Finalement, je ne pensais redonner ma chance à ReactNative qu'une fois la v1 validée. D'autant plus que le développement natif Android s'est vu grandement amélioré entre temps avec l'arrivée de Kotlin (en Beta puis de façon officielle). Il a toutefois su répondre à l'ensemble de mes attentes avec brio, mais l'instabilité du Framework me laissait penser que le développement mobile cross-platform méritait peut-être plus de temps pour arriver à maturité. Cependant, c'était avant d'avoir découvert le nouveau bijou de Google : **Flutter**.
 
 
-#### Les sommets avec Flutter (~2019)
+### Les sommets avec Flutter (~2019)
+---
 
 
 ![Flutter's better](../images/flutter-better.png "Flutter's better")
@@ -125,7 +130,6 @@ Coût | -- | -- | - | + |
 
 
 # Références utilisées
-
 
 
 React Native not really native:
