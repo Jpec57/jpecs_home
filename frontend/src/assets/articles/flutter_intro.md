@@ -151,6 +151,6 @@ https://medium.com/swlh/13-reasons-why-dart-is-worse-than-kotlin-9d315301528f
 Flutter experience:
 https://dev.to/scastiel/i-tried-flutter-for-a-week-and-made-an-app-2fa
 
-Flutter master every pixel on screen:
+Flutter, master every pixel on screen:
 
 https://medium.com/flutter-community/flutters-key-difference-owning-every-pixel-e2135b44c8a
