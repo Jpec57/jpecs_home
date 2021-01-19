@@ -93,23 +93,54 @@ Finalement, je ne pensais redonner ma chance à ReactNative qu'une fois la v1 va
 
 ![Flutter's better](../images/flutter-better.png "Flutter's better")
 
-https://stackoverflow.com/questions/54401851/what-is-the-difference-between-react-native-and-flutter
+Flutter m'a été recommandé maintes et maintes fois par un ami. Fan de Google, il était sur ce nouveau framework alors que le projet n'était qu'à l'état de Bêta. Finalement, ce n'est qu'à la 5ème relance de cet ami que je me suis décidé à donner une chance à Flutter.
 
-"React Native c'est mieux car je maîtrise déjà le JS"  -> ok mais pas natif et on ne doit pas s'orienter autour d'un langage mais choisir l'outil qui correspont le mieux à un usage donné. 
-1/ Vraiment natif
-2/ Pourquoi Dart ? 
-3/ On maîtrise tout à l'écran
-3/ Fuchsia : un OS dedié à Flutter ? 
+Très vite, je compris pourquoi il insistait autant. En quelques jours, j'avais déjà une nouvelle application avec un design beaucoup plus soigné que ce dont j'avais l'habitude de montrer à mes collègues (la fonctionnalité avant tout...). Avais-je porté plus d'attention sur le soin ? Non. Passé plus de temps sur l'application ? Au contraire. 
 
+#### La notion de Widget 
 
-Flutter uses Dart, a typed language that offers both "Just in time" (JIT) and "Ahead of time" (AOT) compilation (with tree-shaking included)
+Avec Flutter, **"tout est un widget"**. Ce crédo répété à tout va m'avait découragé au premier abord. "Tout" était un raccourci pour "Tout ce qui a bien voulu être traduit en widget" selon moi et je ne me voyais pas fouiller à nouveau une API incomplète et devoir ruser pour créer des composants. Cependant, ce n'était en aucun cas une hyperbole. Tout est réellement un Widget et **le nombre de Widgets utilitaires** est tout bonnement ahurissant. Besoin de centrer du texte ? Un Widget existe pour ça. Besoin d'écrire justement du texte et de le personnaliser ? Un Widget existe aussi pour ça. Trop basique ? Jeter un coup d'oeil au _AnimatedCrossFade Widget_ et rappelez vous du temps que cela vous a pris de réaliser une animation comme cela sur Android. **Un gain de temps considérable** vous est offert par l'équipe de Flutter.
 
-In development, Flutter uses JIT compilation to empower hot-reload. And for production builds, it uses AOT compilation for better performances.
+[Une playlist YouTube](https://www.youtube.com/watch?v=b_sQ9bMltGU&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG) existe avec la présentation d'un Widget chaque semaine. Cette dernière est très utile pour montrer un panel de possibilités offert par Flutter et donner des idées de développement tout en ayant la garantie d'une mise en place sans aucune difficulté.
 
-React-Native uses Javascript enhanced by some syntax sugar called JSX.
+Voici le rendu d'une page basique (première page d'un projet):
 
-JSX being a different language, it compiles to JS, then evaluated at runtime.
+```
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Welcome to Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Welcome to Flutter'),
+        ),
+        body: Center(
+          child: Text('Hello World'),
+        ),
+      ),
+    );
+  }
+}
+```
+Comme on le voit, l'utilisation de Widget rend l'application lisible et compréhensible par quiconque, qu'il ait une expérience avec Flutter ou non: **le code parle de lui-même**.
 
+C'est principalement cet aspect qui m'a fait accrocher immédiatement à Flutter. Je n'avais jamais utilisé ce Framework jusqu'à présent et je pouvais déjà être productif dessus. Le language utilisé par Flutter est le *Dart* et il est à la fois perçu comme la faiblesse ou comme la force du Framework.
+
+#### Dart et la perte de Communauté JS
+
+> "Je préfère me lancer sur React Native car je maîtrise déjà le JS." - un dev inexpérimenté
+
+ Cette phrase est souvent avancée comme argument pour justifier la préférence pour RN. Cependant, cet argument, avant même d'avoir testé Flutter, me dérangeait. En effet, **nous ne devons pas utiliser des outils inappropriés pour une tâche pour l'unique raison que l'on maitrîse un outil**. J'arriverai peut-être à enfoncer un clou en tapant dessus avec un livre, mais je suis sûr que j'y arriverai beaucoup mieux avec un marteau. Bien sûr, je force ici le trait et il peut paraître cocasse de dire cela alors que l'on parle d'un Framework CrossPlatform utilisé pour faire du natif. Finalement, chacun peut utiliser l'outil qui lui sied le mieux, mais cela ne doit être pour moi un argument principal.
+
+ Aussi, ce language se révéle être d'une puissance insoupsonné. Il **autorise une compilation JIT (Just In Time) lors de la phase de développement** tout comme JS, ce qui accèlere énormément sa compilation et permet des fonctionnalités telles que le Hot Reload, mais **sera compilé AOT  (Ahead Of Time) en langage natif tel un langage fortement typé en production**. Ceci permet de s'affranchir de nombreux bugs et pauses lors du fonctionnement dus à un changement de contexte entre langages (pour plus d'informations, je vous invite à lire ce magnifique article sur Dart, très bien détaillé : https://medium.com/hackernoon/why-flutter-uses-dart-dd635a054ebf ).
+ Il tire ainsi le meilleur des deux mondes ! D'ailleurs, je trouve assez amusant d'avoir choisi comme nom de Framework "React Native" pour un Framework qui finalement se base sur un *bridge* permettant de réaliser le changement de contexte. On pourrait argumenter ainsi que Flutter est plus *natif* que React Native 😇.
+
+ Notons également que le projet **Fuchsia** d'un nouveau système d'exploitation cross-platform de Google est en cours et qui sera compatible avec Dart (même partiellement écrit en Dart). Autant de raisons de lui donner une petite chance ;)
+
+### Inconvénients
+
+Quelques inconvénients sont tout de même à noter avec Flutter. Parmi ces inconvénients, le plus critique reste pour moi le manque de formalisme dans **l'emploi du State** Le State est le moyen de rendre l'application dynamique et fera très certainement l'objet d'un article à part entière. Plein de solutions existantes sont très satisfaisantes, mais un utilisateur non averti se retrouvera vite perdu et choisira le *"callback's hell"* pour transmettre des informations d'un Widget à l'autre. C'est pourquoi, bon nombre d'articles sont disponibles sur le choix de la gestion du State. C'est pourquoi je considère que Flutter reste un framework "Difficile" à apprendre. Non pas que le Framework soit difficile à prendre en main (bien au contraire, comme expliqué précédemment), mais que d'**écrire une application conséquente de façon soignée demande un peu plus de travail**.
 
 
 
@@ -117,7 +148,7 @@ JSX being a different language, it compiles to JS, then evaluated at runtime.
 
 Fonctionnalité | Ionic | ReactNative | Flutter | Native (Android/iOS)
 --- | --- | --- | --- | ---
-Courbe d'apprentissage | Basse | Moyenne | Haute | Très haute
+Courbe d'apprentissage | Basse | Moyenne | Moyenne | Très haute
 Hot Reload | Oui | Oui | Oui | "Instant Run"
 Stabilité |Oui|Non (0.63)|Oui (1.22.5)|Oui|
 UX | - | + | + | ++ |
@@ -126,7 +157,9 @@ Facilité à dev UI | + | ++ | +++ | ++
 API (native) | - (?) | ++ | ++ | 
 Coût | -- | -- | - | + |
 
+# Conclusion
 
+Voici un résume de mon expérience avec les langages de programmation mobile CrossPlatform. J'espère vous avoir donné l'envie de les découvrir (oui, oui, même React Native; des choses sont bonnes à prendre surtout depuis l'apparition des Hooks). Cet article se veut subjectif : bien que des faits mentionnés soient objectifs, je donne très clairement mon avis et mon attrait pour Flutter est indéniable. Mais j'espère qu'ainsi que cet article sera un moteur vous poussant à vous faire votre propre idée des Frameworks 🤓. 
 
 
 # Références utilisées
