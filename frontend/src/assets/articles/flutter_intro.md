@@ -2,7 +2,7 @@
 
 Que vous soyez développeur ou non, vous connaissez tous un ami qui a "une idée révolutionnaire" et qui "ne veut pas en parler par message de peur de se faire voler l'idée", à la recherche d'un développeur courtois qui pourra lui construire son application en n'espérant pas plus pour compensation que des parts dans son projet. 
 
-Que vous soyez simplement agacé par cet ami qui rabache toujours son projet sans jamais le tenter, victime de son harcèlement, ou encore même l'ami en question; vous pourrez, à la fin de cette présentation, lui recommander l'outil de développement que vous considérez comme le meilleur.
+Que vous soyez simplement agacé par cet ami qui rabâche toujours son projet sans jamais le tenter, victime de son harcèlement, ou encore même l'ami en question; vous pourrez, à la fin de cette présentation, lui recommander l'outil de développement que vous considérez comme le meilleur.
 
 ![New app idea](../images/no_more_idea.jpg "New app idea")
 
