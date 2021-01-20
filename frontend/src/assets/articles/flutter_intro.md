@@ -146,7 +146,7 @@ Quelques inconvénients sont tout de même à noter avec Flutter. Parmi ces inco
 
 ## Resumé
 
-Fonctionnalité | Ionic | ReactNative | Flutter | Native (Android/iOS)
+Fonctionnalité | Ionic | ReactNative | Flutter | Native (Android/iOS) |
 --- | --- | --- | --- | ---
 Courbe d'apprentissage | Basse | Moyenne | Moyenne | Très haute
 Hot Reload | Oui | Oui | Oui | "Instant Run"
