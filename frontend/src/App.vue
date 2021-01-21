@@ -52,4 +52,8 @@ export default {
     flex: 4;
     flex-direction: column;
 }
+
+img{
+  width: 90%;
+}
 </style>

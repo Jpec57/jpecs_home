@@ -47,6 +47,11 @@ export default {
 .article-header {
 }
 .article-body {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: justify;
   vertical-align: center;
 }
 .article-footer {
@@ -93,6 +98,15 @@ code {
     padding-right: 10%;
     word-wrap: break-word;
 }
+}
+
+img{
+  max-width: 450px;
+}
+
+p:has(img) {
+  display: flex;
+  justify-content: center;
 }
 
 

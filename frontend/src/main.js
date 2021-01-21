@@ -4,11 +4,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHome, faGlobeAsia, faDumbbell, faCalculator } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import router from './router'
+// import VueMarkdown from 'vue-markdown'
 
 library.add(faHome)
 library.add(faGlobeAsia)
 library.add(faCalculator)
 library.add(faDumbbell)
+//TODO
+//https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-markdown-editor?from-embed=&file=/index.html:582-693
 
 
 
