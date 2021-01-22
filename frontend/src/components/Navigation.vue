@@ -55,9 +55,6 @@ export default {
 .icon.router-link {
   color: #e7e7de;
 }
-.icon.router-link-active {
-  color: #696767;
-}
 
 .router-link {
     text-decoration: none;
