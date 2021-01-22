@@ -49,7 +49,7 @@ OuiSNCF (Java/Swift), PokemonGo, Google Maps.
 
 Passionné de développement mobile, j'ai très vite voulu faire un tour d'horizon des différents outils mis à ma disposition afin de me forger ma propre idée sur ces derniers et ainsi choisir sur lesquels de ces Frameworks je souhaiterais davantage me pencher. **Propriétaire d'un Android**, je m'étais au préalable formé au développement sur Android en Java et je n'avais alors **aucune expérience Web** si ce n'est que la création de sites statiques. Je pense que cette information est à noter afin d'expliquer au mieux les choix et les ressentis que j'ai pu avoir lors de ce parcours, bien que je me baserai principalement sur des éléments que je considère objectif.
 
-#### Les débuts du voyage "Cross-Platform" avec Ionic (~2016)
+### Les débuts du voyage "Cross-Platform" avec Ionic (~2016)
 
 Ionic a été le premier Framework que j'ai eu l'occasion d'essayer. Ayant développé jusqu'alors uniquement des applications Android natives en Java, il faut avouer que j'étais relativement content de découvrir une alternative JavaScript. Mes besoins étaient faibles : pas de pression au niveau des performances, aucune inquiétude quant aux visuels, je voulais simplement découvrir une autre façon de faire afin de pouvoir en tirer une comparaison. 
 
@@ -72,7 +72,7 @@ Si je devais résumer en un mot mon expérience avec Ionic, j'utiliserai le mot 
 
 De plus, il m'a tout de même **poussé à croire en cette nouvelle vague de Frameworks** et à tester le nouveau géant de ce domaine : ReactNative.
 
-#### La montée en puissance avec ReactNative (~2017/2018)
+### La montée en puissance avec ReactNative (~2017/2018)
 
 Globalement, j'ai vu ReactNative comme une **version améliorée d'Ionic**. Les principes de développement me paraissaient plus clairs avec ReactNative et poussent les personnes à utiliser rapidement les bonnes pratiques. 
 

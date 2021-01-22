@@ -53,4 +53,8 @@ export default {
     flex-direction: column;
 }
 
+h3 {
+  text-decoration: underline;
+}
+
 </style>
