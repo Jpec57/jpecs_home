@@ -33,7 +33,6 @@ export default {
 #bannier {
   background-color: #0f3057;
   color: #e7e7de;
-  border-radius: 5px;
 }
 
 .icon {

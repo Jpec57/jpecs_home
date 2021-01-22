@@ -39,7 +39,7 @@ export default {
   display: flex;
   background-color: #0f3057;
   color: #e7e7de;
-  border-radius: 5px;
+  box-shadow: 0 5px 5px grey;
 }
 
 .left-side-container, .right-side-container {

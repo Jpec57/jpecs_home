@@ -56,10 +56,9 @@ export default {
 </script>
 
 <style>
-/* #routing-container {
-  display: flex;
-  flex: 1;
-} */
+body {
+  margin: 0;
+}
 
 .router-link {
   color: white;
