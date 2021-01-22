@@ -53,7 +53,4 @@ export default {
     flex-direction: column;
 }
 
-img{
-  width: 90%;
-}
 </style>
