@@ -104,9 +104,9 @@ img{
   max-width: 450px;
 }
 
-p:has(img) {
+p> img {
   display: flex;
-  justify-content: center;
+  margin: auto;
 }
 
 
