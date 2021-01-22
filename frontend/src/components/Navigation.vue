@@ -29,9 +29,6 @@ export default {
 </script>
 
 <style scoped>
-#routing-container {
-  align-items: center;
-}
 
 #bannier {
   background-color: #0f3057;
@@ -48,12 +45,13 @@ export default {
 }
 
 .module-link-container{
-  justify-content: center;
+  justify-content: start;
       flex-wrap: wrap;
 }
 #routing-container {
   display: flex;
   flex: 1;
+  align-items: flex-end;
 }
 .icon.router-link {
   color: #e7e7de;

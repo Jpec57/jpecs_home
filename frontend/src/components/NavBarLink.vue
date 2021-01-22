@@ -34,15 +34,19 @@ a {
 }
 
 .router-link {
-  background-color: #e7e7de;
+  border :1px solid #696767;
   color: #696767;
   padding: 10px;
   font-weight: bold;
   border-radius: 5px;
-  margin-left: 10px;
-    margin-right: 10px;
+      border-bottom: none;
+    border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
 
-    text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  text-decoration: none;
 
 }
 .router-link-active {
