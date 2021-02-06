@@ -2,19 +2,16 @@
   <div class="body">
     <div class="left-side-container"></div>
     <div class="main-container">
-      <h2>News</h2>
+      <h1>News</h1>
       <div class="article-container">
-        <ArticlePreview
-          v-for="(article, index) in articles"
-          v-bind:key="article"
-          :article="article"
-          :id="index"
-        />
-        <ArticlePreview
-          v-for="article in hardcodedArticles"
-          v-bind:key="article"
-          :article="article"
-        />
+        <!-- <transition-group name="list-fadein" appear> -->
+          <ArticlePreview
+            v-for="(article, index) in articles"
+            v-bind:key="article"
+            :article="article"
+            :id="index"
+          />
+        <!-- </transition-group> -->
       </div>
     </div>
     <div class="right-side-container"></div>
@@ -54,17 +51,17 @@ export default {
 };
 </script>
 
-<style>
-
-
-
-</style>
-
 <style lang="scss" scoped>
-//600
 .article-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  .article-preview {
+    animation: fadeInOpacity 2s forwards;
+  }
+  // .article-preview:nth-child(2){
+  //   animation-delay: .5s;
+  // }
 }
 </style>

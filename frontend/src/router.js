@@ -8,11 +8,11 @@ import ArticlePage from './pages/ArticlePage.vue'
 import { createWebHistory, createRouter } from "vue-router";
 
 const routes = [
-  { path: '/', component: HomePage, name: "Home" },
-  { path: '/fitness', component: TrainingHomePage, name: "Fitness Home" },
-{ path: '/japanese', component: JapaneseHomePage, name: "Japanese Home" },
-   { path: '/math', component: MathHomePage, name: "Math Home" },
-      { path: '/article/:slug/:id', component: ArticlePage, name: "Article" },
+  { path: '/', component: HomePage, name: "Home", meta: { title: "Jpec's Homepage" } },
+  { path: '/fitness', component: TrainingHomePage, name: "Fitness Home", meta: { title: "Fitness Home" } },
+{ path: '/japanese', component: JapaneseHomePage, name: "Japanese Home", meta: { title: "Japanese Home" } },
+   { path: '/math', component: MathHomePage, name: "Math Home", meta: { title: "Math Home" } },
+      { path: '/article/:slug/:id', component: ArticlePage, name: "Article", meta: { title: "Jpec's article" } },
 // {
 //   path: '*', component: NotFoundPage
 // }

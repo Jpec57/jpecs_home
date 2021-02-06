@@ -49,6 +49,7 @@ export default {
   margin: auto;
   margin-bottom: 30px;
   overflow: hidden;
+  cursor: pointer;
   @media screen and (max-width: 600px) {
     flex-direction: column;
     justify-content: center;

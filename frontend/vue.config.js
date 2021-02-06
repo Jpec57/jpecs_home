@@ -1,7 +1,7 @@
 const fs = require('fs');
 // const path = require('path')
 
-// var webpack = require('webpack');
+var webpack = require('webpack');
 
 // var utils = require('./services/utils');
 
@@ -17,14 +17,13 @@ module.exports = {
         .use('raw-loader')
         .loader('raw-loader')
         .end()
-    }
-    // configureWebpack: config => {
-    //     return {
-    //       plugins: [
-    //         new webpack.DefinePlugin({
-    //           'flutter': someFileContents,
-    //         })
-    //       ]
-    //     }
-    //   },
+    },
+    configureWebpack: config => {
+        return {
+          plugins: [
+            new webpack.DefinePlugin({
+            })
+          ]
+        }
+      },
   }
