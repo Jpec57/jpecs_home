@@ -17,11 +17,6 @@ module.exports = {
         .use('raw-loader')
         .loader('raw-loader')
         .end()
-    },
-    resolve: {
-      alias: {
-        vue: 'vue/dist/vue.js'
-      }
     }
     // configureWebpack: config => {
     //     return {
