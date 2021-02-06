@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app-content">
     <div id="bannier">
       <NavBar />
     </div>
@@ -57,4 +57,30 @@ h3 {
   text-decoration: underline;
 }
 
+html, body, #app, #app-content {
+  margin: 0;
+  height: 100%;
+}
+
+
+.body{
+    display: flex;
+}
+
+.router-link {
+  color: white;
+  padding: 10px;
+}
+.router-link-active {
+  color: #696767;
+}
+
+.f-col{
+  display: flex;
+  flex-direction: column;
+}
+.f-row{
+  display: flex;
+  flex-direction: row;
+}
 </style>

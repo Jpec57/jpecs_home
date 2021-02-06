@@ -1,6 +1,11 @@
 <template>
-  <div class="article-preview">
-    <router-link :to="'/article/' + article.slug + '/' + id">
+  <router-link
+    :to="'/article/' + article.slug + '/' + id"
+    tag="div"
+    custom
+    v-slot="{ navigate }"
+  >
+    <div role="link" class="article-preview" @click="navigate">
       <div class="image-container">
         <img
           alt="img"
@@ -19,8 +24,8 @@
           pour aligner verticalement le contenu d'une cellule dans un tableau -->
         </div>
       </div>
-    </router-link>
-  </div>
+    </div>
+  </router-link>
 </template>
 <script>
 import Article from "../models/Article";
@@ -36,33 +41,29 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
-
 .article-preview {
   background-color: #e7e7de;
   box-shadow: 7px 7px 5px grey;
-
   display: flex;
   border-radius: 10px;
-  // max-height: 200px;
-  // max-width: 1000px;
   margin: auto;
   margin-bottom: 30px;
-
   overflow: hidden;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 
-  a {
-  text-decoration: none;
-  color: black;
-  display: flex;
-}
-.image-container{
-img {
-  object-fit: cover;
-}
-background-color: #0f3057;
-}
-
+  .image-container {
+    display: flex;
+    img {
+      object-fit: cover;
+    }
+    background-color: #0f3057;
+    @media screen and (max-width: 600px) {
+      justify-content: center;
+    }
+  }
 
   .article-preview-header {
     padding: 10px;
@@ -75,10 +76,12 @@ background-color: #0f3057;
   }
 
   .article-preview-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 400px;
-}
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    @media screen and (min-width: 600px) {
+      min-width: 300px;
+    }
+  }
 }
 </style>

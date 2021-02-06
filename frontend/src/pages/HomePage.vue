@@ -3,7 +3,6 @@
     <div class="left-side-container"></div>
     <div class="main-container">
       <h2>News</h2>
-
       <div class="article-container">
         <ArticlePreview
           v-for="(article, index) in articles"
@@ -56,21 +55,14 @@ export default {
 </script>
 
 <style>
-body {
-  margin: 0;
-}
 
-.router-link {
-  color: white;
-  padding: 10px;
-}
-.router-link-active {
-  color: #696767;
-}
 
+
+</style>
+
+<style lang="scss" scoped>
+//600
 .article-container {
-  margin-left: 5%;
-  margin-right: 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;

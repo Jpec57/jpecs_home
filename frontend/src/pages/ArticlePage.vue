@@ -44,8 +44,6 @@ export default {
 </script>
 
 <style lang="scss">
-.article-header {
-}
 .article-body {
   display: flex;
   flex-direction: column;
@@ -53,8 +51,6 @@ export default {
   padding-right: 10%;
   text-align: justify;
   vertical-align: center;
-}
-.article-footer {
 }
 
 table {
