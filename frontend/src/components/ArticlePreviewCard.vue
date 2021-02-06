@@ -42,6 +42,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .article-preview {
+  max-width: 1000px;
   background-color: #e7e7de;
   box-shadow: 7px 7px 5px grey;
   display: flex;
@@ -50,6 +51,9 @@ export default {
   margin-bottom: 30px;
   overflow: hidden;
   cursor: pointer;
+  @media screen and (min-width: 1200px) {
+    min-width: 1000px;
+  }
   @media screen and (max-width: 600px) {
     flex-direction: column;
     justify-content: center;
