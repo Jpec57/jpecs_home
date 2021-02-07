@@ -5,11 +5,9 @@
         {{ article.title }}
       </h1>
       <router-link to="/">
-      <div class="back">
-        <font-awesome-icon icon="long-arrow-alt-left" size="1x" />
-        <span>
-        Retour
-        </span>
+        <div class="back">
+          <font-awesome-icon icon="long-arrow-alt-left" size="1x" />
+          <span> Retour </span>
         </div>
       </router-link>
     </div>
@@ -60,13 +58,13 @@ export default {
   a {
     text-decoration: none;
   }
-  .article-title{
+  .article-title {
     display: flex;
     flex: 1;
     justify-content: center;
   }
   .back {
-        display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -186,5 +184,6 @@ img {
 p > img {
   display: flex;
   margin: auto;
+  width: 100%;
 }
 </style>
