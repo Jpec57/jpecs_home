@@ -1,17 +1,30 @@
 <template>
-  <div>
+  <div class="f-col">
     <div class="article-header">
       <h1 class="article-title">
         {{ article.title }}
       </h1>
-      <router-link to="/">
+      <router-link to="/" v-if="window.width > 600">
         <div class="back">
           <font-awesome-icon icon="long-arrow-alt-left" size="1x" />
           <span> Retour </span>
         </div>
       </router-link>
     </div>
-    <div class="article-body" v-html="compiledMarkdown"></div>
+    <div class="f-center">
+            <router-link to="/" v-if="window.width <= 600">
+        <div class="back">
+          <font-awesome-icon icon="long-arrow-alt-left" size="1x" />
+          <span> Retour </span>
+        </div>
+      </router-link>
+    </div>
+    <div class="f-row flex-1">
+      <div class="left-side-container" v-if="window.width > 600"></div>
+      <div class="article-body" v-html="compiledMarkdown"></div>
+      <div class="right-side-container" v-if="window.width > 600"></div>
+    </div>
+
     <div class="article-footer"></div>
   </div>
 </template>
@@ -27,9 +40,17 @@ export default {
     return {
       article: new Article("Mock article", "This is a description", "Content"),
       mdFile: "# Baby metal",
+      window: {
+        width: 0,
+        height: 0,
+      },
     };
   },
   methods: {
+    handleResize() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight;
+    },
     async fetchArticle() {
       console.log(this.$route.params);
       this.article = articles[this.$route.params.id];
@@ -44,10 +65,65 @@ export default {
   mounted() {
     this.fetchArticle();
   },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  unmounted() {
+    window.removeEventListener("resize", this.handleResize);
+  },
 };
 </script>
 
 <style lang="scss">
+@-webkit-keyframes fadinJpec {
+  0% {
+    opacity: 0;
+    height: 0%;
+    width: 50%;
+  }
+  100% {
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+  }
+}
+@-moz-keyframes fadinJpec {
+  0% {
+    opacity: 0;
+    height: 0%;
+    width: 50%;
+  }
+  100% {
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+  }
+}
+@-o-keyframes fadinJpec {
+  0% {
+    opacity: 0;
+    height: 0%;
+    width: 50%;
+  }
+  100% {
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+  }
+}
+@keyframes fadinJpec {
+  0% {
+    opacity: 0;
+    height: 0%;
+    width: 50%;
+  }
+  100% {
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+  }
+}
 .article-header {
   display: flex;
   flex-direction: row;
@@ -75,65 +151,32 @@ export default {
     font-size: 20px;
   }
 }
-@-webkit-keyframes fadinJpec {
-  0% {
-    opacity: 0;
-    height: 0%;
-    width: 50%;
-  }
-  100% {
-    opacity: 1;
-    height: 100%;
-    width: 80%;
-  }
-}
-@-moz-keyframes fadinJpec {
-  0% {
-    opacity: 0;
-    height: 0%;
-    width: 50%;
-  }
-  100% {
-    opacity: 1;
-    height: 100%;
-    width: 80%;
-  }
-}
-@-o-keyframes fadinJpec {
-  0% {
-    opacity: 0;
-    height: 0%;
-    width: 50%;
-  }
-  100% {
-    opacity: 1;
-    height: 100%;
-    width: 80%;
-  }
-}
-@keyframes fadinJpec {
-  0% {
-    opacity: 0;
-    height: 0%;
-    width: 50%;
-  }
-  100% {
-    opacity: 1;
-    height: 100%;
-    width: 80%;
-  }
-}
+
 .article-body {
   display: flex;
   flex-direction: column;
-  padding-left: 10%;
-  padding-right: 10%;
+  max-width: 900px;
   text-align: justify;
+  // margin: auto;
+  justify-content: center;
   vertical-align: center;
   animation: fadinJpec 1.5s;
   overflow: hidden;
+  @media screen and (max-width: 1200px) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 }
-
+  .f-center{
+      a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+  }
+  }
+.article-footer {
+  padding-top: 10%;
+}
 table {
   display: flex;
   flex-direction: column;

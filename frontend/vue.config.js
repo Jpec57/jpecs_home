@@ -18,6 +18,9 @@ module.exports = {
         .loader('raw-loader')
         .end()
     },
+    // plugins:[
+    //   require('@tailwindcss/typography'),
+    // ],
     configureWebpack: config => {
         return {
           plugins: [

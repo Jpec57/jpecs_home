@@ -17,9 +17,11 @@
       <div class="main-menu" v-if="window.width > 600">
         <h1>Jpec's Home</h1>
         <div class="module-link-container">
-          <NavBarLink title="Japanese" path="/japanese" icon="globe-asia" />
+                  <NavBar/>
+
+          <!-- <NavBarLink title="Japanese" path="/japanese" icon="globe-asia" />
           <NavBarLink title="Workout" path="/fitness" icon="dumbbell" />
-          <NavBarLink title="Math" path="/math" icon="calculator" />
+          <NavBarLink title="Math" path="/math" icon="calculator" /> -->
         </div>
       </div>
 
@@ -48,9 +50,10 @@
     </div>
     <div class="mobile-nav-container" v-if="window.width <= 600">
       <div v-show="showNav" class="floating-menu">
-        <NavBarLink title="Japanese" path="/japanese" icon="globe-asia" />
+        <NavBar/>
+        <!-- <NavBarLink title="Japanese" path="/japanese" icon="globe-asia" />
         <NavBarLink title="Workout" path="/fitness" icon="dumbbell" />
-        <NavBarLink title="Math" path="/math" icon="calculator" />
+        <NavBarLink title="Math" path="/math" icon="calculator" /> -->
       </div>
     </div>
     <!-- END MOBILE -->
@@ -58,12 +61,12 @@
 </template>
 
 <script>
-import NavBarLink from "./NavBarLink.vue";
+import NavBar from "./NavBar.vue";
 
 export default {
-  name: "NavBar",
+  name: "Navigation",
   components: {
-    NavBarLink,
+    NavBar
   },
   data() {
     return {

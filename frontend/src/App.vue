@@ -1,18 +1,18 @@
 <template>
   <div id="app-content">
     <div id="bannier">
-      <NavBar />
+      <Navigation />
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
-import NavBar from "./components/Navigation";
+import Navigation from "./components/Navigation";
 export default {
   name: "App",
   components: {
-    NavBar,
+    Navigation,
   },
   watch: {
       '$route' (to) {
@@ -151,5 +151,10 @@ html, body, #app, #app-content {
 .f-row{
   display: flex;
   flex-direction: row;
+}
+
+.f-center{
+  display: flex;
+  justify-content: center;
 }
 </style>
