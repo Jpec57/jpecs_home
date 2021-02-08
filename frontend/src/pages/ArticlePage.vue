@@ -80,7 +80,7 @@ export default {
   0% {
     opacity: 0;
     height: 0%;
-    width: 50%;
+    width: 15%;
   }
   100% {
     opacity: 1;
@@ -92,7 +92,7 @@ export default {
   0% {
     opacity: 0;
     height: 0%;
-    width: 50%;
+    width: 15%;
   }
   100% {
     opacity: 1;
@@ -116,7 +116,7 @@ export default {
   0% {
     opacity: 0;
     height: 0%;
-    width: 50%;
+    width: 15%;
   }
   100% {
     opacity: 1;
@@ -160,7 +160,7 @@ export default {
   // margin: auto;
   justify-content: center;
   vertical-align: center;
-  animation: fadinJpec 1.5s;
+  animation: fadinJpec 3s;
   overflow: hidden;
   @media screen and (max-width: 1200px) {
     padding-left: 5%;
