@@ -112,3 +112,7 @@ Despite saying that, I still believe that my method consisting in focusing exclu
 ## Conclusion
 
 I hope that some of my advice will eventually reach someone and give him/her the strength to take the plunge. This is my own personal experience with learning Japanese, I am not a teacher nor an expert in Japanese. So please, don't take this as immutable truth and forge your own idea ! I'll be happy to discusss about it so don't hesitate an send me a message if you want to share something this me 🤓.
+
+### Credits
+
+Special thanks to [@delluattack](https://twitter.com/delluattack/) for reviewing this article!

@@ -12,7 +12,7 @@
       </router-link>
     </div>
     <div class="f-center">
-            <router-link to="/" v-if="window.width <= 600">
+      <router-link to="/" v-if="window.width <= 600">
         <div class="back">
           <font-awesome-icon icon="long-arrow-alt-left" size="1x" />
           <span> Retour </span>
@@ -167,13 +167,13 @@ export default {
     padding-right: 5%;
   }
 }
-  .f-center{
-      a {
+.f-center {
+  a {
     text-decoration: none;
     font-weight: bold;
     color: black;
   }
-  }
+}
 .article-footer {
   padding-top: 10%;
 }
@@ -228,5 +228,22 @@ p > img {
   display: flex;
   margin: auto;
   width: 100%;
+}
+blockquote {
+  border: 1px dotted grey;
+  font-style: italic;
+  margin: 0;
+  padding: 2em;
+  background: #ffeace9e;
+}
+a {
+  color: #3a3838;
+  &:hover {
+    color: black;
+    font-weight: bold;
+  }
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 600;
 }
 </style>
