@@ -1,7 +1,8 @@
 var slugify = require('slugify')
 
 export default class Article {
-  constructor(title, preview, body, createdAt) {
+  constructor(id, title, preview, body, createdAt) {
+    this.id = id;
     this.title = title;
     this.preview = preview;
     this.body = body;
