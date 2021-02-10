@@ -5,12 +5,18 @@
       <h1>News</h1>
       <div class="article-container">
         <!-- <transition-group name="list-fadein" appear> -->
-          <ArticlePreview
-            v-for="(article, index) in articles"
-            v-bind:key="article"
-            :article="article"
-            :id="index"
-          />
+        <ArticlePreview
+          v-for="(article, index) in articles"
+          v-bind:key="article"
+          :article="article"
+          :id="index"
+        />
+                <ArticlePreview
+          v-for="(article, index) in hardcodedArticles"
+          v-bind:key="article"
+          :article="article"
+          :id="index"
+        />
         <!-- </transition-group> -->
       </div>
     </div>
@@ -20,8 +26,10 @@
 
 <script>
 import articles from "../articles/articles";
+import { articlesCollection } from "../firebase";
 
 import ArticlePreview from "../components/ArticlePreviewCard";
+import Article from '../models/Article';
 
 export default {
   name: "HomePage",
@@ -30,23 +38,28 @@ export default {
   },
   data() {
     return {
-      hardcodedArticles: [],
-      articles: articles,
+      hardcodedArticles: articles,
+      articles: [],
     };
   },
   methods: {
     async fetchArticles() {
-      // const files = await utils.getFiles(__dirname + RELATIVE_PATH_TO_MD_FILES);
-      // this.articles = [
-      //   new Article("First", "Hello"),
-      //   new Article("Second", "Hello"),
-      // ];
-      console.log("fetching...");
-      return articles;
+
+      var firebaseArticles = [];
+      await articlesCollection.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(doc.id, " => ", doc.data());
+          var articleJson =  doc.data();
+          console.log(articleJson);
+          firebaseArticles.push(new Article(articleJson.title, articleJson.preview, articleJson.body, null))
+        });
+      });
+      console.log(firebaseArticles);
+      return firebaseArticles;
     },
   },
-  mounted() {
-    this.fetchArticles();
+  async mounted() {
+    this.articles = await this.fetchArticles();
   },
 };
 </script>
