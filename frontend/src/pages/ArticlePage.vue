@@ -33,12 +33,19 @@
 import articles from "../articles/articles";
 import Article from "../models/Article";
 import marked from "marked";
+import { articlesCollection } from "../firebase";
 
 export default {
   name: "ArticlePage",
   data() {
     return {
-      article: new Article("Mock article", "This is a description", "Content"),
+      article: new Article(
+        0,
+        "Mock article",
+        "This is a description",
+        "Content",
+        null
+      ),
       mdFile: "# Baby metal",
       window: {
         width: 0,
@@ -52,8 +59,22 @@ export default {
       this.window.height = window.innerHeight;
     },
     async fetchArticle() {
-      console.log(this.$route.params);
-      this.article = articles[this.$route.params.id];
+      if (this.$route.params.id){
+        this.article = articles[this.$route.params.id];
+      } else {
+      await articlesCollection
+        .where("slug", "==", this.$route.params.slug)
+        .limit(1)
+        .get()
+        .then((querySnapshot) => {
+          if (!querySnapshot.empty) {
+            this.article = querySnapshot.docs[0].data();
+            console.log("exists", querySnapshot.docs[0].data());
+          }
+
+        });
+      }
+
       return this.article;
     },
   },

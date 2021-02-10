@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="'/article/' + article.slug + '/' + id"
+    :to="'/article/' + article.slug"
     custom
     v-slot="{ navigate }"
   >
@@ -26,13 +26,8 @@
 import Article from "../models/Article";
 
 export default {
-  name: "ArticlePreviewCard",
-  props: { article: Article, id: Number },
-  methods: {
-    show: function (article) {
-      return console.log(article);
-    },
-  },
+  name: "FirebaseArticlePreviewCard",
+  props: { article: Article, id: String },
 };
 </script>
 <style lang="scss" scoped>

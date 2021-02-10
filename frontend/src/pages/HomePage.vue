@@ -5,15 +5,15 @@
       <h1>News</h1>
       <div class="article-container">
         <!-- <transition-group name="list-fadein" appear> -->
-        <ArticlePreview
-          v-for="(article, index) in articles"
+        <FirebaseArticlePreview
+          v-for="(article) in articles"
           v-bind:key="article"
           :article="article"
-          :id="index"
+          :id="article.id"
         />
                 <ArticlePreview
           v-for="(article, index) in hardcodedArticles"
-          v-bind:key="article"
+          v-bind:key="index"
           :article="article"
           :id="index"
         />
@@ -27,15 +27,16 @@
 <script>
 import articles from "../articles/articles";
 import { articlesCollection } from "../firebase";
-
 import ArticlePreview from "../components/ArticlePreviewCard";
+import FirebaseArticlePreview from "../components/FirebaseArticlePreviewCard";
 import Article from '../models/Article';
 
 export default {
   name: "HomePage",
   components: {
     ArticlePreview,
-  },
+    FirebaseArticlePreview,
+    },
   data() {
     return {
       hardcodedArticles: articles,
@@ -48,13 +49,10 @@ export default {
       var firebaseArticles = [];
       await articlesCollection.get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
           var articleJson =  doc.data();
-          console.log(articleJson);
-          firebaseArticles.push(new Article(articleJson.title, articleJson.preview, articleJson.body, null))
+          firebaseArticles.push(new Article(doc.id, articleJson.title, articleJson.preview, articleJson.body, null))
         });
       });
-      console.log(firebaseArticles);
       return firebaseArticles;
     },
   },
