@@ -26,10 +26,10 @@
 
 <script>
 import articles from "../articles/articles";
-import { articlesCollection } from "../firebase";
 import ArticlePreview from "../components/ArticlePreviewCard";
 import FirebaseArticlePreview from "../components/FirebaseArticlePreviewCard";
-import Article from '../models/Article';
+// import { articlesCollection } from "../firebase";
+// import Article from '../models/Article';
 
 export default {
   name: "HomePage",
@@ -46,14 +46,15 @@ export default {
   methods: {
     async fetchArticles() {
 
-      var firebaseArticles = [];
-      await articlesCollection.get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          var articleJson =  doc.data();
-          firebaseArticles.push(new Article(doc.id, articleJson.title, articleJson.preview, articleJson.body, null))
-        });
-      });
-      return firebaseArticles;
+      return [];
+      // var firebaseArticles = [];
+      // await articlesCollection.get().then((querySnapshot) => {
+      //   querySnapshot.forEach((doc) => {
+      //     var articleJson =  doc.data();
+      //     firebaseArticles.push(new Article(doc.id, articleJson.title, articleJson.preview, articleJson.body, null))
+      //   });
+      // });
+      // return firebaseArticles;
     },
   },
   async mounted() {

@@ -17,10 +17,7 @@ const routes = [
   { path: '/create-article', component: CreateArticlePage, name: "Write", meta: { title: "Write" } },
   { path: '/test123', component: TestPage, name: "Test Home", meta: { title: "Testing Page" } },
   { path: '/article/:slug', component: ArticlePage, name: "FirebaseArticle", meta: { title: "Jpec's article" } },
-  { path: '/article/:slug/:id', component: ArticlePage, name: "Article", meta: { title: "Jpec's article" } },
-  {
-    path: '/:pathMatch(.*)*', name: "Not found", component: NotFoundPage
-  }
+  { path: '/:pathMatch(.*)*', name: "Not found", component: NotFoundPage }
 
 ]
 

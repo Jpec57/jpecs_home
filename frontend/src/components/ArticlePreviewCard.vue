@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="'/article/' + article.slug + '/' + id"
+    :to="'/article/' + article.slug"
     custom
     v-slot="{ navigate }"
   >
