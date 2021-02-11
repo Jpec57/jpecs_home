@@ -25,7 +25,9 @@
       <div class="right-side-container" v-if="window.width > 600"></div>
     </div>
 
-    <div class="article-footer"></div>
+    <div class="article-footer">
+      <Chat :chat="chat"/>
+    </div>
   </div>
 </template>
 
@@ -33,13 +35,28 @@
 import articles from "../articles/articles";
 import Article from "../models/Article";
 import marked from "marked";
+import { articlesCollection } from "../firebase";
+
+import ChatMessage from '../models/ChatMessage';
+import ChatModel from "../models/Chat";
+import Chat from "../components/chat/Chat";
 
 export default {
   name: "ArticlePage",
+  components: [
+    Chat
+  ],
   data() {
     return {
-      article: new Article("Mock article", "This is a description", "Content"),
+      article: new Article(
+        0,
+        "Mock article",
+        "This is a description",
+        "Content",
+        null
+      ),
       mdFile: "# Baby metal",
+      chat: new ChatModel("toto", [new ChatMessage(0, "jpec57", "Hello"), new ChatMessage(1, "Snouf", "Coucou Jpec")]),
       window: {
         width: 0,
         height: 0,
@@ -52,14 +69,35 @@ export default {
       this.window.height = window.innerHeight;
     },
     async fetchArticle() {
-      console.log(this.$route.params);
-      this.article = articles[this.$route.params.id];
+      var found = false;
+      articles.forEach((article) => {
+        if (article.slug == this.$route.params.slug) {
+          this.article = article;
+          found = true;
+          return;
+        }
+      });
+      if (found) {
+        return;
+      }
+
+      await articlesCollection
+        .where("slug", "==", this.$route.params.slug)
+        .limit(1)
+        .get()
+        .then((querySnapshot) => {
+          if (!querySnapshot.empty) {
+            this.article = querySnapshot.docs[0].data();
+            console.log("exists", querySnapshot.docs[0].data());
+          }
+        });
+
       return this.article;
     },
   },
   computed: {
     compiledMarkdown() {
-      return marked(this.article.body, { sanitize: true });
+      return marked(this.article.body);
     },
   },
   mounted() {

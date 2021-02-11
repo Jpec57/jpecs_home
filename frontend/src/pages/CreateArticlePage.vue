@@ -24,7 +24,7 @@ export default {
     },
       computed: {
     compiledMarkdown() {
-      return marked(this.mdContent, { sanitize: true });
+      return marked(this.mdContent);
     },
   },
 }

@@ -2,7 +2,7 @@ Que vous soyez développeur ou non, vous connaissez tous un ami qui a "une idée
 
 Que vous soyez simplement agacé par cet ami qui rabâche toujours son projet sans jamais le tenter, victime de son harcèlement, ou encore même l'ami en question; vous pourrez, à la fin de cette présentation, lui recommander l'outil de développement que vous considérez comme le meilleur.
 
-![New app idea](/article_images/no_more_idea.jpg "New app idea")
+![New app idea](/article_images/flutter_introduction/no_more_idea.jpg "New app idea")
 
 
 # J'ai lu Flutter dans le titre... Mais c'est quoi ?
@@ -11,7 +11,7 @@ D'après le site officiel, Flutter est une boîte à outils permettant de créer
 
 Par boîte à outils (ou framework), on entend une structure logicielle permettant d'écrire du code de façon simplifiée car se basant sur un ensemble de principes et un squelette applicatif qui lui sont propres.
 
-![New framework](/article_images/new_framework.png "New framework")
+![New framework](/article_images/flutter_introduction/new_framework.png "New framework")
 
 La notion d'application native étant elle même sujet à controverse, nous considérons dans cet article qu'une application est **native si le code des composants est compilé ou interprété selon le système d'opération dans un langage qui lui permet d'être le plus performant** (ex: Pour Flutter, le Dart est compilé en C++; pour ReactNative, le JS est interprété en Java sur Android, Objective C pour iOS et C# pour Windows) à l'inverse des Frameworks (outils de développement) hybrides tels qu'Ionic reposant sur une surcouche Web pour construire ses composants.
 
@@ -19,7 +19,7 @@ La notion d'application native étant elle même sujet à controverse, nous cons
 ---
 
 
-![New framework](/article_images/one_code.jpg "New framework")
+![New framework](/article_images/flutter_introduction/one_code.jpg "New framework")
 
 Ce concept n'est pas nouveau. React Native, Xamarin ou encore Ionic sont des frameworks proposants déjà ce type service. Il s'agit sûrement de l'un des arguments principaux poussant les entreprises et les développeurs à s'intéresser à ces technologies.
 
@@ -55,19 +55,19 @@ Ionic a été le premier Framework que j'ai eu l'occasion d'essayer. Ayant déve
 
 Le développement de l'application était relativement satisfaisant. On sent dès le début une approche beaucoup plus orientée Web que mobile. Je découvrai également le **"Live Reload"**.
 
-![Compiling nightmare](/article_images/compiling.jpeg "Compiling nightmare")
+![Compiling nightmare](/article_images/flutter_introduction/compiling.jpeg "Compiling nightmare")
 
 Cette option permet de recharger automatiquement l'application lorsque des changements sont détectés et, soyons clair ici, cela a révolutionné ma vision du développement qui reposait jusqu'alors sur des builds relativement longs de l'application (je n'avais, à l'époque, pas connaissance des joies de la compilation iOS, partenaire officiel de mes pauses cafés...). Outre cette fonctionalité, la **courbe d'apprentissage** m'a paru relativement faible : on en vient rapidement à maîtriser les fondamentaux pour pouvoir réaliser une application correcte, même sans aucune connaissance préalable. 
 
 Malgré tout, l'**ajout de fonctionnalités nécessitant l'API Native était dans mon souvenir désagréable**. Je devais utiliser les fonctionnalités "TextToSpeech", "SpeechToText" et le gyroscope. Toutefois, au moins une d'entre elle était encore en bêta et lors de la rédaction de cette article, au vue de la [nouvelle documentation](https://ionicframework.com/docs/v3/native/), beaucoup de choses semble avoir évolué et cet écueil ne semble plus être d'actualité. 
 
-![Ionic Native API](/article_images/ionic_lack_api.jpg "Ionic Native API")
+![Ionic Native API](/article_images/flutter_introduction/ionic_lack_api.jpg "Ionic Native API")
 
 Une chose est sûre toutefois, le chargement initial d'ouverture l'application était long. Un manque de fluidité globale (lors de changement de page notamment) donnait une **expérience utilisateur amoindrie**. 
 
 Si je devais résumer en un mot mon expérience avec Ionic, j'utiliserai le mot "Avenir". Une impression de "brouillon" était toujours présent. Nous en étions encore très tôt au niveau de développement d'Ionic, aussi je pense bon de redonner une chance à ce Framework. Un gros travail de performance semble avoir été donné, une majeure partie de l'API Native a été complétée et un support de nouveaux Frameworks JS (React, Vue et Angular disponibles) a vu le jour ! Autant de bonnes raisons de ne pas rester sur cette "mauvaise" expérience. 
 
-![Ionic New](/article_images/ionic_new.png "Ionic New")
+![Ionic New](/article_images/flutter_introduction/ionic_new.png "Ionic New")
 
 
 De plus, il m'a tout de même **poussé à croire en cette nouvelle vague de Frameworks** et à tester le nouveau géant de ce domaine : ReactNative.
@@ -80,7 +80,7 @@ De plus, l'existence d'**Expo** (une plateforme sous la forme d'application) per
 
 Si le **rendu visuel était plus fidèle** d'un téléphone à l'autre et que la **fluidité** était bien au rendez-vous, un gros point négatif m'a cependant découragé de l'utilisation de ReactNative pour mes projets : **les mises à jours**. A la moindre mise à jour, c'était reparti pour une soirée à débugguer quelles versions étaient compatibles entre elles, pourquoi un composant était cassé...  
 
-![React Update](/article_images/updating-react-native.jpg "React Update")
+![React Update](/article_images/flutter_introduction/updating-react-native.jpg "React Update")
 
 Finalement, je ne pensais redonner ma chance à ReactNative qu'une fois la v1 validée. D'autant plus que le développement natif Android s'est vu grandement amélioré entre temps avec l'arrivée de Kotlin (en Beta puis de façon officielle). Il a toutefois su répondre à l'ensemble de mes attentes avec brio, mais l'instabilité du Framework me laissait penser que le développement mobile cross-platform méritait peut-être plus de temps pour arriver à maturité. Cependant, c'était avant d'avoir découvert le nouveau bijou de Google : **Flutter**.
 
@@ -89,7 +89,7 @@ Finalement, je ne pensais redonner ma chance à ReactNative qu'une fois la v1 va
 ---
 
 
-![Flutter's better](/article_images/flutter-better.png "Flutter's better")
+![Flutter's better](/article_images/flutter_introduction/flutter-better.png "Flutter's better")
 
 Flutter m'a été recommandé maintes et maintes fois par un ami. Fan de Google, il était sur ce nouveau framework alors que le projet n'était qu'à l'état de Bêta. Finalement, ce n'est qu'à la 5ème relance de cet ami que je me suis décidé à donner une chance à Flutter.
 
