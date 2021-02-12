@@ -27,8 +27,10 @@ export default {
 .chat-container {
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
+  border: 1px solid grey;
   background-color: antiquewhite;
-  padding: 1em;
+  padding: 2em 3em;
   width: 100%;
   h3{
     text-align: start;

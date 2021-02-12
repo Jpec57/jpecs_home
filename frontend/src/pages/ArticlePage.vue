@@ -44,6 +44,7 @@ import { articlesCollection } from "../firebase";
 
 import ChatMessage from "../models/ChatMessage";
 import ChatModel from "../models/Chat";
+import User from "../models/User";
 import Chat from "../components/chat/ChatWidget";
 
 export default {
@@ -60,8 +61,8 @@ export default {
       ),
       mdFile: "# Baby metal",
       chat: new ChatModel("toto", [
-        new ChatMessage(0, "jpec57", "Hello"),
-        new ChatMessage(1, "Snouf", "Coucou Jpec"),
+        new ChatMessage(0, new User(1, "jpec57"), "Hello"),
+        new ChatMessage(1, new User(2, "Snouf"), "Coucou Jpec"),
       ]),
       window: {
         width: 0,
@@ -219,7 +220,7 @@ export default {
   }
 }
 .article-footer {
-  padding-top: 10%;
+  padding-top: 5%;
   padding-bottom: 10%;
   display: flex;
   flex: 3;

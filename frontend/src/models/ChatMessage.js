@@ -1,8 +1,8 @@
 export default class ChatMessage {
 
-    constructor(id, userId, message){
+    constructor(id, user, message){
         this.id = id;
-        this.userId = userId;
+        this.user = user;
         this.message = message;
     }
 }
