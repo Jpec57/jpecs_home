@@ -26,7 +26,7 @@
     </div>
 
     <div class="article-footer">
-      <Chat :chat="chat"/>
+      <Chat :chat="chat" />
     </div>
   </div>
 </template>
@@ -37,15 +37,13 @@ import Article from "../models/Article";
 import marked from "marked";
 import { articlesCollection } from "../firebase";
 
-import ChatMessage from '../models/ChatMessage';
+import ChatMessage from "../models/ChatMessage";
 import ChatModel from "../models/Chat";
-import Chat from "../components/chat/Chat";
+import Chat from "../components/chat/ChatWidget";
 
 export default {
   name: "ArticlePage",
-  components: [
-    Chat
-  ],
+  components: { Chat },
   data() {
     return {
       article: new Article(
@@ -56,7 +54,10 @@ export default {
         null
       ),
       mdFile: "# Baby metal",
-      chat: new ChatModel("toto", [new ChatMessage(0, "jpec57", "Hello"), new ChatMessage(1, "Snouf", "Coucou Jpec")]),
+      chat: new ChatModel("toto", [
+        new ChatMessage(0, "jpec57", "Hello"),
+        new ChatMessage(1, "Snouf", "Coucou Jpec"),
+      ]),
       window: {
         width: 0,
         height: 0,
@@ -214,6 +215,7 @@ export default {
 }
 .article-footer {
   padding-top: 10%;
+  padding-bottom: 10%;
 }
 table {
   display: flex;
