@@ -25,9 +25,14 @@
       <div class="right-side-container" v-if="window.width > 600"></div>
     </div>
 
+    <div class="f-row flex-1">
+      <div class="left-side-container" v-if="window.width > 600"></div>
     <div class="article-footer">
       <Chat :chat="chat" />
     </div>
+      <div class="right-side-container" v-if="window.width > 600"></div>
+    </div>
+
   </div>
 </template>
 
@@ -216,6 +221,8 @@ export default {
 .article-footer {
   padding-top: 10%;
   padding-bottom: 10%;
+  display: flex;
+  flex: 3;
 }
 table {
   display: flex;
