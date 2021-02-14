@@ -20,7 +20,14 @@
       </router-link>
     </div>
     <div class="f-row flex-1">
-      <div class="left-side-container" v-if="window.width > 600"></div>
+      <div class="left-side-container" v-if="window.width > 600">
+        <div class="like-button">
+          <font-awesome-icon icon="thumbs-up" size="2x" />
+          <span>{{likeNb}} likes</span>
+        </div>
+                  
+
+      </div>
       <div class="article-body" v-html="compiledMarkdown"></div>
       <div class="right-side-container" v-if="window.width > 600"></div>
     </div>
@@ -293,5 +300,20 @@ a {
   text-decoration: none;
   font-style: italic;
   font-weight: 600;
+}
+.like-button{
+  position: fixed;
+  background-color: #0f3057;
+  cursor: pointer;
+  //darkorange
+  color: white;
+  padding: 1.5em 2em;
+  border-radius: 20%;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  span {
+    margin-top: 5px;
+  }
 }
 </style>

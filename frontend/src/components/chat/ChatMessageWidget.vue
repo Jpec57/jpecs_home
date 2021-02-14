@@ -1,15 +1,17 @@
 <template>
   <div class="message-container">
-        <div class="rounded-profile-pic">
-      <img src="/images/profile_rounded.jpg" alt="profile-pic"/>
-    </div>
     <div class="message-header">
-      {{message.userId}}
+      <img
+        src="/images/profile_rounded.jpg"
+        alt="profile-pic"
+        class="rounded-profile-pic"
+      />
+
+      <span>ICI{{ message.userId }}</span>
     </div>
     <div class="message-content">
-          {{ message.message }}
+      {{ message.message }}
     </div>
-
   </div>
 </template>
 
@@ -29,22 +31,32 @@ export default {
   border-radius: 2px;
   border: 1px solid grey;
   margin-top: 1em;
-  .rounded-profile-pic{
-    max-width: 40px;
-    position: relative;
-        top: -15px;
-    left: -20px;
-    img {
-      max-width: 40px;
-          position: relative;
-
-    }
-}
-.message-content{
-  padding: 0.5em 1em;
   text-align: start;
-}
-}
 
+  .message-header {
+    display: flex;
+    background-color: #e4e4e4;
+    text-align: start;
+    padding: 0.5em 0.5em;
+    span {
+      margin-left: 1em;
+      margin-top: 0.5em;
+    }
+  }
+  .rounded-profile-pic {
+    max-width: 40px;
+    //   position: relative;
+    //   top: -0.8em;
+    //   left: -1em;
 
+    //   img {
+    //     max-width: 40px;
+    //     position: relative;
+    //   }
+  }
+  .message-content {
+    padding: 0.5em 1em;
+    text-align: start;
+  }
+}
 </style>

@@ -6,6 +6,13 @@
       v-bind:key="message"
       :message="message"
     />
+
+<div class="new-message-container">
+      <input type="text" v-model="username" placeholder="Your username"/>
+
+    <textarea type="text" v-model="text" rows="5" placeholder="Type here your comment"/>
+    <button>Send message</button>
+</div>
   </div>
 </template>
 
@@ -19,6 +26,12 @@ export default {
   props: { chat: Chat },
   computed: {
     nbComments: function() {return this.chat.messages.length},
+  },
+  data(){
+    return {
+      text: "",
+      username: ""
+    }
   }
 };
 </script>
@@ -35,6 +48,29 @@ export default {
   h3{
     text-align: start;
     text-decoration: none;
+  }
+}
+.new-message-container{
+  input {
+    text-align: start;
+    width: 100%;
+    margin-bottom: 1em;
+    line-height: 2em;
+  }
+  textarea{
+        border-radius: 5px;
+    line-height: 2em;
+    width: 100%;
+    resize: none;
+  }
+  margin-top: 2em;
+  button {
+    color: white;
+    background: #0f3057;
+    width: 100%;
+    padding: 0.5em;
+    text-transform: uppercase;
+    font-weight: bold;
   }
 }
 </style>

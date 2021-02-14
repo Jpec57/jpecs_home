@@ -1,7 +1,7 @@
 import App from './App.vue'
 import { createApp } from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome, faGlobeAsia, faUser, faDumbbell, faCalculator, faBars, faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faGlobeAsia, faUser, faThumbsUp, faThumbsDown, faDumbbell, faCalculator, faBars, faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import router from './router'
 // import secrets from '../secrets.json';
@@ -13,6 +13,8 @@ library.add(faDumbbell)
 library.add(faBars)
 library.add(faLongArrowAltLeft)
 library.add(faUser)
+library.add(faThumbsUp)
+library.add(faThumbsDown)
 
 //Get an article from id (document)
 // articlesCollection.doc('RgChgEQUbmjyf9aKuZ3Q').get().then((doc) => {
