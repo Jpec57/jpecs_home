@@ -8,10 +8,11 @@
     />
 
 <div class="new-message-container">
+  <h3>New comment</h3>
       <input type="text" v-model="username" placeholder="Your username"/>
 
-    <textarea type="text" v-model="text" rows="5" placeholder="Type here your comment"/>
-    <button>Send message</button>
+    <textarea v-model="text" rows="5" placeholder="Type here your comment"/>
+    <button @click="sendComment">Send message</button>
 </div>
   </div>
 </template>
@@ -19,18 +20,26 @@
 <script>
 import Chat from "../../models/Chat";
 import ChatMessage from "./ChatMessageWidget.vue";
+import {writeArticleComment} from '../../services/repositories/comment_repo';
 
 export default {
   name: "Chat",
   components: { ChatMessage },
-  props: { chat: Chat },
+  props: { chat: Chat, ref: String },
   computed: {
     nbComments: function() {return this.chat.messages.length},
   },
   data(){
     return {
-      text: "",
-      username: ""
+      text: "Test de message",
+      username: "Jpec57"
+    }
+  },
+  methods: {
+    sendComment: function(){
+      console.log("Message");
+      writeArticleComment(this.ref, new ChatMessage(0, this.$data.username, this.$data.text))
+      return ;
     }
   }
 };
@@ -42,7 +51,7 @@ export default {
   flex-direction: column;
   border-radius: 5px;
   border: 1px solid grey;
-  background-color: antiquewhite;
+  background-color: #e2e2e2;
   padding: 2em 3em;
   width: 100%;
   h3{

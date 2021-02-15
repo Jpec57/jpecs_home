@@ -33,11 +33,11 @@
     </div>
 
     <div class="f-row flex-1">
-      <div class="left-side-container" v-if="window.width > 600"></div>
+      <div class="left-side-container" v-if="window.width > 1000"></div>
     <div class="article-footer">
-      <Chat :chat="chat" />
+      <Chat :chat="chat" :ref="article.slug" />
     </div>
-      <div class="right-side-container" v-if="window.width > 600"></div>
+      <div class="right-side-container" v-if="window.width > 1000"></div>
     </div>
 
   </div>
@@ -75,6 +75,7 @@ export default {
         width: 0,
         height: 0,
       },
+      likeNb: 13,
     };
   },
   methods: {
@@ -305,6 +306,7 @@ a {
   position: fixed;
   background-color: #0f3057;
   cursor: pointer;
+  align-items: center;
   //darkorange
   color: white;
   padding: 1.5em 2em;
@@ -313,7 +315,7 @@ a {
   display: flex;
   flex-direction: column;
   span {
-    margin-top: 5px;
+    margin-top: 0.5em;
   }
 }
 </style>

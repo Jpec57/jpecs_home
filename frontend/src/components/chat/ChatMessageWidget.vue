@@ -32,10 +32,13 @@ export default {
   border: 1px solid grey;
   margin-top: 1em;
   text-align: start;
+    box-shadow: 0 3px 5px grey;
+
 
   .message-header {
     display: flex;
     background-color: #e4e4e4;
+    border-bottom: 1px solid grey;
     text-align: start;
     padding: 0.5em 0.5em;
     span {
@@ -57,6 +60,7 @@ export default {
   .message-content {
     padding: 0.5em 1em;
     text-align: start;
+        background-color: white;
   }
 }
 </style>
