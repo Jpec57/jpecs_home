@@ -1,13 +1,9 @@
 <template>
   <div class="message-container">
     <div class="message-header">
-      <img
-        src="/images/profile_rounded.jpg"
-        alt="profile-pic"
-        class="rounded-profile-pic"
-      />
+                <font-awesome-icon icon="user" size="2x" />
 
-      <span>ICI{{ message.userId }}</span>
+      <span class="message-sender">{{ message.user.username }}</span>
     </div>
     <div class="message-content">
       {{ message.message }}
@@ -16,12 +12,12 @@
 </template>
 
 <script>
-import ChatMessage from "../../models/ChatMessage";
+import CommentMessage from "../../models/CommentMessage";
 
 export default {
-  name: "ChatMessage",
+  name: "CommentView",
   props: {
-    message: ChatMessage,
+    message: CommentMessage,
   },
 };
 </script>

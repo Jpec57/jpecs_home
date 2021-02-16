@@ -1,4 +1,4 @@
-export default class ChatMessage {
+export default class CommentMessage {
 
     constructor(id, user, message){
         this.id = id;

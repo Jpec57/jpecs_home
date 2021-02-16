@@ -1,4 +1,4 @@
-export default class Chat {
+export default class CommentSectionmodel {
 
     constructor(ref, messages){
         this.ref = ref;

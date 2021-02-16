@@ -35,7 +35,7 @@
     <div class="f-row flex-1">
       <div class="left-side-container" v-if="window.width > 1000"></div>
     <div class="article-footer">
-      <Chat :chat="chat" :ref="article.slug" />
+      <CommentSection :chat="chat" :ref="article.slug" />
     </div>
       <div class="right-side-container" v-if="window.width > 1000"></div>
     </div>
@@ -49,14 +49,14 @@ import Article from "../models/Article";
 import marked from "marked";
 import { articlesCollection } from "../firebase";
 
-import ChatMessage from "../models/ChatMessage";
-import ChatModel from "../models/Chat";
+import CommentMessage from "../models/CommentMessage";
+import CommentSectionModel from "../models/CommentSectionModel";
 import User from "../models/User";
-import Chat from "../components/chat/ChatWidget";
+import CommentSection from "../components/comment/CommentSection";
 
 export default {
   name: "ArticlePage",
-  components: { Chat },
+  components: { CommentSection },
   data() {
     return {
       article: new Article(
@@ -67,9 +67,9 @@ export default {
         null
       ),
       mdFile: "# Baby metal",
-      chat: new ChatModel("toto", [
-        new ChatMessage(0, new User(1, "jpec57"), "Hello"),
-        new ChatMessage(1, new User(2, "Snouf"), "Coucou Jpec"),
+      chat: new CommentSectionModel(this.$route.params.slug, [
+        new CommentMessage(0, new User(1, "jpec57"), "Hello"),
+        new CommentMessage(1, new User(2, "Snouf"), "Coucou Jpec"),
       ]),
       window: {
         width: 0,

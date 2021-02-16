@@ -1,7 +1,7 @@
 <template>
   <div class="chat-container">
     <h3>{{nbComments }} Comment{{nbComments > 1 ? "s" : ""}}</h3>
-    <ChatMessage
+    <CommentView
       v-for="message in chat.messages"
       v-bind:key="message"
       :message="message"
@@ -18,14 +18,15 @@
 </template>
 
 <script>
-import Chat from "../../models/Chat";
-import ChatMessage from "./ChatMessageWidget.vue";
+import CommentSectionModel from "../../models/CommentSectionModel";
+import CommentView from "./CommentView.vue";
 import {writeArticleComment} from '../../services/repositories/comment_repo';
+import CommentMessage from '../../models/CommentMessage';
 
 export default {
-  name: "Chat",
-  components: { ChatMessage },
-  props: { chat: Chat, ref: String },
+  name: "CommentSection",
+  components: { CommentView },
+  props: { chat: CommentSectionModel, ref: String },
   computed: {
     nbComments: function() {return this.chat.messages.length},
   },
@@ -35,10 +36,13 @@ export default {
       username: "Jpec57"
     }
   },
+  mounted() {
+      console.log("Mounted :" + this.$props.ref, JSON.stringify(this.$props.chat.ref));
+  },
   methods: {
     sendComment: function(){
-      console.log("Message");
-      writeArticleComment(this.ref, new ChatMessage(0, this.$data.username, this.$data.text))
+      console.log("Message :"  +this.$props.chat.ref);
+      writeArticleComment(this.$props.chat.ref, new CommentMessage(0, this.$data.username, this.$data.text))
       return ;
     }
   }
