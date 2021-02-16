@@ -1,10 +1,12 @@
-import {commentsCollection} from '../../firebase';
+import {articlesCollection} from '../../firebase';
+
+export const getArticleComments = (articleSlug) => {
+  return articlesCollection
+        .doc(articleSlug)
+        .collection('comments')
+        .orderBy('date', 'asc').get();
+}
 
 export const writeArticleComment = (articleSlug, comment) => {
-  commentsCollection.doc(articleSlug)
-    .set({
-        username: "hello",
-        email: "world",
-      });
-      console.log(comment)
+  return articlesCollection.doc(articleSlug).collection('comments').add(comment.toJSON());
 }

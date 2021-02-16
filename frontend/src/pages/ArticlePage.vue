@@ -35,7 +35,7 @@
     <div class="f-row flex-1">
       <div class="left-side-container" v-if="window.width > 1000"></div>
     <div class="article-footer">
-      <CommentSection :chat="chat" :ref="article.slug" />
+      <CommentSection  v-if="article && article.slug && article.slug.length > 0" v-bind:ref="article.slug" />
     </div>
       <div class="right-side-container" v-if="window.width > 1000"></div>
     </div>
@@ -47,11 +47,9 @@
 import articles from "../articles/articles";
 import Article from "../models/Article";
 import marked from "marked";
-import { articlesCollection } from "../firebase";
-
-import CommentMessage from "../models/CommentMessage";
-import CommentSectionModel from "../models/CommentSectionModel";
-import User from "../models/User";
+import { 
+  // likesOrNotArticle, isLikedByUser, 
+  getLikes } from "../services/repositories/like_repo";
 import CommentSection from "../components/comment/CommentSection";
 
 export default {
@@ -67,10 +65,6 @@ export default {
         null
       ),
       mdFile: "# Baby metal",
-      chat: new CommentSectionModel(this.$route.params.slug, [
-        new CommentMessage(0, new User(1, "jpec57"), "Hello"),
-        new CommentMessage(1, new User(2, "Snouf"), "Coucou Jpec"),
-      ]),
       window: {
         width: 0,
         height: 0,
@@ -84,30 +78,21 @@ export default {
       this.window.height = window.innerHeight;
     },
     async fetchArticle() {
-      var found = false;
       articles.forEach((article) => {
         if (article.slug == this.$route.params.slug) {
           this.article = article;
-          found = true;
           return;
         }
       });
-      if (found) {
-        return;
-      }
-
-      await articlesCollection
-        .where("slug", "==", this.$route.params.slug)
-        .limit(1)
-        .get()
-        .then((querySnapshot) => {
-          if (!querySnapshot.empty) {
-            this.article = querySnapshot.docs[0].data();
-            console.log("exists", querySnapshot.docs[0].data());
-          }
-        });
-
-      return this.article;
+    },
+        async fetchLikeNb() {
+          var count = 0;
+      await getLikes(this.$route.params.slug).then((querySnapshot)=>{
+            querySnapshot.forEach(() => {
+              count++;
+            });
+            this.likeNb = count;
+      })
     },
   },
   computed: {
@@ -117,6 +102,7 @@ export default {
   },
   mounted() {
     this.fetchArticle();
+    this.fetchLikeNb();
   },
   created() {
     window.addEventListener("resize", this.handleResize);

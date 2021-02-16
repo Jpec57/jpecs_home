@@ -10,7 +10,8 @@ const db = firebase.firestore()
 const auth = firebase.auth()
 
 // collection references
-const articlesCollection = db.collection('articles').orderBy('createdAt')
+const articlesCollection = db.collection('articles');
+// .orderBy('createdAt')
 // const postsCollection = db.collection('posts')
 const commentsCollection = db.collection('comments')
 // const likesCollection = db.collection('likes')

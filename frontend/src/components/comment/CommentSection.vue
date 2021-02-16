@@ -1,51 +1,75 @@
 <template>
   <div class="chat-container">
-    <h3>{{nbComments }} Comment{{nbComments > 1 ? "s" : ""}}</h3>
+    <h3>{{ nbComments }} Comment{{ nbComments > 1 ? "s" : "" }}</h3>
     <CommentView
       v-for="message in chat.messages"
       v-bind:key="message"
       :message="message"
     />
 
-<div class="new-message-container">
-  <h3>New comment</h3>
-      <input type="text" v-model="username" placeholder="Your username"/>
+    <div class="new-message-container">
+      <h3>New comment</h3>
+      <input type="text" v-model="username" placeholder="Your username" />
 
-    <textarea v-model="text" rows="5" placeholder="Type here your comment"/>
-    <button @click="sendComment">Send message</button>
-</div>
+      <textarea v-model="text" rows="5" placeholder="Type here your comment" />
+      <button @click="sendComment">Send message</button>
+    </div>
   </div>
 </template>
 
 <script>
 import CommentSectionModel from "../../models/CommentSectionModel";
 import CommentView from "./CommentView.vue";
-import {writeArticleComment} from '../../services/repositories/comment_repo';
-import CommentMessage from '../../models/CommentMessage';
+import { writeArticleComment, getArticleComments } from "../../services/repositories/comment_repo";
+import CommentMessage from "../../models/CommentMessage";
+import User from "../../models/User";
 
 export default {
   name: "CommentSection",
   components: { CommentView },
-  props: { chat: CommentSectionModel, ref: String },
+  props: { ref: String },
   computed: {
-    nbComments: function() {return this.chat.messages.length},
+    nbComments: function () {
+      return this.chat.messages.length;
+    },
   },
-  data(){
+  data() {
     return {
-      text: "Test de message",
-      username: "Jpec57"
-    }
+      username: "",
+      text: "",
+      chat: new CommentSectionModel(this.$props.ref, []),
+    };
   },
-  mounted() {
-      console.log("Mounted :" + this.$props.ref, JSON.stringify(this.$props.chat.ref));
-  },
+
   methods: {
-    sendComment: function(){
-      console.log("Message :"  +this.$props.chat.ref);
-      writeArticleComment(this.$props.chat.ref, new CommentMessage(0, this.$data.username, this.$data.text))
-      return ;
-    }
-  }
+    async fetchComments() {
+    
+      var ref = this.$route.params.slug;
+      await getArticleComments(ref)
+        .then((querySnapshot) => {
+          if (!querySnapshot.empty) {
+            var comments = [];
+            querySnapshot.forEach((doc) => {
+              var data = doc.data();
+              comments.push(new CommentMessage(doc.id, new User(data.user, data.user), data.message))
+            });
+            this.chat.messages = comments;
+          }
+        });
+    },
+    sendComment: function () {
+      console.log("Message :" + this.$props);
+            var ref = this.$route.params.slug;
+      writeArticleComment(
+        ref,
+        new CommentMessage(0, this.$data.username, this.$data.text)
+      ).then(()=> this.fetchComments());
+      return;
+    },
+  },
+  async mounted() {
+    this.fetchComments();
+  },
 };
 </script>
 
@@ -58,20 +82,20 @@ export default {
   background-color: #e2e2e2;
   padding: 2em 3em;
   width: 100%;
-  h3{
+  h3 {
     text-align: start;
     text-decoration: none;
   }
 }
-.new-message-container{
+.new-message-container {
   input {
     text-align: start;
     width: 100%;
     margin-bottom: 1em;
     line-height: 2em;
   }
-  textarea{
-        border-radius: 5px;
+  textarea {
+    border-radius: 5px;
     line-height: 2em;
     width: 100%;
     resize: none;
