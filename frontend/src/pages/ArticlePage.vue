@@ -21,6 +21,14 @@
       })
     }}</span>
 
+<!-- MOBILE  -->
+        <div class="like-button-long" @click="likeArticle" v-if="window.width <= 1000">
+          <font-awesome-icon icon="thumbs-up" size="2x" />
+          <span>{{ likeNb }} like{{ likeNb > 1 ? "s" : "" }}</span>
+        </div>
+<!-- END  -->
+
+
     <div class="f-center">
       <router-link to="/" v-if="window.width <= 600">
         <div class="back">
@@ -30,7 +38,7 @@
       </router-link>
     </div>
     <div class="f-row flex-1">
-      <div class="left-side-container" v-if="window.width > 600">
+      <div class="left-side-container" v-if="window.width > 1000">
         <div class="like-button" @click="likeArticle">
           <font-awesome-icon icon="thumbs-up" size="2x" />
           <span>{{ likeNb }} like{{ likeNb > 1 ? "s" : "" }}</span>
@@ -43,6 +51,12 @@
     <div class="f-row flex-1">
       <div class="left-side-container" v-if="window.width > 1000"></div>
       <div class="article-footer">
+        <!-- MOBILE  -->
+        <div class="like-button-long" @click="likeArticle" v-if="window.width <= 1000">
+          <font-awesome-icon icon="thumbs-up" size="2x" />
+          <span>{{ likeNb }} like{{ likeNb > 1 ? "s" : "" }}</span>
+        </div>
+<!-- END  -->
         <CommentSection
           v-if="article && article.slug && article.slug.length > 0"
           v-bind:ref="article.slug"
@@ -81,7 +95,7 @@ export default {
         width: 0,
         height: 0,
       },
-      likeNb: 13,
+      likeNb: 0,
     };
   },
   methods: {
@@ -213,7 +227,6 @@ export default {
   flex-direction: column;
   max-width: 900px;
   text-align: justify;
-  // margin: auto;
   justify-content: center;
   vertical-align: center;
   animation: fadinJpec 3s;
@@ -234,6 +247,7 @@ export default {
   padding-top: 5%;
   padding-bottom: 10%;
   display: flex;
+  flex-direction: column;
   flex: 3;
 }
 table {
@@ -305,8 +319,8 @@ a {
   font-style: italic;
   font-weight: 600;
 }
-.like-button {
-  position: fixed;
+
+.like-button, .like-button-long{
   background-color: #0f3057;
   cursor: pointer;
   align-items: center;
@@ -320,5 +334,19 @@ a {
   span {
     margin-top: 0.5em;
   }
+}
+
+.like-button {
+      position: fixed;
+}
+
+.like-button-long {
+  width: 50%;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

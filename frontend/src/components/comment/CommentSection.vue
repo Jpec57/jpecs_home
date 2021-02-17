@@ -122,7 +122,6 @@ export default {
   border: 1px solid grey;
   background-color: #e2e2e2;
   padding: 2em 3em;
-  width: 100%;
   h3 {
     text-align: start;
     text-decoration: none;
