@@ -165,4 +165,7 @@ html, body, #app, #app-content {
 .error {
   color: #a22525;
 }
+.hidden {
+  visibility: hidden;
+}
 </style>

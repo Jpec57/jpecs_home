@@ -1,9 +1,21 @@
 <template>
   <div class="message-container">
     <div class="message-header">
-                <font-awesome-icon icon="user" size="2x" />
+<div>
+                  <font-awesome-icon icon="user" size="2x" />
+                <span class="message-sender">{{ message.user.username }}</span>
+</div>
 
-      <span class="message-sender">{{ message.user.username }}</span>
+<div>
+        <span class="message-date">{{ message.date.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric"
+      }) }}</span>
+</div>
     </div>
     <div class="message-content">
       {{ message.message }}
@@ -33,6 +45,8 @@ export default {
 
   .message-header {
     display: flex;
+    justify-content: space-between;
+    align-items: baseline;
     background-color: #e4e4e4;
     border-bottom: 1px solid grey;
     text-align: start;
@@ -57,6 +71,9 @@ export default {
     padding: 0.5em 1em;
     text-align: start;
         background-color: white;
+  }
+  .message-date{
+    font-size: 0.8em;
   }
 }
 </style>

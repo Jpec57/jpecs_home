@@ -26,7 +26,7 @@
       </div>
 
       <div class="flex-1 login-container" v-if="window.width > 600">
-        <div class="">
+        <div class="hidden">
           <font-awesome-icon icon="user" size="2x" />
         </div>
       </div>
