@@ -11,6 +11,8 @@
         </div>
       </router-link>
     </div>
+          <span class="italic">{{article.createdAt && article.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}}</span>
+
     <div class="f-center">
       <router-link to="/" v-if="window.width <= 600">
         <div class="back">

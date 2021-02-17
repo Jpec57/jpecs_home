@@ -157,4 +157,8 @@ html, body, #app, #app-content {
   display: flex;
   justify-content: center;
 }
+
+.italic{
+  font-style: italic;
+}
 </style>
