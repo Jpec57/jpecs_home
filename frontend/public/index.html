@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <!-- <script type="application/javascript" src="http://ipinfo.io/?format=jsonp&callback=getIP"></script> -->
+    <!-- <script type="text/javascript" src="userinfo.0.0.1.min.js"></script> -->
+    <script type="text/javascript" src="http://ip-api.com/json/?callback=setIp"></script>
+    <script>
+      function setIp(json) {
+          window.ip = json.query;
+      }
+  </script>
   </head>
   <body>
     <noscript>

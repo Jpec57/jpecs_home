@@ -20,14 +20,26 @@
       </router-link>
     </div>
     <div class="f-row flex-1">
-      <div class="left-side-container" v-if="window.width > 600"></div>
+      <div class="left-side-container" v-if="window.width > 600">
+        <div class="like-button" @click="likeArticle">
+          <font-awesome-icon icon="thumbs-up" size="2x" />
+          <span>{{likeNb}} like{{likeNb > 1 ? "s": ""}}</span>
+        </div>
+                  
+
+      </div>
       <div class="article-body" v-html="compiledMarkdown"></div>
       <div class="right-side-container" v-if="window.width > 600"></div>
     </div>
 
+    <div class="f-row flex-1">
+      <div class="left-side-container" v-if="window.width > 1000"></div>
     <div class="article-footer">
-      <Chat :chat="chat"/>
+      <CommentSection  v-if="article && article.slug && article.slug.length > 0" v-bind:ref="article.slug" />
     </div>
+      <div class="right-side-container" v-if="window.width > 1000"></div>
+    </div>
+
   </div>
 </template>
 
@@ -35,17 +47,15 @@
 import articles from "../articles/articles";
 import Article from "../models/Article";
 import marked from "marked";
-import { articlesCollection } from "../firebase";
-
-import ChatMessage from '../models/ChatMessage';
-import ChatModel from "../models/Chat";
-import Chat from "../components/chat/Chat";
+import { 
+  likesOrNotArticle,
+  //  isLikedByUser, 
+  getLikes } from "../services/repositories/like_repo";
+import CommentSection from "../components/comment/CommentSection";
 
 export default {
   name: "ArticlePage",
-  components: [
-    Chat
-  ],
+  components: { CommentSection },
   data() {
     return {
       article: new Article(
@@ -56,11 +66,11 @@ export default {
         null
       ),
       mdFile: "# Baby metal",
-      chat: new ChatModel("toto", [new ChatMessage(0, "jpec57", "Hello"), new ChatMessage(1, "Snouf", "Coucou Jpec")]),
       window: {
         width: 0,
         height: 0,
       },
+      likeNb: 13,
     };
   },
   methods: {
@@ -69,30 +79,24 @@ export default {
       this.window.height = window.innerHeight;
     },
     async fetchArticle() {
-      var found = false;
       articles.forEach((article) => {
         if (article.slug == this.$route.params.slug) {
           this.article = article;
-          found = true;
           return;
         }
       });
-      if (found) {
-        return;
-      }
-
-      await articlesCollection
-        .where("slug", "==", this.$route.params.slug)
-        .limit(1)
-        .get()
-        .then((querySnapshot) => {
-          if (!querySnapshot.empty) {
-            this.article = querySnapshot.docs[0].data();
-            console.log("exists", querySnapshot.docs[0].data());
-          }
-        });
-
-      return this.article;
+    },
+        async fetchLikeNb() {
+          var count = 0;
+      await getLikes(this.$route.params.slug).then((querySnapshot)=>{
+            querySnapshot.forEach(() => {
+              count++;
+            });
+            this.likeNb = count;
+      })
+    },
+            async likeArticle() {
+      await likesOrNotArticle(this.$route.params.slug).then(()=>this.fetchLikeNb())
     },
   },
   computed: {
@@ -102,6 +106,7 @@ export default {
   },
   mounted() {
     this.fetchArticle();
+    this.fetchLikeNb();
   },
   created() {
     window.addEventListener("resize", this.handleResize);
@@ -213,7 +218,10 @@ export default {
   }
 }
 .article-footer {
-  padding-top: 10%;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  display: flex;
+  flex: 3;
 }
 table {
   display: flex;
@@ -283,5 +291,21 @@ a {
   text-decoration: none;
   font-style: italic;
   font-weight: 600;
+}
+.like-button{
+  position: fixed;
+  background-color: #0f3057;
+  cursor: pointer;
+  align-items: center;
+  //darkorange
+  color: white;
+  padding: 1.5em 2em;
+  border-radius: 20%;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  span {
+    margin-top: 0.5em;
+  }
 }
 </style>
