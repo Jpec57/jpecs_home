@@ -161,4 +161,8 @@ html, body, #app, #app-content {
 .italic{
   font-style: italic;
 }
+
+.error {
+  color: #a22525;
+}
 </style>

@@ -11,7 +11,15 @@
         </div>
       </router-link>
     </div>
-          <span class="italic">{{article.createdAt && article.createdAt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}}</span>
+    <span class="italic">{{
+      article.createdAt &&
+      article.createdAt.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    }}</span>
 
     <div class="f-center">
       <router-link to="/" v-if="window.width <= 600">
@@ -25,10 +33,8 @@
       <div class="left-side-container" v-if="window.width > 600">
         <div class="like-button" @click="likeArticle">
           <font-awesome-icon icon="thumbs-up" size="2x" />
-          <span>{{likeNb}} like{{likeNb > 1 ? "s": ""}}</span>
+          <span>{{ likeNb }} like{{ likeNb > 1 ? "s" : "" }}</span>
         </div>
-                  
-
       </div>
       <div class="article-body" v-html="compiledMarkdown"></div>
       <div class="right-side-container" v-if="window.width > 600"></div>
@@ -36,12 +42,14 @@
 
     <div class="f-row flex-1">
       <div class="left-side-container" v-if="window.width > 1000"></div>
-    <div class="article-footer">
-      <CommentSection  v-if="article && article.slug && article.slug.length > 0" v-bind:ref="article.slug" />
-    </div>
+      <div class="article-footer">
+        <CommentSection
+          v-if="article && article.slug && article.slug.length > 0"
+          v-bind:ref="article.slug"
+        />
+      </div>
       <div class="right-side-container" v-if="window.width > 1000"></div>
     </div>
-
   </div>
 </template>
 
@@ -49,10 +57,11 @@
 import articles from "../articles/articles";
 import Article from "../models/Article";
 import marked from "marked";
-import { 
+import {
   likesOrNotArticle,
-  //  isLikedByUser, 
-  getLikes } from "../services/repositories/like_repo";
+  //  isLikedByUser,
+  getLikes,
+} from "../services/repositories/like_repo";
 import CommentSection from "../components/comment/CommentSection";
 
 export default {
@@ -88,17 +97,19 @@ export default {
         }
       });
     },
-        async fetchLikeNb() {
-          var count = 0;
-      await getLikes(this.$route.params.slug).then((querySnapshot)=>{
-            querySnapshot.forEach(() => {
-              count++;
-            });
-            this.likeNb = count;
-      })
+    async fetchLikeNb() {
+      var count = 0;
+      await getLikes(this.$route.params.slug).then((querySnapshot) => {
+        querySnapshot.forEach(() => {
+          count++;
+        });
+        this.likeNb = count;
+      });
     },
-            async likeArticle() {
-      await likesOrNotArticle(this.$route.params.slug).then(()=>this.fetchLikeNb())
+    async likeArticle() {
+      await likesOrNotArticle(this.$route.params.slug).then(() => {
+        this.likeNb = this.likeNb + 1;
+      });
     },
   },
   computed: {
@@ -294,7 +305,7 @@ a {
   font-style: italic;
   font-weight: 600;
 }
-.like-button{
+.like-button {
   position: fixed;
   background-color: #0f3057;
   cursor: pointer;
