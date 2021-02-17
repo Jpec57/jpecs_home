@@ -16,10 +16,10 @@ export const getLikes = (articleSlug) => {
           .get();
 }
 
-export const likesOrNotArticle = async (articleSlug, user) => {
+export const likesOrNotArticle = async (articleSlug) => {
     // var isLiked = await isLikedByUser(articleSlug, user);
     // if (){
 
     // }
-  return articlesCollection.doc(articleSlug).collection('likes').add(user.toJSON());
+  return articlesCollection.doc(articleSlug).collection('likes').add({date: new Date()});
 }

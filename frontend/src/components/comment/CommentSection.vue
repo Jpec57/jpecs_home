@@ -60,9 +60,11 @@ export default {
     sendComment: function () {
       console.log("Message :" + this.$props);
             var ref = this.$route.params.slug;
+            var comment = new CommentMessage(0, this.$data.username, this.$data.text);
+            this.$data.message = "";
       writeArticleComment(
         ref,
-        new CommentMessage(0, this.$data.username, this.$data.text)
+        comment
       ).then(()=> this.fetchComments());
       return;
     },

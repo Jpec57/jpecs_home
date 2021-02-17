@@ -21,9 +21,9 @@
     </div>
     <div class="f-row flex-1">
       <div class="left-side-container" v-if="window.width > 600">
-        <div class="like-button">
+        <div class="like-button" @click="likeArticle">
           <font-awesome-icon icon="thumbs-up" size="2x" />
-          <span>{{likeNb}} likes</span>
+          <span>{{likeNb}} like{{likeNb > 1 ? "s": ""}}</span>
         </div>
                   
 
@@ -48,7 +48,8 @@ import articles from "../articles/articles";
 import Article from "../models/Article";
 import marked from "marked";
 import { 
-  // likesOrNotArticle, isLikedByUser, 
+  likesOrNotArticle,
+  //  isLikedByUser, 
   getLikes } from "../services/repositories/like_repo";
 import CommentSection from "../components/comment/CommentSection";
 
@@ -93,6 +94,9 @@ export default {
             });
             this.likeNb = count;
       })
+    },
+            async likeArticle() {
+      await likesOrNotArticle(this.$route.params.slug).then(()=>this.fetchLikeNb())
     },
   },
   computed: {
