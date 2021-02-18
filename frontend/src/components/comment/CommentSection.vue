@@ -72,7 +72,8 @@ export default {
               new CommentMessage(
                 doc.id,
                 new User(data.user, data.user),
-                data.message
+                data.message,
+                data.date
               )
             );
           });
