@@ -1,24 +1,6 @@
-# frontend
+# TODO LIST
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Make an article on Flutter
+- Write a japanese article on manga with translation. Hover on words for translation and add those words to Benkyou
+- Rewrite Benkyou...
+- Make animations on Flutter
