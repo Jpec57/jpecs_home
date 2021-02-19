@@ -1,5 +1,8 @@
 <template>
   <div class="f-col">
+    <div class="reading-progress">
+      <div class="read-indicator" v-bind:style="{ width: readingProgress + '%'}" />
+    </div>
     <div class="article-header">
       <h1 class="article-title">
         {{ article.title }}
@@ -20,6 +23,7 @@
         day: "numeric",
       })
     }}</span>
+        <span class="reading-time">Estimated reading time: <span class="bold">{{readingTime}} minutes</span></span>
 
 <!-- MOBILE  -->
         <div class="like-button-long" @click="likeArticle" v-if="window.width <= 1000">
@@ -94,6 +98,8 @@ export default {
       window: {
         width: 0,
         height: 0,
+        percentY: 0,
+        scrollMaxY: 0,
       },
       likeNb: 0,
     };
@@ -102,6 +108,10 @@ export default {
     handleResize() {
       this.window.width = window.innerWidth;
       this.window.height = window.innerHeight;
+    },
+    handleScroll (){
+      this.window.scrollY = window.scrollY;
+      this.window.scrollMaxY = document.querySelector('.article-body').scrollHeight
     },
     async fetchArticle() {
       articles.forEach((article) => {
@@ -124,23 +134,42 @@ export default {
       await likesOrNotArticle(this.$route.params.slug).then(() => {
         this.likeNb = this.likeNb + 1;
       });
-    },
+    }
   },
   computed: {
     compiledMarkdown() {
       return marked(this.article.body);
     },
+    readingProgress (){
+      var percent = Math.ceil(this.$data.window.scrollY / this.$data.window.scrollMaxY * 100);
+      if (percent > 100){
+        return 100;
+      }
+      return percent;
+    },
+    readingTime () {
+      let minutes = 0;
+      const contentString = JSON.stringify(this.article.body);
+      const words = contentString.split(" ").length;
+      const wordsPerMinute = 220;
+      minutes = Math.ceil(words / wordsPerMinute);
+      return minutes;
+    }
   },
   mounted() {
     this.fetchArticle();
     this.fetchLikeNb();
+    this.$data.window.scrollMaxY = document.querySelector('.article-body').scrollHeight
   },
   created() {
+
     window.addEventListener("resize", this.handleResize);
+    window.addEventListener("scroll", this.handleScroll);
     this.handleResize();
   },
   unmounted() {
     window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
   },
 };
 </script>
@@ -220,7 +249,13 @@ export default {
     cursor: pointer;
     font-size: 20px;
   }
+
 }
+
+    .reading-time{
+    margin-top: 5px;
+    
+  }
 
 .article-body {
   display: flex;
@@ -235,6 +270,7 @@ export default {
     padding-left: 5%;
     padding-right: 5%;
   }
+
 }
 .f-center {
   a {
@@ -348,5 +384,21 @@ a {
   margin-bottom: 15px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.reading-progress{
+  width: 100%;
+  height: 5px;
+  background: #3a3838;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  .read-indicator{
+    background: green;
+    // width: 40%;
+    height: 5px;
+  
+  }
 }
 </style>
