@@ -1,7 +1,7 @@
 <template>
   <div class="f-col">
     <div class="reading-progress">
-      <div class="read-indicator"/>
+      <div class="read-indicator" v-bind:style="{ width: readingProgress + '%'}" />
     </div>
     <div class="article-header">
       <h1 class="article-title">
@@ -98,7 +98,7 @@ export default {
       window: {
         width: 0,
         height: 0,
-        scrollY: 0,
+        percentY: 0,
         scrollMaxY: 0,
       },
       likeNb: 0,
@@ -110,9 +110,8 @@ export default {
       this.window.height = window.innerHeight;
     },
     handleScroll (){
-      this.$data.window.scrollY = window.scrollY;
-            var percent = this.$data.scrollY / this.$data.scrollMaxY;
-      console.log(percent);
+      this.window.scrollY = window.scrollY;
+      this.window.scrollMaxY = document.querySelector('.article-body').scrollHeight
     },
     async fetchArticle() {
       articles.forEach((article) => {
@@ -142,8 +141,10 @@ export default {
       return marked(this.article.body);
     },
     readingProgress (){
-      var percent = this.scrollY / this.scrollMaxY;
-      console.log(percent);
+      var percent = Math.ceil(this.$data.window.scrollY / this.$data.window.scrollMaxY * 100);
+      if (percent > 100){
+        return 100;
+      }
       return percent;
     },
     readingTime () {
@@ -158,9 +159,7 @@ export default {
   mounted() {
     this.fetchArticle();
     this.fetchLikeNb();
-    this.$data.window.scrollMaxY = window.scrollMaxY || (document.documentElement.scrollHeight - document.documentElement.clientHeight)
-
-    console.log("ici", window.scrollMaxY || (document.documentElement.scrollHeight - document.documentElement.clientHeight));
+    this.$data.window.scrollMaxY = document.querySelector('.article-body').scrollHeight
   },
   created() {
 
@@ -171,7 +170,6 @@ export default {
   unmounted() {
     window.removeEventListener("resize", this.handleResize);
     window.removeEventListener("scroll", this.handleScroll);
-
   },
 };
 </script>
@@ -390,7 +388,7 @@ a {
 
 .reading-progress{
   width: 100%;
-  height: 3px;
+  height: 5px;
   background: #3a3838;
   position: fixed;
   top: 0;
@@ -398,8 +396,8 @@ a {
   justify-content: flex-start;
   .read-indicator{
     background: green;
-    width: 40%;
-    height: 3px;
+    // width: 40%;
+    height: 5px;
   
   }
 }
