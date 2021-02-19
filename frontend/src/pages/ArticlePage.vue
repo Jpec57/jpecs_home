@@ -1,5 +1,8 @@
 <template>
   <div class="f-col">
+    <div class="reading-progress">
+      <div class="read-indicator"/>
+    </div>
     <div class="article-header">
       <h1 class="article-title">
         {{ article.title }}
@@ -20,6 +23,7 @@
         day: "numeric",
       })
     }}</span>
+        <span class="reading-time">Estimated reading time: <span class="bold">{{readingTime}} minutes</span></span>
 
 <!-- MOBILE  -->
         <div class="like-button-long" @click="likeArticle" v-if="window.width <= 1000">
@@ -94,6 +98,8 @@ export default {
       window: {
         width: 0,
         height: 0,
+        scrollY: 0,
+        scrollMaxY: 0,
       },
       likeNb: 0,
     };
@@ -102,6 +108,11 @@ export default {
     handleResize() {
       this.window.width = window.innerWidth;
       this.window.height = window.innerHeight;
+    },
+    handleScroll (){
+      this.$data.window.scrollY = window.scrollY;
+            var percent = this.$data.scrollY / this.$data.scrollMaxY;
+      console.log(percent);
     },
     async fetchArticle() {
       articles.forEach((article) => {
@@ -124,23 +135,43 @@ export default {
       await likesOrNotArticle(this.$route.params.slug).then(() => {
         this.likeNb = this.likeNb + 1;
       });
-    },
+    }
   },
   computed: {
     compiledMarkdown() {
       return marked(this.article.body);
     },
+    readingProgress (){
+      var percent = this.scrollY / this.scrollMaxY;
+      console.log(percent);
+      return percent;
+    },
+    readingTime () {
+      let minutes = 0;
+      const contentString = JSON.stringify(this.article.body);
+      const words = contentString.split(" ").length;
+      const wordsPerMinute = 220;
+      minutes = Math.ceil(words / wordsPerMinute);
+      return minutes;
+    }
   },
   mounted() {
     this.fetchArticle();
     this.fetchLikeNb();
+    this.$data.window.scrollMaxY = window.scrollMaxY || (document.documentElement.scrollHeight - document.documentElement.clientHeight)
+
+    console.log("ici", window.scrollMaxY || (document.documentElement.scrollHeight - document.documentElement.clientHeight));
   },
   created() {
+
     window.addEventListener("resize", this.handleResize);
+    window.addEventListener("scroll", this.handleScroll);
     this.handleResize();
   },
   unmounted() {
     window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
+
   },
 };
 </script>
@@ -220,7 +251,13 @@ export default {
     cursor: pointer;
     font-size: 20px;
   }
+
 }
+
+    .reading-time{
+    margin-top: 5px;
+    
+  }
 
 .article-body {
   display: flex;
@@ -235,6 +272,7 @@ export default {
     padding-left: 5%;
     padding-right: 5%;
   }
+
 }
 .f-center {
   a {
@@ -348,5 +386,21 @@ a {
   margin-bottom: 15px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.reading-progress{
+  width: 100%;
+  height: 3px;
+  background: #3a3838;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  .read-indicator{
+    background: green;
+    width: 40%;
+    height: 3px;
+  
+  }
 }
 </style>

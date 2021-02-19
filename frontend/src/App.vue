@@ -158,6 +158,10 @@ html, body, #app, #app-content {
   justify-content: center;
 }
 
+.bold{
+  font-weight: bold;
+}
+
 .italic{
   font-style: italic;
 }
