@@ -9,21 +9,32 @@ Maybe, you were appealed by it but never really took the time to try it, or mayb
 #### Minimum
 
 ```
-void main() async {
+void main() {
   runApp(MyApp());
 }
 ```
 
+Really close to the Javascript equivalent, this method has simply to call `runApp` with your root widget as a argument and you are free to go. Nothing to watch here!
+
 #### Tuned
+
+... But, we don't like it simple. If you want to ensure that the user will use your app with all of the necessary permissions, you can ask for them at initialization.
+
+In our case, we need to be sure that the user has granted the location permission for this application to run. Otherwise, he should probably not be using a geolocalisation app...
 
 ```
 void main() async {
+  // Needed by Flutter if not directly running our app
   WidgetsFlutterBinding.ensureInitialized();
   await Permission.location.request().isGranted;
   await Permission.locationWhenInUse.request().isGranted;
   runApp(MyApp());
 }
 ```
+
+Note that we are using the "async" keyword to notify Flutter that this method is asynchronous. When using this keyword, we are allowed to use the "await" keyword in the function. Indeed, we are waiting for the permission request to be sent even before loading our app.
+
+Of course, be sure not to do any kind of heavy computing here as we are using the main thread. It could lead to a freeze of the application and eventually a crash.
 
 ## The Root widget
 
