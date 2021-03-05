@@ -4,9 +4,19 @@ Flutter keeps becoming more and more popular among developers. I'm pretty sure y
 
 Maybe, you were appealed by it but never really took the time to try it, or maybe you are not one of those early adopters jumping on every new framework like those crazy JS devs out there and you were simply waiting for it to be among the top 10 in demand development frameworks before diving into it ? Well, here is your opportunity to get your hands dirty and build your very own application !
 
+With the recent announcement of Flutter 2.0, you will be now able to write a single code that could run on 6 different platforms ! Isn't it amazing ? ([more info here](https://flutter.dev/docs/development/tools/sdk/release-notes/release-notes-2.0.0))
+
+Through this article, we will simply look at a recent app that I have built and I will explain all of my choices for you to get a better understanding of how Flutter works. This application is called "Hot and cold".
+
+## The App: "Hot and cold"
+
+The main purpose of this application is to copy the famous game where a "hunter" is looking for hidden objects and has only access to hints saying that he is "burning" as he gets closer to the goal or "freezing" as he gets further away.
+
 ## The "Main" function
 
-#### Minimum
+When you create a new project, the first step is to understand where is the entry to your app. Well, Flutter is no different from many other platforms: you can find a main function.
+
+#### Basic
 
 ```
 void main() {
@@ -14,13 +24,15 @@ void main() {
 }
 ```
 
-Really close to the Javascript equivalent, this method has simply to call `runApp` with your root widget as a argument and you are free to go. Nothing to watch here!
+Really close to the Javascript equivalent, this method has simply to call `runApp` with your root widget as an argument and you are free to go. Nothing to watch here!
 
 #### Tuned
 
-... But, we don't like it simple. If you want to ensure that the user will use your app with all of the necessary permissions, you can ask for them at initialization.
+... But, we don't like to keep it simple. If you want to ensure that the user will use your app with all of the necessary permissions, you can ask for those at initialization.
 
 In our case, we need to be sure that the user has granted the location permission for this application to run. Otherwise, he should probably not be using a geolocalisation app...
+
+Note that we are calling `WidgetsFlutterBinding.ensureInitialized()` to be sure that Flutter is correctly initialized before running any code that could go before the `runApp` function.
 
 ```
 void main() async {
@@ -32,11 +44,15 @@ void main() async {
 }
 ```
 
-Note that we are using the "async" keyword to notify Flutter that this method is asynchronous. When using this keyword, we are allowed to use the "await" keyword in the function. Indeed, we are waiting for the permission request to be sent even before loading our app.
+For those with keen eyes here, you have probably noticed that we are using the "async" keyword to notify Flutter that this method is asynchronous. When using this keyword, we are now allowed to use the "await" keyword in the function. Indeed, we are waiting for the permission request to be sent before even loading our app.
 
-Of course, be sure not to do any kind of heavy computing here as we are using the main thread. It could lead to a freeze of the application and eventually a crash.
+Of course, be sure not to do any kind of heavy computing here as we are running this in the main thread. It could lead to a freeze of the application (and eventually a crash).
 
 ## The Root widget
+
+Here is the root
+
+### Basic
 
 ```
 class MyApp extends StatelessWidget {
@@ -51,6 +67,8 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+
+### Tuned
 
 ```
 class MyApp extends StatelessWidget {
