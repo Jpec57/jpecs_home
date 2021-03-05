@@ -50,7 +50,7 @@ Of course, be sure not to do any kind of heavy computing here as we are running 
 
 ## The Root widget
 
-Here is the root
+Here is the root widget. You can specify your app theme, the different locales available in your app, your routes and roughly all of the global configurations for your app. It can be very simple if you don't want to tweak the default parameters at first, but keep in mind this widget as you get more used to the framework.
 
 ### Basic
 
@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
 
-      // The Get package is one of the most useful package existing for navigation and snackbar (even without context !). Make sure to check it out
+      // (1) The Get package is one of the most useful package existing for navigation and snackbar (even without context !). Make sure to check it out
       navigatorKey: Get.key,
 
       // The theme defined here will be used by default for your whole application
@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
           textTheme: TextTheme(headline1: TextStyle(fontSize: 30))),
       onGenerateRoute: (settings) {
 
-        // If you were to have routes that need arguments.
+        // (2) If you were to have routes that need arguments.
 
         // if (settings.name == DeckPage.routeName) {
         //   final DeckPageArguments args = settings.arguments;
@@ -122,7 +122,14 @@ class MyApp extends StatelessWidget {
 }
 ```
 
+(1) With the Get package, you can show snackbar without having to rely on the context, navigate to page without all the boilerplate code usually needed. You can check it out [here](https://pub.dev/packages/get).
+
+(2) You don't have to rely on a class to hold your route arguments, but it wil help you be consistent in your project.
+
 ## Dependency management
+
+The dependencies are all management in a file called `pubspec.yaml`. This file is the equivalent for the well-known `package.json`.
+I don't think much information are needed here, it is quite easy to read. An example of git dependency instead of a regular pub dependency is given with the "jpec_base" dependency.
 
 `pubspec.yaml`
 
