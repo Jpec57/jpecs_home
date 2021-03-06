@@ -15,10 +15,10 @@ export default {
     Navigation,
   },
   watch: {
-      '$route' (to) {
-        document.title = to.meta.title || "Jpec's Home"
-      }
+    $route(to) {
+      document.title = to.meta.title || "Jpec's Home";
     },
+  },
 };
 </script>
 
@@ -27,20 +27,20 @@ export default {
   Animations definition
 */
 .fade-in {
-    opacity: 1;
-    animation-name: fadeInOpacity;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in;
-    animation-duration: 2s;
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
 }
 
 @keyframes fadeInOpacity {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @keyframes bounce-in {
   0% {
@@ -54,19 +54,24 @@ export default {
   }
 }
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-1px, 0, 0);
   }
-  
-  20%, 80% {
+
+  20%,
+  80% {
     transform: translate3d(2px, 0, 0);
   }
 
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-4px, 0, 0);
   }
 
-  40%, 60% {
+  40%,
+  60% {
     transform: translate3d(4px, 0, 0);
   }
 }
@@ -75,7 +80,7 @@ export default {
 */
 @font-face {
   font-family: titleFont;
-  src: url('/fonts/lobster-regular.ttf');
+  src: url("/fonts/lobster-regular.ttf");
 }
 
 h1 {
@@ -95,11 +100,11 @@ h2 {
   color: #2c3e50;
 }
 
-.flex-1{
+.flex-1 {
   display: flex;
   flex: 1;
 }
-.flex-4{
+.flex-4 {
   display: flex;
   flex: 4;
 }
@@ -111,29 +116,37 @@ h2 {
   box-shadow: 0 5px 5px grey;
 }
 
-.left-side-container, .right-side-container {
+.left-side-container,
+.right-side-container {
   display: flex;
   flex: 1;
 }
 
-.main-container{
+.main-container {
   display: flex;
-    flex: 4;
-    flex-direction: column;
+  flex: 4;
+  flex-direction: column;
 }
 
 h3 {
   text-decoration: underline;
 }
 
-html, body, #app, #app-content {
+html,
+body,
+#app,
+#app-content {
   margin: 0;
   height: 100%;
 }
+.article-body pre code {
+  padding-left: 5%;
+  padding-right: 5%;
+  justify-content: unset;
+}
 
-
-.body{
-    display: flex;
+.body {
+  display: flex;
 }
 
 .router-link {
@@ -144,25 +157,25 @@ html, body, #app, #app-content {
   color: #696767;
 }
 
-.f-col{
+.f-col {
   display: flex;
   flex-direction: column;
 }
-.f-row{
+.f-row {
   display: flex;
   flex-direction: row;
 }
 
-.f-center{
+.f-center {
   display: flex;
   justify-content: center;
 }
 
-.bold{
+.bold {
   font-weight: bold;
 }
 
-.italic{
+.italic {
   font-style: italic;
 }
 
