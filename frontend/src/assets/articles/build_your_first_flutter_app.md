@@ -451,13 +451,13 @@ class _CompassState extends State<Compass> {
 }
 ```
 
-### Bloc
+### BLoC (Business LOgic Component)
 
 The **StatefulWidget** can do wonders, however you will eventually reach its limits as well. What if you want to update the state of another widget ? You don't have access to the state of another widget... One (horrible) solution could be to pass as an argument a callback function from one widget to another to update the State from outside. But what if you want to update the state of a deeply nested widget from another deeply nested widget in another branch ?
 
 ![Widget tree](/article_images/build_your_first_flutter_app/provider_tree.png "Widget tree")
 
-One solution is to use a [Provider](https://pub.dev/packages/provider). But I've chosen the other common alternative: a [Bloc](https://pub.dev/packages/flutter_bloc). 
+One solution is to use a [Provider](https://pub.dev/packages/provider). But I've chosen the other common alternative: a [Bloc](https://pub.dev/packages/flutter_bloc). It refers to the Business LOgic Component and is a way of architecturing an app by separating concerns.
 
 So... How does it work ? Well, as I am wirting this article, blocs are still something new to me, so I'll try to explain it to you as I have perceived it, but be sure to check the doc after ! 
 
