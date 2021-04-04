@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import { database } from "../../config/database";
 import { Exercise } from "./exercice";
-
+import { SEQUELIZE_SYNC_FORCE } from "../../constants";
 export class ExerciseSet extends Model {
     public id!: number;
     public repsOrDuration!: number;
@@ -30,7 +30,7 @@ export class ExerciseSet extends Model {
 
 // ExerciseSet.belongsToMany(Exercise, {through: 'set_exercise'})
 
-    ExerciseSet.sync({ force: true }).then(() => console.log("Exercise table created"));
+ExerciseSet.sync({ force: SEQUELIZE_SYNC_FORCE }).then(() => console.log("Exercise table created"));
 
 export interface ExerciseSetInterface {
   repsOrDuration: number;

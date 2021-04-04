@@ -1,6 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import { database } from "../../config/database";
 import { Training } from "./training";
+import { SEQUELIZE_SYNC_FORCE } from "../../constants";
 
 export class TrainingUser extends Model {
   public id!: number;
@@ -33,7 +34,7 @@ TrainingUser.init(
   );
 
 //   TrainingUser.hasMany(Training)
-  TrainingUser.sync({ force: true }).then(() => console.log("TrainingUser table created"));
+  TrainingUser.sync({ force: SEQUELIZE_SYNC_FORCE }).then(() => console.log("TrainingUser table created"));
 
   export interface TrainingUserInterface {
     firstname: string;

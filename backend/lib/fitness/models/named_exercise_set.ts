@@ -2,6 +2,7 @@ import { Model, DataTypes } from "sequelize";
 import { database } from "../../config/database";
 import { Exercise } from "./exercice";
 import { TrainingData } from "./training_data";
+import { SEQUELIZE_SYNC_FORCE } from "../../constants";
 
 export class NamedExerciseSet extends Model {
     public id!: number;
@@ -36,7 +37,7 @@ export class NamedExerciseSet extends Model {
 // NamedExerciseSet.belongsToMany(TrainingData, {through: 'training_data_exercise_set'})
 // NamedExerciseSet.belongsTo(Exercise);
 
-NamedExerciseSet.sync({ force: true }).then(() => console.log("Exercise table created"));
+NamedExerciseSet.sync({ force: SEQUELIZE_SYNC_FORCE }).then(() => console.log("Exercise table created"));
 
 export interface NamedExerciseSetInterface {
   name: string;

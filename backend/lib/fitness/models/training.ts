@@ -3,6 +3,7 @@ import { database } from "../../config/database";
 import { Exercise } from "./exercice";
 import { TrainingData } from "./training_data";
 import { TrainingUser } from "./training_user";
+import { SEQUELIZE_SYNC_FORCE } from "../../constants";
 
 export class Training extends Model {
   public id!: number;
@@ -35,7 +36,7 @@ Training.init(
 //   Training.hasMany(Exercise)
 //   Training.hasMany(TrainingData);
 // Training.belongsTo(TrainingUser);
-  Training.sync({ force: true }).then(() => console.log("Training table created"));
+  Training.sync({ force: SEQUELIZE_SYNC_FORCE }).then(() => console.log("Training table created"));
 
   export interface TrainingInterface {
     name: string;
