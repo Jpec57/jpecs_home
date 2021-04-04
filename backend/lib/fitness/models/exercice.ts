@@ -1,5 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import { database } from "../../config/database";
+import { ExerciseSet } from "./exercice_set";
+import { Training } from "./training";
 
 export class Exercise extends Model {
   public id!: number;
@@ -38,7 +40,10 @@ Exercise.init(
       sequelize: database, 
     }
   );
-  
+
+ Exercise.belongsToMany(Training, {through: 'training_exercise'})
+Exercise.hasMany(ExerciseSet)
+ 
   Exercise.sync({ force: true }).then(() => console.log("Exercise table created"));
 
   export interface ExerciseInterface {

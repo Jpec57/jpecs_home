@@ -1,5 +1,8 @@
 import { Model, DataTypes } from "sequelize";
 import { database } from "../../config/database";
+import { Exercise } from "./exercice";
+import { TrainingData } from "./training_data";
+import { TrainingUser } from "./training_user";
 
 export class Training extends Model {
   public id!: number;
@@ -29,7 +32,9 @@ Training.init(
       sequelize: database, 
     }
   );
-  
+//   Training.hasMany(Exercise)
+//   Training.hasMany(TrainingData);
+// Training.belongsTo(TrainingUser);
   Training.sync({ force: true }).then(() => console.log("Training table created"));
 
   export interface TrainingInterface {

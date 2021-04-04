@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import { database } from "../../config/database";
+import { Training } from "./training";
 
 export class TrainingUser extends Model {
   public id!: number;
@@ -31,6 +32,7 @@ TrainingUser.init(
     }
   );
 
+//   TrainingUser.hasMany(Training)
   TrainingUser.sync({ force: true }).then(() => console.log("TrainingUser table created"));
 
   export interface TrainingUserInterface {
