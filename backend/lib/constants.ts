@@ -1,1 +1,0 @@
-export const SEQUELIZE_SYNC_FORCE = false;
