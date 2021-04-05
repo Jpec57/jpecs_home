@@ -7,8 +7,6 @@ export class ExerciseSet extends Model {
     public repsOrDuration!: number;
     public rest!: number;
     public weight: number;
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
   }
   
   ExerciseSet.init(
@@ -28,8 +26,7 @@ export class ExerciseSet extends Model {
       }
     );
 
-// ExerciseSet.belongsToMany(Exercise, {through: 'set_exercise'})
-
+// ExerciseSet.hasOne(Exercise)
 ExerciseSet.sync({ force: SEQUELIZE_SYNC_FORCE }).then(() => console.log("ExerciseSet table created"));
 
 export interface ExerciseSetInterface {

@@ -1,15 +1,18 @@
 import { Model, DataTypes } from "sequelize";
 import { database } from "../config/database";
-import { NamedExerciseSet } from "./named_exercise_set";
 import { Training } from "./training";
 import { SEQUELIZE_SYNC_FORCE } from "../constants";
+import { Exercise } from "./exercice";
 
 export class TrainingData extends Model {
   public id!: number;
+  public training: Training;
+  public doneExercises: Array<Array<Exercise>>;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
-
+// int trainingId;
+// List<List<NamedExerciseSet>> doneExercises;
 TrainingData.init(
     {
       id: {

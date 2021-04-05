@@ -1,0 +1,374 @@
+[
+    {
+      "name": "Front Lever",
+      "description": "Hold it BAKA",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": true
+    },
+    {
+      "name": "Front Lever (red)",
+      "description": "Using the red elastic",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": true
+    },
+    {
+      "name": "Front Lever (orange)",
+      "description": "Using the orange elastic",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": true
+    },
+    {
+      "name": "Front Lever (black)",
+      "description": "Using the black elastic",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": true
+    },
+    {
+      "name": "HSPU Negative",
+      "description": "",
+      "requiredMaterial": [
+        "Wall"
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Elevated Pike Push Ups",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Pike Push Ups",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Dips",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Declined Push Ups",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Inclined Push Ups",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Wide Push Ups",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Wall Triceps Extension",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Tiger Bend",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Elastic Triceps Extension",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Close Push Ups",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Diamond Push Ups",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Chest Fly",
+      "description": "",
+      "requiredMaterial": [
+        "Dumbell"
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Pseudo Push Ups",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Hindu Push Ups",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Planche Lean (hold)",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": true
+    },
+    {
+      "name": "Chin Ups",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Pull Ups",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Wide Pull Ups",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    },
+    {
+      "name": "OAP Negative",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    },
+    {
+      "name": "OAP",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    },
+    {
+      "name": "OAP (Assisted)",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Front Lever Raises",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    }
+  ,
+    {
+      "name": "Tuck Front Lever Pull Ups",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    }
+  ,
+    {
+      "name": "Tuck Front Lever",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": true
+    },
+    {
+      "name": "Back Lever",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": true
+    },
+  
+    {
+      "name": "German Hang",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    },
+  
+    {
+      "name": "Skin The Cat",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    }
+  ,
+    {
+      "name": "Typewriter Pull Ups",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    }
+  ,
+    {
+      "name": "Archer Pull Ups",
+      "description": "",
+      "requiredMaterial": [
+        "Pull Up Bar"
+      ],
+      "isHold": false
+    }
+    ,
+    {
+      "name": "Kettlebell Swings",
+      "description": "",
+      "requiredMaterial": [
+        "Kettlebell"
+      ],
+      "isHold": false
+    },
+    {
+      "name": "V-Sit",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": true
+    },
+    {
+      "name": "L-Sit",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": true
+    },
+    {
+      "name": "L-Sit to V-Sit",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Toe Touches",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Floor Leg Raises",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    }
+    ,
+    {
+      "name": "Star Fish Abs",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Bicycle Abs",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Plank",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": true
+    },
+    {
+      "name": "Squat",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Squat Jump",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Lunges",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Lunges Jump",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    },
+    {
+      "name": "Squat Hold",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": true
+    },
+    {
+      "name": "Bulgarian Split",
+      "description": "",
+      "requiredMaterial": [
+      ],
+      "isHold": false
+    }
+  ]

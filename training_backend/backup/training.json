@@ -1,0 +1,102 @@
+[
+    {
+      "name" : "Ryuk's Sakadachi",
+      "exercises": [
+        {
+          "exercise_id": 1,
+          "sets" : [
+            {
+              "repsOrDuration": 6,
+              "rest": 60
+            },
+            {
+              "repsOrDuration": 6,
+              "rest": 60
+            },
+            {
+              "repsOrDuration": 6,
+              "rest": 60
+            },
+            {
+              "repsOrDuration": 6,
+              "rest": 60
+            },
+            {
+              "repsOrDuration": 6,
+              "rest": 60
+            },
+            {
+              "repsOrDuration": 6,
+              "rest": 60
+            }
+          ],
+          "restAfter": 60
+        },
+  
+  
+  
+  
+  
+        {
+          "exercise_id": 2,
+          "sets" : [
+            {
+              "repsOrDuration": 8,
+              "rest": 45
+            },
+            {
+              "repsOrDuration": 8,
+              "rest": 45
+            },
+            {
+              "repsOrDuration": 8,
+              "rest": 45
+            },
+            {
+              "repsOrDuration": 8,
+              "rest": 45
+            },
+            {
+              "repsOrDuration": 8,
+              "rest": 45
+            },
+            {
+              "repsOrDuration": 8,
+              "rest": 45
+            }
+          ]
+        },
+  
+  
+        {
+          "exercise_id": 3,
+          "sets" : [
+            {
+              "repsOrDuration": 10,
+              "rest": 30
+            },
+            {
+              "repsOrDuration": 10,
+              "rest": 30
+            },
+            {
+              "repsOrDuration": 10,
+              "rest": 30
+            },
+            {
+              "repsOrDuration": 10,
+              "rest": 30
+            },
+            {
+              "repsOrDuration": 10,
+              "rest": 30
+            },
+            {
+              "repsOrDuration": 10,
+              "rest": 30
+            }
+          ]
+        }
+      ]
+    }
+  ]

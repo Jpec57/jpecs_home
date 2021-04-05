@@ -7,13 +7,16 @@ export class Routes {
   public exerciseController: ExerciseController = new ExerciseController();
 
   public routes(app: express.Application): void {
-    app.route("/").get(this.trainingController.index)
-    app.route("/:id")
+    app.route("/training").get(this.trainingController.index)
+    .post(this.trainingController.create);
+    app.route("/training/:id")
       .get(this.trainingController.show)
       .put(this.trainingController.update)
       .delete(this.trainingController.delete);
 
-    app.route("/exercises").get(this.exerciseController.index)
+    app.route("/exercises")
+    .get(this.exerciseController.index)
+    .post(this.exerciseController.create)
     app.route("/exercises/:id")
       .get(this.exerciseController.show)
       .put(this.exerciseController.update)

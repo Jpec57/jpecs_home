@@ -1,1 +1,1 @@
-export const SEQUELIZE_SYNC_FORCE = false;
+export const SEQUELIZE_SYNC_FORCE = true;

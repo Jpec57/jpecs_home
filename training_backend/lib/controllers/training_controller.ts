@@ -1,25 +1,35 @@
 import { Request, Response } from "express";
-import { Exercise, ExerciseInterface } from "../models/exercice";
 import { UpdateOptions, DestroyOptions } from "sequelize";
-import { Training, TrainingInterface } from "../models/training";
+import { Exercise } from "../models/exercice";
+import { Training, TrainingExercise, TrainingInterface } from "../models/training";
 
 export class TrainingController {  
 
   public index(req: Request, res: Response) {
     Training.findAll<Training>({})
-      .then((nodes: Array<Exercise>) => res.json(nodes))
+      .then((nodes: Array<Training>) => res.json(nodes))
       .catch((err: Error) => res.status(500).json(err));
   }
 
   public create(req: Request, res: Response) {
-    const params: TrainingInterface = req.body;
+    if (Array.isArray(req.body)){
+      const params: Array<TrainingInterface> = req.body;
 
-    Training.create<Training>(params)
-      .then((exercice: Training) => res.status(201).json(exercice))
-      .catch((err: Error) => res.status(500).json(err));
+      Training.bulkCreate<Training>(params, {
+        include: [ TrainingExercise ]
+      })
+        .then((exercices: Array<Training>) => res.status(201).json(exercices))
+        .catch((err: Error) => res.status(500).json(err));
+    } else {
+      const params: TrainingInterface = req.body;
+
+      Training.create<Training>(params,{
+        include: [ TrainingExercise ]
+      })
+        .then((exercice: Training) => res.status(201).json(exercice))
+        .catch((err: Error) => res.status(500).json(err));
+    }
   }
-
-
 
   /// SHOW
   public show(req: Request, res: Response) {
@@ -39,7 +49,7 @@ export class TrainingController {
   /// UPDATE
   public update(req: Request, res: Response) {
     const exerciseId: number = Number(req.params.id);
-    const params: ExerciseInterface = req.body;
+    const params: TrainingInterface = req.body;
 
     const update: UpdateOptions = {
       where: { id: exerciseId },

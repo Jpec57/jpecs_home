@@ -1,31 +1,39 @@
 import { Request, Response } from "express";
 import { DestroyOptions, UpdateOptions } from "sequelize/types";
 import { Exercise, ExerciseInterface } from "../models/exercice";
+import { ExerciseData, ExerciseDataInterface } from "../models/exercise_data";
 
 export class ExerciseController {
 
   public index(req: Request, res: Response) {
-    Exercise.findAll<Exercise>({})
-      .then((nodes: Array<Exercise>) => res.json(nodes))
+    ExerciseData.findAll<ExerciseData>({})
+      .then((nodes: Array<ExerciseData>) => res.json(nodes))
       .catch((err: Error) => res.status(500).json(err));
   }
 
   public create(req: Request, res: Response) {
-    const params: ExerciseInterface = req.body;
+    if (Array.isArray(req.body)){
+      const params: Array<ExerciseDataInterface> = req.body;
 
-    Exercise.create<Exercise>(params)
-      .then((exercice: Exercise) => res.status(201).json(exercice))
-      .catch((err: Error) => res.status(500).json(err));
+      ExerciseData.bulkCreate<ExerciseData>(params)
+        .then((exercices: Array<ExerciseData>) => res.status(201).json(exercices))
+        .catch((err: Error) => res.status(500).json(err));
+    } else {
+      const params: ExerciseDataInterface = req.body;
+
+      ExerciseData.create<ExerciseData>(params)
+        .then((exercice: ExerciseData) => res.status(201).json(exercice))
+        .catch((err: Error) => res.status(500).json(err));
+    }
   }
-
 
 
   /// SHOW
   public show(req: Request, res: Response) {
     const exerciseId: number = Number(req.params.id);
 
-    Exercise.findByPk<Exercise>(exerciseId)
-      .then((exercise: Exercise | null) => {
+    ExerciseData.findByPk<ExerciseData>(exerciseId)
+      .then((exercise: ExerciseData | null) => {
         if (exercise) {
           res.json(exercise);
         } else {
@@ -38,14 +46,14 @@ export class ExerciseController {
   /// UPDATE
   public update(req: Request, res: Response) {
     const exerciseId: number = Number(req.params.id);
-    const params: ExerciseInterface = req.body;
+    const params: ExerciseDataInterface = req.body;
 
     const update: UpdateOptions = {
       where: { id: exerciseId },
       limit: 1,
     };
 
-    Exercise.update(params, update)
+    ExerciseData.update(params, update)
       .then(() => res.status(202).json({ data: "success" }))
       .catch((err: Error) => res.status(500).json(err));
   }

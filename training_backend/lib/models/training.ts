@@ -8,9 +8,19 @@ import { SEQUELIZE_SYNC_FORCE } from "../constants";
 export class Training extends Model {
   public id!: number;
   public name!: string;
+  public author: TrainingUser;
   public img: string;
+  public exercises: Array<Exercise>;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+}
+
+export interface TrainingInterface {
+  name: string;
+  author: TrainingUser;
+  img: string;
+  exercises: Array<Exercise>;
 }
 
 
@@ -26,18 +36,31 @@ Training.init(
         allowNull: false,
       },
       img: {
-        type: DataTypes.STRING},
+        type: DataTypes.STRING
+      },
     },
     {
       tableName: "training",
       sequelize: database, 
     }
   );
-//   Training.hasMany(Exercise)
+
+//   class TrainingExercise extends Model {
+//   } 
+//   TrainingExercise.init({},
+//     {
+//       tableName: 'training_exercise', sequelize: database
+//     }
+//  );
+//  TrainingExercise.sync({ force: SEQUELIZE_SYNC_FORCE }).then(() => console.log("TrainingExercise table created"));
+
+//  Training.belongsToMany(Exercise, {through: TrainingExercise})
+//  Exercise.belongsToMany(Training, { through: TrainingExercise })
+
+export const TrainingExercise = Training.belongsToMany(Exercise, { through: 'training_exercise' })
+export const ExerciseTraining = Exercise.belongsToMany(Training, { through: 'training_exercise' })
+
 //   Training.hasMany(TrainingData);
 // Training.belongsTo(TrainingUser);
   Training.sync({ force: SEQUELIZE_SYNC_FORCE }).then(() => console.log("Training table created"));
 
-  export interface TrainingInterface {
-    name: string;
-  }
