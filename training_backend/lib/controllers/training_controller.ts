@@ -10,7 +10,7 @@ export class TrainingController {
       .then((nodes: Array<Training>) => res.json(nodes))
       .catch((err: Error) => res.status(500).json(err));
   }
-
+//https://bezkoder.com/sequelize-associate-one-to-many/ TODO
   public create(req: Request, res: Response) {
     if (Array.isArray(req.body)){
       const params: Array<TrainingInterface> = req.body;

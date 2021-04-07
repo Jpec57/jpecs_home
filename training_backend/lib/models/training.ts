@@ -57,8 +57,8 @@ Training.init(
 //  Training.belongsToMany(Exercise, {through: TrainingExercise})
 //  Exercise.belongsToMany(Training, { through: TrainingExercise })
 
-export const TrainingExercise = Training.belongsToMany(Exercise, { through: 'training_exercise' })
-export const ExerciseTraining = Exercise.belongsToMany(Training, { through: 'training_exercise' })
+export const TrainingExercise = Training.hasMany(Exercise, { as: "exercices" })
+export const ExerciseTraining = Exercise.belongsTo(Training, { foreignKey: 'trainingId', as: "training" })
 
 //   Training.hasMany(TrainingData);
 // Training.belongsTo(TrainingUser);
