@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
 import { UpdateOptions, DestroyOptions } from "sequelize";
+import { TrainingExercise } from "../config/database";
 import { Exercise } from "../models/exercice";
-import { Training, TrainingExercise, TrainingInterface } from "../models/training";
+import { Training, 
+  // TrainingExercise,
+   TrainingInterface } from "../models/training";
 
 export class TrainingController {  
 
@@ -10,13 +13,18 @@ export class TrainingController {
       .then((nodes: Array<Training>) => res.json(nodes))
       .catch((err: Error) => res.status(500).json(err));
   }
-//https://bezkoder.com/sequelize-associate-one-to-many/ TODO
+
   public create(req: Request, res: Response) {
     if (Array.isArray(req.body)){
+      console.log("body", req.body);
       const params: Array<TrainingInterface> = req.body;
 
+      console.log("params", params);
       Training.bulkCreate<Training>(params, {
-        include: [ TrainingExercise ]
+        include: [{
+          association: TrainingExercise,
+          include: [Exercise]
+        } ]
       })
         .then((exercices: Array<Training>) => res.status(201).json(exercices))
         .catch((err: Error) => res.status(500).json(err));
@@ -24,7 +32,10 @@ export class TrainingController {
       const params: TrainingInterface = req.body;
 
       Training.create<Training>(params,{
-        include: [ TrainingExercise ]
+        include: [{
+          association: TrainingExercise,
+          include: [Exercise]
+        } ]
       })
         .then((exercice: Training) => res.status(201).json(exercice))
         .catch((err: Error) => res.status(500).json(err));

@@ -11,31 +11,7 @@ export class Exercise extends Model {
   public restAfter: number;
 }
 export interface ExerciseInterface {
+  id: number,
   sets: Array<ExerciseSet>;
   restAfter: number; 
 }
-
-
-Exercise.init(
-    {
-      id: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-
-      restAfter: {
-        type: DataTypes.INTEGER
-      }
-    },
-    {
-      tableName: "exercise",
-      sequelize: database, 
-    }
-  );
-
-// Exercise.belongsTo(ExerciseData)
-// ExerciseData.hasMany(Exercise);
-Exercise.hasMany(ExerciseSet)
-Exercise.sync({ force: SEQUELIZE_SYNC_FORCE }).then(() => console.log("Exercise table created"));
-
