@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { UpdateOptions, DestroyOptions } from "sequelize";
 import { TrainingExercise } from "../config/database";
 import { Exercise } from "../models/exercice";
+import { ExerciseSet } from "../models/exercice_set";
 import { Training, 
   // TrainingExercise,
    TrainingInterface } from "../models/training";
@@ -14,6 +15,64 @@ export class TrainingController {
       .catch((err: Error) => res.status(500).json(err));
   }
 
+  public test(req: Request, res: Response) {
+    // var training = new Training();
+    // training.name = "Toto";
+    // var set = new ExerciseSet();
+    // set.repsOrDuration = 10;
+    // set.rest = 15;
+    // var exo = new Exercise();
+    // exo.restAfter = 60;
+    // exo.sets = [set, set];
+
+    // training.exercises = [
+    //   exo,
+    //   exo,
+    // ];
+
+    Training.create<Training>({
+      "name" : "Ryuk's Sakadachi",
+        "exercises": [
+          {
+            "id": 1,
+            "sets": [
+              {
+                "repsOrDuration": 6,
+                "rest": 60
+              },
+              {
+                "repsOrDuration": 6,
+                "rest": 60
+              },
+              {
+                "repsOrDuration": 6,
+                "rest": 60
+              },
+              {
+                "repsOrDuration": 6,
+                "rest": 60
+              },
+              {
+                "repsOrDuration": 6,
+                "rest": 60
+              },
+              {
+                "repsOrDuration": 6,
+                "rest": 60
+              }
+            ],
+            "restAfter": 60
+          },
+        ]
+    }, {
+      include: [{
+        association: TrainingExercise,
+        include: [Exercise]
+      }]
+    });
+
+    
+  }
   public create(req: Request, res: Response) {
     if (Array.isArray(req.body)){
       console.log("body", req.body);

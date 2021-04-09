@@ -14,8 +14,6 @@ export class Training extends Model {
   public exercises: Array<Exercise>;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
-  public associate: Function;
-
 }
 
 export interface TrainingInterface {

@@ -9,6 +9,7 @@ export class Routes {
   public routes(app: express.Application): void {
     app.route("/training").get(this.trainingController.index)
     .post(this.trainingController.create);
+    app.route("/training/test").get(this.trainingController.test);
     app.route("/training/:id")
       .get(this.trainingController.show)
       .put(this.trainingController.update)

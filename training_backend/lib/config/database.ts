@@ -72,12 +72,12 @@ ExerciseSet.init(
 
 // ExerciseSet.hasOne(Exercise)
 // ExerciseSet.sync({ force: SEQUELIZE_SYNC_FORCE }).then(() => console.log("ExerciseSet table created"));
-
-
 // database.afterSync(options=>{
 //   Training.hasMany(Exercise, {as: 'exercises'}); 
 //   Exercise.belongsTo(Training, {'foreignKey': 'trainingId'})
 // });
-export const TrainingExercise = Training.hasMany(Exercise, {as: 'exercises', sourceKey:'id'});
-export const ExerciseTraining = Exercise.belongsTo(Training, {targetKey: 'id', as: 'training_id'});
-database.sync();
+export const TrainingExercise = Training.hasMany(Exercise);
+export const ExerciseTraining = Exercise.belongsTo(Training);
+// export const TrainingExercise = Training.hasMany(Exercise, {as: 'exercises', sourceKey:'id'});
+// export const ExerciseTraining = Exercise.belongsTo(Training, {targetKey: 'id', as: 'training_id'});
+database.sync({force: true});

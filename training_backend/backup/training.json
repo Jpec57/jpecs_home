@@ -3,7 +3,7 @@
       "name" : "Ryuk's Sakadachi",
       "exercises": [
         {
-          "exercise_id": 1,
+          "id": 1,
           "sets" : [
             {
               "repsOrDuration": 6,
@@ -38,7 +38,7 @@
   
   
         {
-          "exercise_id": 2,
+          "id": 2,
           "sets" : [
             {
               "repsOrDuration": 8,
@@ -69,7 +69,7 @@
   
   
         {
-          "exercise_id": 3,
+          "id": 3,
           "sets" : [
             {
               "repsOrDuration": 10,
