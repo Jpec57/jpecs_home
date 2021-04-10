@@ -1,9 +1,9 @@
+/*
 import { Model, DataTypes } from "sequelize";
 import { database } from "../config/database";
 import { Training } from "./training";
 import { SEQUELIZE_SYNC_FORCE } from "../constants";
-import { Exercise } from "./exercice";
-
+import { Exercise } from "./exercise";
 export class TrainingData extends Model {
   public id!: number;
   public training: Training;
@@ -32,3 +32,4 @@ TrainingData.init(
   export interface TrainingDataInterface {
     id: number;
   }
+*/

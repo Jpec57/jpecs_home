@@ -4,6 +4,8 @@
     "esModuleInterop": true,
     "pretty": true,
     "target": "es6",
+    "experimentalDecorators": true,
+"emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist"

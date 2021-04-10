@@ -1,83 +1,52 @@
-import { Sequelize, Model, DataTypes } from "sequelize";
+import { Sequelize, DataTypes } from "sequelize";
 import dotenv from 'dotenv';
-import { Exercise } from "../models/exercice";
-import { Training } from "../models/training";
-import { ExerciseSet } from "../models/exercice_set";
-import { SEQUELIZE_SYNC_FORCE } from "../constants";
+import { Model } from "sequelize";
 dotenv.config();
 
 export const database = new Sequelize('jpec_home_training', process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
   host: 'localhost',
   dialect: 'mysql',
-  storage: './database.sqlite'
+  storage: './database.sqlite',
+
 });
-console.log("OUPS");
 
+export class Training extends Model{}
 
-Training.init(
-  {
-    id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    name: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-    },
-    img: {
-      type: DataTypes.STRING
-    },
+Training.init({
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true,
+    primaryKey: true,
   },
-  {
-    tableName: "training",
-    sequelize: database, 
-  }
+  name: {
+    type: new DataTypes.STRING(128),
+    allowNull: false,
+  },
+  img: {
+    type: DataTypes.STRING
+  }, 
+}, { sequelize: database, modelName: 'training'}
 );
 
-Exercise.init(
-  {
-    id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
-      primaryKey: true,
-    },
+export class Exercise extends Model{}
 
-    restAfter: {
-      type: DataTypes.INTEGER
-    },
+Exercise.init({
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true,
+    primaryKey: true,
   },
-  {
-    tableName: "exercise",
-    sequelize: database, 
-  }
+  name: {
+    type: DataTypes.STRING
+  },
+  restAfter: {
+    type: DataTypes.INTEGER
+  },
+},
+{ sequelize: database, modelName: 'exercise'}
 );
 
-ExerciseSet.init(
-  {
-    id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    repsOrDuration: {type: DataTypes.INTEGER},
-    rest: {type: DataTypes.INTEGER},
-    weight: {type: DataTypes.INTEGER},
-  },
-  {
-    tableName: "exercise_set",
-    sequelize: database, 
-  }
-);
-
-// ExerciseSet.hasOne(Exercise)
-// ExerciseSet.sync({ force: SEQUELIZE_SYNC_FORCE }).then(() => console.log("ExerciseSet table created"));
-// database.afterSync(options=>{
-//   Training.hasMany(Exercise, {as: 'exercises'}); 
-//   Exercise.belongsTo(Training, {'foreignKey': 'trainingId'})
-// });
 export const TrainingExercise = Training.hasMany(Exercise);
 export const ExerciseTraining = Exercise.belongsTo(Training);
-// export const TrainingExercise = Training.hasMany(Exercise, {as: 'exercises', sourceKey:'id'});
-// export const ExerciseTraining = Exercise.belongsTo(Training, {targetKey: 'id', as: 'training_id'});
+
 database.sync({force: true});

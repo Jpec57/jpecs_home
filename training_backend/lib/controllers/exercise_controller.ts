@@ -1,6 +1,7 @@
+/*
 import { Request, Response } from "express";
 import { DestroyOptions, UpdateOptions } from "sequelize/types";
-import { Exercise, ExerciseInterface } from "../models/exercice";
+import { Exercise, ExerciseInterface } from "../models/exercise";
 import { ExerciseData, ExerciseDataInterface } from "../models/exercise_data";
 
 export class ExerciseController {
@@ -71,3 +72,4 @@ export class ExerciseController {
       .catch((err: Error) => res.status(500).json(err));
   }
 }
+*/

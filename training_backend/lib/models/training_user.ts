@@ -1,8 +1,8 @@
+/*
 import { Model, DataTypes } from "sequelize";
 import { database } from "../config/database";
 import { Training } from "./training";
 import { SEQUELIZE_SYNC_FORCE } from "../constants";
-
 export class TrainingUser extends Model {
   public id!: number;
   public lastname!: string;
@@ -40,3 +40,4 @@ TrainingUser.init(
     firstname: string;
     lastname: string;
   }
+  */
