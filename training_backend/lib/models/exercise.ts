@@ -3,6 +3,8 @@
 // // import { ExerciseData } from "./exercise_data";
 // import { Table, Column, Model, HasMany } from 'sequelize-typescript'
 
+import { ExerciseSet } from "../config/database";
+
 // // @Table
 // // export class Exercise extends Model {
 // //   // @Column
@@ -12,8 +14,8 @@
 // //   @Column
 // //   public restAfter: number;
 // // }
-// export interface ExerciseInterface {
-//   id: number,
-//   sets: Array<ExerciseSet>;
-//   restAfter: number; 
-// }
+export interface ExerciseInterface {
+  id: number,
+  sets: Array<ExerciseSet>;
+  restAfter: number; 
+}
