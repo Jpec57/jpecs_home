@@ -1,8 +1,8 @@
-/*
+
 import { Request, Response } from "express";
 import { DestroyOptions, UpdateOptions } from "sequelize/types";
-import { Exercise, ExerciseInterface } from "../models/exercise";
-import { ExerciseData, ExerciseDataInterface } from "../models/exercise_data";
+import { ExerciseData } from "../config/database";
+import { ExerciseDataInterface } from "../models/exercise_data";
 
 export class ExerciseController {
 
@@ -67,9 +67,8 @@ export class ExerciseController {
       limit: 1,
     };
 
-    Exercise.destroy(options)
+    ExerciseData.destroy(options)
       .then(() => res.status(204).json({ data: "success" }))
       .catch((err: Error) => res.status(500).json(err));
   }
 }
-*/

@@ -1,11 +1,22 @@
 import { Request, Response } from "express";
+import { DestroyOptions, UpdateOptions } from "sequelize";
 // import { UpdateOptions, DestroyOptions } from "sequelize";
 // import { TrainingExercise } from "../config/database";
 
-import { database, Exercise, Training, TrainingExercise } from "../config/database";
+import { database, Exercise, ExerciseExerciseData, ExerciseExerciseSet, ExerciseSet, Training, TrainingExercise } from "../config/database";
 import { TrainingInterface } from "../models/training";
 
-export class TrainingController {  
+export class TrainingController { 
+   trainingTotalInclude = [{
+    association: TrainingExercise,
+    include: [{
+      association: ExerciseExerciseSet,
+    },
+    {
+      association: ExerciseExerciseData,
+    }
+  ]
+  }]; 
 
   public index(req: Request, res: Response) {
     Training.findAll<Training>({})
@@ -20,8 +31,15 @@ export class TrainingController {
       const params: Array<TrainingInterface> = req.body;
       Training.bulkCreate<Training>(params, {
         include: [{
-          association: TrainingExercise
-        } ]
+          association: TrainingExercise,
+          include: [{
+            association: ExerciseExerciseSet,
+          },
+          {
+            association: ExerciseExerciseData,
+          }
+        ]
+        }]
       })
         .then((exercices: Array<Training>) => res.status(201).json(exercices))
         .catch((err: Error) => res.status(500).json(err));
@@ -30,7 +48,14 @@ export class TrainingController {
       const params: TrainingInterface = req.body;
       Training.create<Training>(params,{
         include: [{
-          association: TrainingExercise
+          association: TrainingExercise,
+          include: [{
+            association: ExerciseExerciseSet,
+          },
+          {
+            association: ExerciseExerciseData,
+          }
+        ]
         }]
       })
         .then((exercice: Training) => res.status(201).json(exercice))
@@ -38,12 +63,22 @@ export class TrainingController {
     }
   }
 
-  /*
   /// SHOW
   public show(req: Request, res: Response) {
     const exerciseId: number = Number(req.params.id);
 
-    Training.findByPk<Training>(exerciseId)
+    Training.findByPk<Training>(exerciseId,{
+      include: [{
+        association: TrainingExercise,
+        include: [{
+          association: ExerciseExerciseSet,
+        },
+        {
+          association: ExerciseExerciseData,
+        }
+      ]
+      }]
+    })
       .then((exercise: Training | null) => {
         if (exercise) {
           res.json(exercise);
@@ -81,5 +116,5 @@ export class TrainingController {
       .then(() => res.status(204).json({ data: "success" }))
       .catch((err: Error) => res.status(500).json(err));
   }
-  */
+  
 }
