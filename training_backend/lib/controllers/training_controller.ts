@@ -3,8 +3,8 @@ import { DestroyOptions, UpdateOptions } from "sequelize";
 // import { UpdateOptions, DestroyOptions } from "sequelize";
 // import { TrainingExercise } from "../config/database";
 
-import { database, Exercise, ExerciseExerciseData, ExerciseExerciseSet, ExerciseSet, Training, TrainingExercise } from "../config/database";
-import { TrainingInterface } from "../models/training";
+import { database, Exercise, ExerciseExerciseData, ExerciseExerciseSet, ExerciseSet, TrainingExercise } from "../config/database";
+import { Training, TrainingInterface } from "../models/training";
 
 export class TrainingController { 
    trainingTotalInclude = [{

@@ -1,6 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
 import dotenv from 'dotenv';
 import { Model } from "sequelize";
+import { Training } from "../models/training";
 dotenv.config();
 
 export const database = new Sequelize('jpec_home_training', process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
@@ -10,23 +11,7 @@ export const database = new Sequelize('jpec_home_training', process.env.MYSQL_US
 
 });
 
-export class Training extends Model{}
 
-Training.init({
-  id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  name: {
-    type: new DataTypes.STRING(128),
-    allowNull: false,
-  },
-  img: {
-    type: DataTypes.STRING
-  }, 
-}, { sequelize: database, modelName: 'training'}
-);
 
 
 export class ExerciseData extends Model {
@@ -185,5 +170,5 @@ export const ExerciseSetExercise = ExerciseSet.belongsTo(Exercise);
 //ExerciseData
 export const ExerciseDataExercise = ExerciseData.hasMany(Exercise);
 
-// database.sync({force: false});
-database.authenticate();
+database.sync({force: false});
+// database.authenticate();
