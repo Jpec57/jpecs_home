@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { DestroyOptions, UpdateOptions } from "sequelize";
-// import { UpdateOptions, DestroyOptions } from "sequelize";
-// import { TrainingExercise } from "../config/database";
 
-import { database, Exercise, ExerciseExerciseData, ExerciseExerciseSet, ExerciseSet, TrainingExercise } from "../config/database";
-import { Training, TrainingInterface } from "../models/training";
+import {  
+  ExerciseExerciseData,
+  ExerciseExerciseSet,
+  TrainingExercise } from "../config/database";
+import { Training, TrainingAttributes } from "../models/training";
 
 export class TrainingController { 
    trainingTotalInclude = [{
@@ -19,7 +20,18 @@ export class TrainingController {
   }]; 
 
   public index(req: Request, res: Response) {
-    Training.findAll<Training>({})
+    Training.findAll<Training>({
+      include: [{
+        association: TrainingExercise,
+        include: [{
+          association: ExerciseExerciseSet,
+        },
+        {
+          association: ExerciseExerciseData,
+        }
+      ]
+      }]
+    })
       .then((nodes: Array<Training>) => res.json(nodes))
       .catch((err: Error) => res.status(500).json(err));
   }
@@ -28,7 +40,7 @@ export class TrainingController {
   public create(req: Request, res: Response) {
     if (Array.isArray(req.body)){
       console.log("body", req.body);
-      const params: Array<TrainingInterface> = req.body;
+      const params: Array<TrainingAttributes> = req.body;
       Training.bulkCreate<Training>(params, {
         include: [{
           association: TrainingExercise,
@@ -45,7 +57,7 @@ export class TrainingController {
         .catch((err: Error) => res.status(500).json(err));
     } else {
       console.log("body", req.body);
-      const params: TrainingInterface = req.body;
+      const params: TrainingAttributes = req.body;
       Training.create<Training>(params,{
         include: [{
           association: TrainingExercise,
@@ -92,7 +104,7 @@ export class TrainingController {
   /// UPDATE
   public update(req: Request, res: Response) {
     const exerciseId: number = Number(req.params.id);
-    const params: TrainingInterface = req.body;
+    const params: TrainingAttributes = req.body;
 
     const update: UpdateOptions = {
       where: { id: exerciseId },
@@ -116,5 +128,4 @@ export class TrainingController {
       .then(() => res.status(204).json({ data: "success" }))
       .catch((err: Error) => res.status(500).json(err));
   }
-  
 }

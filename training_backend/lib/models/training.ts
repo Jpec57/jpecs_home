@@ -1,31 +1,11 @@
 import { Model, Optional, Association, HasManyGetAssociationsMixin, HasManyAddAssociationMixin, HasManyHasAssociationMixin, HasManyCountAssociationsMixin, HasManyCreateAssociationMixin } from "sequelize";
-import { Exercise } from "../config/database";
+import { Exercise } from "./exercise";
 
 // https://sequelize.org/master/manual/typescript.html
-
-// export class Training extends Model{}
-
-// Training.init({
-//   id: {
-//     type: DataTypes.INTEGER.UNSIGNED,
-//     autoIncrement: true,
-//     primaryKey: true,
-//   },
-//   name: {
-//     type: new DataTypes.STRING(128),
-//     allowNull: false,
-//   },
-//   img: {
-//     type: DataTypes.STRING
-//   }, 
-// }, { sequelize: database, modelName: 'training'}
-// );
-
-interface TrainingAttributes {
+export interface TrainingAttributes {
   id: number,
   name: string;
-  img: string;
-  exercises: Array<Exercise>;
+  img: string | null;
 }
 
 interface TrainingCreationAttributes extends Optional<TrainingAttributes, "id"> {}
@@ -35,8 +15,7 @@ export class Training extends Model<TrainingAttributes, TrainingCreationAttribut
   implements TrainingAttributes {
   public id!: number;
   public name!: string;
-  public img: string;
-  public exercises?: Exercise[];
+  public img: string | null;
 
 
   // timestamps!
@@ -54,6 +33,7 @@ export class Training extends Model<TrainingAttributes, TrainingCreationAttribut
 
   // You can also pre-declare possible inclusions, these will only be populated if you
   // actively include a relation.
+  public exercises: Exercise[];
 
   public static associations: {
     exercises: Association<Training, Exercise>;

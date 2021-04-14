@@ -1,7 +1,9 @@
 import { Sequelize, DataTypes } from "sequelize";
 import dotenv from 'dotenv';
-import { Model } from "sequelize";
 import { Training } from "../models/training";
+import { Exercise } from "../models/exercise";
+import { ExerciseSet } from "../models/exercice_set";
+import { ExerciseData } from "../models/exercise_data";
 dotenv.config();
 
 export const database = new Sequelize('jpec_home_training', process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
@@ -10,33 +12,6 @@ export const database = new Sequelize('jpec_home_training', process.env.MYSQL_US
   storage: './database.sqlite',
 
 });
-
-
-
-
-export class ExerciseData extends Model {
-  public id!: number;
-  public name!: string;
-  //  @Column(DataType.TEXT)
-  public description: string;
-  public img: string;
-  public requiredMaterial: Array<String>;
-  public isHold!: boolean;
-  public executionType: number;
-
-  difficulty: number;
-  chest_ratio: number;
-  triceps_ratio: number;
-  back_ratio: number;
-  biceps_ratio: number;
-  calf_ratio: number;
-  forearm_ratio: number;
-  shoulder_ratio: number;
-  quadriceps_ratio: number;
-  hamstring_ratio: number;
-  abs_ratio: number;
-}
-
 
 ExerciseData.init(
   {
@@ -56,15 +31,15 @@ ExerciseData.init(
     img: {
       type: DataTypes.STRING
     },
-    requiredMaterial: {
-      type: DataTypes.STRING,
-      get() {
-        return this.getDataValue('requiredMaterial').split(';')
-    },
-    set(val: Array<String>) {
-       this.setDataValue('requiredMaterial', val.join(';'));
-    },
-    },
+    // requiredMaterial: {
+    //   type: DataTypes.STRING,
+    //   get() {
+    //     return this.getDataValue('requiredMaterial').split(';')
+    // },
+    // set(val: Array<String>) {
+    //    this.setDataValue('requiredMaterial', val.join(';'));
+    // },
+    // },
     isHold: {
       type: DataTypes.BOOLEAN
     },
@@ -110,13 +85,21 @@ ExerciseData.init(
     sequelize: database, 
   }
 );
-
-
-
-
-
-
-export class Exercise extends Model{}
+Training.init({
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: new DataTypes.STRING(128),
+    allowNull: false,
+  },
+  img: {
+    type: DataTypes.STRING
+  }, 
+}, { sequelize: database, modelName: 'training'}
+);
 
 Exercise.init({
   id: {
@@ -124,21 +107,11 @@ Exercise.init({
     autoIncrement: true,
     primaryKey: true,
   },
-
-  restAfter: {
+    restAfter: {
     type: DataTypes.INTEGER
   },
-},
-{ sequelize: database, modelName: 'exercise'}
+}, {sequelize: database, modelName: 'exercise'}
 );
-
-
-export class ExerciseSet extends Model {
-  // public id!: number;
-  // public repsOrDuration!: number;
-  // public rest!: number;
-  // public weight: number;
-}
 
 ExerciseSet.init({
   id: {
