@@ -11,6 +11,7 @@ export class Routes {
     .post(this.trainingController.create);
     app.route("/training/:id")
       .get(this.trainingController.show)
+      .post(this.trainingController.createTrainingData)
       .put(this.trainingController.update)
       .delete(this.trainingController.delete);
 

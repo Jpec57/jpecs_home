@@ -4,6 +4,7 @@ import { Training } from "../models/training";
 import { Exercise } from "../models/exercise";
 import { ExerciseSet } from "../models/exercice_set";
 import { ExerciseData } from "../models/exercise_data";
+import { TrainingData } from "../models/training_data";
 dotenv.config();
 
 export const database = new Sequelize('jpec_home_training', process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
@@ -12,6 +13,32 @@ export const database = new Sequelize('jpec_home_training', process.env.MYSQL_US
   storage: './database.sqlite',
 
 });
+
+
+TrainingData.init({
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+}, { sequelize: database, modelName: 'training_data'}
+);
+
+Training.init({
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: new DataTypes.STRING(128),
+    allowNull: false,
+  },
+  img: {
+    type: DataTypes.STRING
+  }, 
+}, { sequelize: database, modelName: 'training'}
+);
 
 ExerciseData.init(
   {
@@ -85,21 +112,7 @@ ExerciseData.init(
     sequelize: database, 
   }
 );
-Training.init({
-  id: {
-    type: DataTypes.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  name: {
-    type: new DataTypes.STRING(128),
-    allowNull: false,
-  },
-  img: {
-    type: DataTypes.STRING
-  }, 
-}, { sequelize: database, modelName: 'training'}
-);
+
 
 Exercise.init({
   id: {
@@ -134,10 +147,16 @@ ExerciseSet.init({
 
 //Training
 export const TrainingExercise = Training.hasMany(Exercise);
+export const TrainingTrainingData = Training.hasMany(TrainingData);
+//TrainingData
+export const TrainingDataTraining = TrainingData.belongsTo(Training);
+export const TrainingDataExercises = TrainingData.hasMany(Exercise);
+
 //Exercise
 export const ExerciseTraining = Exercise.belongsTo(Training);
 export const ExerciseExerciseSet = Exercise.hasMany(ExerciseSet);
 export const ExerciseExerciseData = Exercise.belongsTo(ExerciseData, {as: 'exerciceData'});
+
 //ExerciseSet
 export const ExerciseSetExercise = ExerciseSet.belongsTo(Exercise);
 //ExerciseData

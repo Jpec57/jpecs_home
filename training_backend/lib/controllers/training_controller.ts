@@ -4,8 +4,12 @@ import { DestroyOptions, UpdateOptions } from "sequelize";
 import {  
   ExerciseExerciseData,
   ExerciseExerciseSet,
-  TrainingExercise } from "../config/database";
+  TrainingDataExercises,
+  TrainingDataTraining,
+  TrainingExercise, 
+  TrainingTrainingData} from "../config/database";
 import { Training, TrainingAttributes } from "../models/training";
+import { TrainingData, TrainingDataAttributes } from "../models/training_data";
 
 export class TrainingController { 
    trainingTotalInclude = [{
@@ -37,13 +41,27 @@ export class TrainingController {
   }
 
 
-  public create(req: Request, res: Response) {
-    if (Array.isArray(req.body)){
-      console.log("body", req.body);
-      const params: Array<TrainingAttributes> = req.body;
-      Training.bulkCreate<Training>(params, {
-        include: [{
-          association: TrainingExercise,
+  public createTrainingData(req: Request, res: Response) {
+    const params: TrainingDataAttributes = req.body;
+    TrainingData.create<TrainingData>(params,{
+      include: [
+        {
+          association: TrainingDataTraining,
+          include: [
+            {
+              association: TrainingExercise,
+              include: [{
+                association: ExerciseExerciseSet,
+              },
+              {
+                association: ExerciseExerciseData,
+              }
+            ]
+            }
+          ]
+        },
+        {
+          association: TrainingDataExercises,
           include: [{
             association: ExerciseExerciseSet,
           },
@@ -51,13 +69,36 @@ export class TrainingController {
             association: ExerciseExerciseData,
           }
         ]
-        }]
-      })
-        .then((exercices: Array<Training>) => res.status(201).json(exercices))
-        .catch((err: Error) => res.status(500).json(err));
-    } else {
+        }
+      ]
+
+    })
+      .then((trainingData: TrainingData) => res.status(201).json(trainingData))
+      .catch((err: Error) => res.status(500).json(err));
+  }
+
+
+  public create(req: Request, res: Response) {
+    // if (Array.isArray(req.body)){
+    //   console.log("body", req.body);
+    //   const params: Array<TrainingAttributes> = req.body;
+    //   Training.bulkCreate<Training>(params, {
+    //     include: [{
+    //       association: TrainingExercise,
+    //       include: [{
+    //         association: ExerciseExerciseSet,
+    //       },
+    //       {
+    //         association: ExerciseExerciseData,
+    //       }
+    //     ]
+    //     }]
+    //   })
+    //     .then((exercices: Array<Training>) => res.status(201).json(exercices))
+    //     .catch((err: Error) => res.status(500).json(err));
+    // } else {
       console.log("body", req.body);
-      const params: TrainingAttributes = req.body;
+      const params = req.body;
       Training.create<Training>(params,{
         include: [{
           association: TrainingExercise,
@@ -72,7 +113,7 @@ export class TrainingController {
       })
         .then((exercice: Training) => res.status(201).json(exercice))
         .catch((err: Error) => res.status(500).json(err));
-    }
+    // }
   }
 
   /// SHOW
@@ -80,7 +121,8 @@ export class TrainingController {
     const exerciseId: number = Number(req.params.id);
 
     Training.findByPk<Training>(exerciseId,{
-      include: [{
+      include: [
+        {
         association: TrainingExercise,
         include: [{
           association: ExerciseExerciseSet,
@@ -89,7 +131,24 @@ export class TrainingController {
           association: ExerciseExerciseData,
         }
       ]
-      }]
+      }, 
+      {
+        association: TrainingTrainingData,
+
+        include: [
+          {
+            association: TrainingExercise,
+            include: [{
+              association: ExerciseExerciseSet,
+            },
+            {
+              association: ExerciseExerciseData,
+            }
+          ]
+          }, 
+        ]
+      }
+    ]
     })
       .then((exercise: Training | null) => {
         if (exercise) {
