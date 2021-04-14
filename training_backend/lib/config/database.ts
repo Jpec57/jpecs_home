@@ -1,6 +1,10 @@
 import { Sequelize, DataTypes } from "sequelize";
 import dotenv from 'dotenv';
-import { Model } from "sequelize";
+import { Training } from "../models/training";
+import { Exercise } from "../models/exercise";
+import { ExerciseSet } from "../models/exercice_set";
+import { ExerciseData } from "../models/exercise_data";
+import { TrainingData } from "../models/training_data";
 dotenv.config();
 
 export const database = new Sequelize('jpec_home_training', process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
@@ -10,7 +14,15 @@ export const database = new Sequelize('jpec_home_training', process.env.MYSQL_US
 
 });
 
-export class Training extends Model{}
+
+TrainingData.init({
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+}, { sequelize: database, modelName: 'training_data'}
+);
 
 Training.init({
   id: {
@@ -27,31 +39,6 @@ Training.init({
   }, 
 }, { sequelize: database, modelName: 'training'}
 );
-
-
-export class ExerciseData extends Model {
-  public id!: number;
-  public name!: string;
-  //  @Column(DataType.TEXT)
-  public description: string;
-  public img: string;
-  public requiredMaterial: Array<String>;
-  public isHold!: boolean;
-  public executionType: number;
-
-  difficulty: number;
-  chest_ratio: number;
-  triceps_ratio: number;
-  back_ratio: number;
-  biceps_ratio: number;
-  calf_ratio: number;
-  forearm_ratio: number;
-  shoulder_ratio: number;
-  quadriceps_ratio: number;
-  hamstring_ratio: number;
-  abs_ratio: number;
-}
-
 
 ExerciseData.init(
   {
@@ -71,15 +58,15 @@ ExerciseData.init(
     img: {
       type: DataTypes.STRING
     },
-    requiredMaterial: {
-      type: DataTypes.STRING,
-      get() {
-        return this.getDataValue('requiredMaterial').split(';')
-    },
-    set(val: Array<String>) {
-       this.setDataValue('requiredMaterial', val.join(';'));
-    },
-    },
+    // requiredMaterial: {
+    //   type: DataTypes.STRING,
+    //   get() {
+    //     return this.getDataValue('requiredMaterial').split(';')
+    // },
+    // set(val: Array<String>) {
+    //    this.setDataValue('requiredMaterial', val.join(';'));
+    // },
+    // },
     isHold: {
       type: DataTypes.BOOLEAN
     },
@@ -127,33 +114,17 @@ ExerciseData.init(
 );
 
 
-
-
-
-
-export class Exercise extends Model{}
-
 Exercise.init({
   id: {
     type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true,
     primaryKey: true,
   },
-
-  restAfter: {
+    restAfter: {
     type: DataTypes.INTEGER
   },
-},
-{ sequelize: database, modelName: 'exercise'}
+}, {sequelize: database, modelName: 'exercise'}
 );
-
-
-export class ExerciseSet extends Model {
-  // public id!: number;
-  // public repsOrDuration!: number;
-  // public rest!: number;
-  // public weight: number;
-}
 
 ExerciseSet.init({
   id: {
@@ -176,14 +147,20 @@ ExerciseSet.init({
 
 //Training
 export const TrainingExercise = Training.hasMany(Exercise);
+export const TrainingTrainingData = Training.hasMany(TrainingData);
+//TrainingData
+export const TrainingDataTraining = TrainingData.belongsTo(Training);
+export const TrainingDataExercises = TrainingData.hasMany(Exercise);
+
 //Exercise
 export const ExerciseTraining = Exercise.belongsTo(Training);
 export const ExerciseExerciseSet = Exercise.hasMany(ExerciseSet);
 export const ExerciseExerciseData = Exercise.belongsTo(ExerciseData, {as: 'exerciceData'});
+
 //ExerciseSet
 export const ExerciseSetExercise = ExerciseSet.belongsTo(Exercise);
 //ExerciseData
 export const ExerciseDataExercise = ExerciseData.hasMany(Exercise);
 
-// database.sync({force: false});
-database.authenticate();
+database.sync({force: false});
+// database.authenticate();

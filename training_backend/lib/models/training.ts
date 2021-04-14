@@ -1,47 +1,41 @@
-import { Model, DataTypes, Sequelize } from "sequelize";
-import { database, Exercise } from "../config/database";
+import { Model, Optional, Association, HasManyGetAssociationsMixin, HasManyAddAssociationMixin, HasManyHasAssociationMixin, HasManyCountAssociationsMixin, HasManyCreateAssociationMixin } from "sequelize";
+import { Exercise } from "./exercise";
 
-// import { TrainingData } from "./training_data";
-// import { TrainingUser } from "./training_user";
-import { SEQUELIZE_SYNC_FORCE } from "../constants";
-import sequelize from "sequelize";
-import { Column, CreatedAt, HasMany, Table, UpdatedAt } from "sequelize-typescript";
-
-
-// @Table
-// export class Training extends Model {
-//   // public id!: number;
-//   @Column
-//   public name!: string;
-//   // public author: TrainingUser;
-//   @Column
-//   public img: string;
-//   @HasMany(() => Exercise)
-//   public exercises: Array<Exercise>;
-//   @CreatedAt
-//   public readonly createdAt!: Date;
-//   @UpdatedAt
-//   public readonly updatedAt!: Date;
-// }
-
-// export const Training = database.define('training', {
-//   id: {
-//     type: DataTypes.INTEGER.UNSIGNED,
-//     autoIncrement: true,
-//     primaryKey: true,
-//   },
-//   name: {
-//     type: new DataTypes.STRING(128),
-//     allowNull: false,
-//   },
-//   img: {
-//     type: DataTypes.STRING
-//   }, 
-// });
-
-export interface TrainingInterface {
+// https://sequelize.org/master/manual/typescript.html
+export interface TrainingAttributes {
+  id: number,
   name: string;
-  // author: TrainingUser;
-  img: string;
-  exercises: Array<Exercise>;
+  img: string | null;
+}
+
+interface TrainingCreationAttributes extends Optional<TrainingAttributes, "id"> {}
+
+
+export class Training extends Model<TrainingAttributes, TrainingCreationAttributes>
+  implements TrainingAttributes {
+  public id!: number;
+  public name!: string;
+  public img: string | null;
+
+
+  // timestamps!
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+
+  // Since TS cannot determine model association at compile time
+  // we have to declare them here purely virtually
+  // these will not exist until `Model.init` was called.
+  public getExercises!: HasManyGetAssociationsMixin<Exercise>; // Note the null assertions!
+  public addExercise!: HasManyAddAssociationMixin<Exercise, number>;
+  public hasExercise!: HasManyHasAssociationMixin<Exercise, number>;
+  public countExercises!: HasManyCountAssociationsMixin;
+  public createExercise!: HasManyCreateAssociationMixin<Exercise>;
+
+  // You can also pre-declare possible inclusions, these will only be populated if you
+  // actively include a relation.
+  public exercises: Exercise[];
+
+  public static associations: {
+    exercises: Association<Training, Exercise>;
+  };
 }

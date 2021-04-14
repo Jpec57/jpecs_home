@@ -1,8 +1,8 @@
 
+
 import { Request, Response } from "express";
 import { DestroyOptions, UpdateOptions } from "sequelize/types";
-import { ExerciseData } from "../config/database";
-import { ExerciseDataInterface } from "../models/exercise_data";
+import { ExerciseData, ExerciseDataAttributes } from "../models/exercise_data";
 
 export class ExerciseController {
 
@@ -14,13 +14,13 @@ export class ExerciseController {
 
   public create(req: Request, res: Response) {
     if (Array.isArray(req.body)){
-      const params: Array<ExerciseDataInterface> = req.body;
+      const params: Array<ExerciseDataAttributes> = req.body;
 
       ExerciseData.bulkCreate<ExerciseData>(params)
         .then((exercices: Array<ExerciseData>) => res.status(201).json(exercices))
         .catch((err: Error) => res.status(500).json(err));
     } else {
-      const params: ExerciseDataInterface = req.body;
+      const params: ExerciseDataAttributes = req.body;
 
       ExerciseData.create<ExerciseData>(params)
         .then((exercice: ExerciseData) => res.status(201).json(exercice))
@@ -47,7 +47,7 @@ export class ExerciseController {
   /// UPDATE
   public update(req: Request, res: Response) {
     const exerciseId: number = Number(req.params.id);
-    const params: ExerciseDataInterface = req.body;
+    const params: ExerciseDataAttributes = req.body;
 
     const update: UpdateOptions = {
       where: { id: exerciseId },
