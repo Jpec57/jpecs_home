@@ -1,4 +1,4 @@
-package com.jpec.japanese_backend
+package com.jpec.language_backend
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
