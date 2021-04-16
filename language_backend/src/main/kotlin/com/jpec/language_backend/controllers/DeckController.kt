@@ -1,23 +1,21 @@
 package com.jpec.language_backend.controllers
 
 import org.springframework.web.bind.annotation.*
-import java.awt.print.Book
 
+
+data class VocabCard(val id: Int, val value: String)
 
 @RestController
-@RequestMapping("deck")
+//@RequestMapping("deck")
 class DeckController {
 
   @GetMapping("/")
-  fun index(): String {
-    return "blog"
+  fun index(): String{
+    return "toto";
   }
-/*
-  @GetMapping("/{id}")
-  @ResponseBody
-  fun getDeck(@PathVariable id: Int): Deck? {
-    return "blog"
-    return findDeckById(id)
+
+  @GetMapping("/test")
+  fun indexTest(): VocabCard{
+    return VocabCard(57, "Jpec");
   }
-*/
 }
