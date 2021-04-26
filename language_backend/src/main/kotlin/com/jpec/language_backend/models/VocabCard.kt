@@ -1,6 +1,3 @@
 package com.jpec.language_backend.models
-/*
-data class VocabCard {
-    val id: int;
-    val value: String;
-}*/
+//@Entity // This tells Hibernate to make a table out of this class
+data class VocabCard(val id: Int, val value: String)

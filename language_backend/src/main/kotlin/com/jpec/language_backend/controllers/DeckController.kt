@@ -1,12 +1,13 @@
 package com.jpec.language_backend.controllers
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*
 
 
-data class VocabCard(val id: Int, val value: String)
-
 @RestController
-//@RequestMapping("deck")
+// @RequestMapping(path="/deck")
+// @Controller // This means that this class is a Controller
+// @RequestMapping(path="/demo") 
 class DeckController {
 
   @GetMapping("/")
@@ -14,8 +15,8 @@ class DeckController {
     return "toto";
   }
 
-  @GetMapping("/test")
-  fun indexTest(): VocabCard{
-    return VocabCard(57, "Jpec");
-  }
+  // @GetMapping("/test")
+  // fun indexTest(): VocabCard{
+  //   return VocabCard(57, "Jpec");
+  // }
 }
