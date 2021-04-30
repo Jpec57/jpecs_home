@@ -1,21 +1,26 @@
 package com.jpec.language_backend.controllers
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*
+import com.jpec.language_backend.models.*;
 
+import org.springframework.ui.Model
+import org.springframework.ui.set
+import org.springframework.web.bind.annotation.GetMapping
 
-//@RestController
-//@RequestMapping("vocab-card")
+@RestController
+@RequestMapping("/cards/vocab")
 class VocabCardController {
-/*
+
     @GetMapping("/")
     fun index(): String {
-        return "blog"
+        return "vocab"
     }
 
   @GetMapping("/{id}")
-  //@ResponseBody
-  fun getDeck(@PathVariable id: Int):String {
+  fun getVocabCard(@PathVariable id: Int): String {
     return "blog $id"
   }
-*/
+
 }

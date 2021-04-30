@@ -36,13 +36,19 @@ dependencies {
   runtimeOnly("com.h2database:h2:1.4.200") // See https://github.com/spring-projects/spring-boot/issues/18593 and https://github.com/h2database/h2database/issues/1841
   runtimeOnly("org.springframework.boot:spring-boot-devtools")
   runtimeOnly("mysql:mysql-connector-java") 
-  testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("org.springframework.boot:spring-boot-starter-test") {
+  exclude(module = "junit")
+  exclude(module = "mockito-core")
+}
+testImplementation("org.junit.jupiter:junit-jupiter-api")
+testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+testImplementation("com.ninja-squad:springmockk:3.0.1")
   //END
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
+
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
