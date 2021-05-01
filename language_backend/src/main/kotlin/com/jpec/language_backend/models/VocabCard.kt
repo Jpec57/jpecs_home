@@ -1,11 +1,16 @@
 package com.jpec.language_backend.models
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-@Entity // This tells Hibernate to make a table out of this class
+import com.jpec.language_backend.enums.LanguageRegisterType
+import javax.persistence.*
+
+@Entity
 class VocabCard(
-        @Id
-        @GeneratedValue(strategy=GenerationType.AUTO)
-        val id: Int,
-        val value: String)
+      @Id
+      @GeneratedValue(strategy=GenerationType.AUTO)
+    val id: Int, 
+    val toTranslateWord: String,
+      @OneToMany(mappedBy="vocabCard", cascade = [CascadeType.ALL], targetEntity = WordTranslation::class)
+      var translations: List<WordTranslation>,
+      @OneToMany(mappedBy="vocabCard", cascade = [CascadeType.ALL], targetEntity = SRSVocabCard::class)
+      var srsVocabCards: List<SRSVocabCard>,
+      val languageRegisterType: LanguageRegisterType,
+    )

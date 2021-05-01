@@ -1,12 +1,13 @@
 package com.jpec.language_backend.models
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 class User(
-        var login: String,
-        var firstname: String,
-        var lastname: String,
-        var description: String? = null,
-        @Id @GeneratedValue var id: Long? = null)
+    @Id @GeneratedValue var id: Int,
+    var username: String,
+    var password: String,
+    var firstName: String?,
+    var lastName: String?,
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], targetEntity = SRSVocabCard::class)
+    var srsVocabCard: List<SRSVocabCard>
+)
