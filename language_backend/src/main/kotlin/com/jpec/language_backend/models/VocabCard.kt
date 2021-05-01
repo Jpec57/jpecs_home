@@ -5,7 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity // This tells Hibernate to make a table out of this class
 class VocabCard(
-      @Id
-      @GeneratedValue(strategy=GenerationType.AUTO)
-    val id: Int, 
-    val value: String)
+        @Id
+        @GeneratedValue(strategy=GenerationType.AUTO)
+        val id: Int,
+        val value: String)

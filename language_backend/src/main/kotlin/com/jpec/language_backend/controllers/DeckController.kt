@@ -1,30 +1,21 @@
 package com.jpec.language_backend.controllers
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*
-import com.jpec.language_backend.models.*;
 
-import org.springframework.ui.Model
-import org.springframework.ui.set
+import com.jpec.language_backend.models.VocabCard
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/deck")
 class DeckController {
 
-  @GetMapping("/")
-  fun index(): String{
-    return "toto";
-  }
+    @GetMapping("/")
+    fun index(): String{
+        return "toto";
+    }
 
-  @GetMapping("/test")
-  fun indexTest(): VocabCard{
-    return VocabCard(57, "Jpec");
-  }
-
-  //   @GetMapping("/blog")
-  // fun blog(model: Model): String {
-  //   model["title"] = "Blog"
-  //   return "blog"
-  // }
+    @GetMapping("/test")
+    fun indexTest(): VocabCard {
+        return VocabCard(57, "Jpec");
+    }
 }
