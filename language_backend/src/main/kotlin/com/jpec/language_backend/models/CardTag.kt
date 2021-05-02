@@ -6,9 +6,9 @@ import javax.persistence.*
 class CardTag (
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    val id: Int,
+    val id: Long?,
     var value: String,
     var color: String,
     @ManyToMany(targetEntity = SRSVocabCard::class, mappedBy = "tags")
-    var srsVocabCards: List<SRSVocabCard>
+    var srsVocabCards: MutableList<SRSVocabCard>?
     )

@@ -1,20 +1,11 @@
 package com.jpec.language_backend.repositories
 
-import org.springframework.data.repository.CrudRepository;
+import com.jpec.language_backend.models.VocabCard
+import org.springframework.data.repository.CrudRepository
+import java.util.*
 
 
-
-//TODO https://www.baeldung.com/spring-boot-hibernate
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
-// public interface VocabCardRepository extends CrudRepository<VocabCard, Integer> {
-
-// }
-import org.springframework.data.jpa.repository.JpaRepository;
-/*
-@Repository("memberRepository")
-interface VocabCardRepository: JpaRepository<Member, Long> {
-    Member findByEmail(String email);
+interface VocabCardRepository : CrudRepository<VocabCard, Long?> {
+//    fun findByLastName(lastName: String?): List<VocabCard>?
+    override fun findById(id: Long): Optional<VocabCard>
 }
-
- */

@@ -6,7 +6,7 @@ import javax.persistence.*
 class WordTranslation(
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    val id: Int,
+    val id: Long?,
     val languageCode: String,
     var value: String,
     @ManyToOne

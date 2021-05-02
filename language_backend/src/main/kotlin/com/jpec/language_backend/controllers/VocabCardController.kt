@@ -14,7 +14,7 @@ class VocabCardController {
 
   @GetMapping("/{id}")
   fun getVocabCard(@PathVariable id: Int): String {
-    return "blog $id"
+    return "blogggg $id"
   }
 
 }

@@ -5,7 +5,7 @@ import com.jpec.language_backend.models.*;
 import org.springframework.web.bind.annotation.GetMapping
 
 @RestController
-@RequestMapping("/deck")
+@RequestMapping("/decks")
 class DeckController {
 
   @GetMapping("/")
