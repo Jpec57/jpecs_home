@@ -1,5 +1,6 @@
 package com.jpec.language_backend.controllers
 
+import com.jpec.language_backend.annotations.Auth
 import com.jpec.language_backend.models.AuthToken
 import com.jpec.language_backend.models.User
 import com.jpec.language_backend.models.dto.LoginDTO
@@ -8,6 +9,7 @@ import com.jpec.language_backend.repositories.UserRepository
 import com.jpec.language_backend.services.AuthTokenHandler
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
@@ -62,8 +64,13 @@ class UserController(val userRepository: UserRepository, val authTokenRepository
         return response.sendRedirect("/users/$userId")
     }
 
+    @GetMapping("/connected")
+    fun connectedOnly(@Auth user: User, response: HttpServletResponse): String {
+        return "bravo";
+    }
+
     @PostMapping("/login")
-    fun loginUser(@RequestBody loginDTO: LoginDTO): Boolean{
+    fun loginUser(@RequestBody loginDTO: LoginDTO): ResponseEntity<String>{
         val user = userRepository.findOneByUsername(loginDTO.username);
         if (user.isPresent){
             val token = authTokenHandler.generateToken(user.get())
@@ -73,7 +80,10 @@ class UserController(val userRepository: UserRepository, val authTokenRepository
             } else {
                 user.get().tokens = mutableListOf(token)
             }
+            return ResponseEntity.status(HttpStatus.OK)
+                .body(token.token)
         }
-        return user.isPresent
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            .body("Bad credentials")
     }
 }

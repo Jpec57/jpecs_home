@@ -11,4 +11,6 @@ class CardTag (
     var color: String,
     @ManyToMany(targetEntity = SRSVocabCard::class, mappedBy = "tags")
     var srsVocabCards: MutableList<SRSVocabCard>?
-    )
+    ){
+    constructor(): this(-1, "", "", mutableListOf())
+}

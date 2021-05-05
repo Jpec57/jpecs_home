@@ -29,4 +29,9 @@ class SRSVocabCard(
     successCount: Int
 ) :
     SRSCard(nextAvailable, level, errorCount, successCount) {
+
+    constructor(): this(-1, User(), VocabCard(), "",
+        mutableListOf(), "", mutableListOf(), mutableListOf(),
+    0, 0, 0, 0
+    )
 }

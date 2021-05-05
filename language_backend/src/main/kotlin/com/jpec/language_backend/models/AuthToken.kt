@@ -13,4 +13,6 @@ class AuthToken (
     var expiredOn: Long,
     @ManyToOne() @JsonIgnore
     var user: User
-)
+){
+    constructor(): this(-1, "", 0, User())
+}

@@ -18,8 +18,8 @@ class AuthTokenWebResolver : HandlerMethodArgumentResolver {
     @Autowired
     lateinit var authTokenHandler: AuthTokenHandler
 
-    // to register Auth annotation
-    override fun supportsParameter(methodParameter: MethodParameter): Boolean {
+//https://betterprogramming.pub/how-to-implement-custom-token-based-authentication-in-spring-boot-and-kotlin-5b59b55c1de2
+        override fun supportsParameter(methodParameter: MethodParameter): Boolean {
         return methodParameter.getParameterAnnotation(Auth::class.java) != null
     }
 

@@ -8,4 +8,6 @@ abstract class SRSCard (
     var errorCount: Int = 0,
     var successCount: Int = 0,
     var isActive: Boolean = false
-)
+){
+    constructor(): this(-1)
+}

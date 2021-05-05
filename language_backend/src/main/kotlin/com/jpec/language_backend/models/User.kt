@@ -4,7 +4,7 @@ import javax.persistence.*
 @Entity
 class User(
     @Id @GeneratedValue var id: Long?,
-//    @NotBlank(message = "Username is mandatory")
+    @Column(name = "username", nullable = false, unique = true)
     var username: String,
 //    @NotBlank(message = "Password is mandatory")
     var password: String,
@@ -15,4 +15,5 @@ class User(
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], targetEntity = SRSVocabCard::class)
     var srsVocabCard: MutableList<SRSVocabCard>? = null
 ) {
+    constructor() : this(-1, "jpec", "jpec")
 }
