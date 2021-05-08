@@ -7,8 +7,8 @@ class CardTag (
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     val id: Long?,
-    var value: String,
-    var color: String,
+    var value: String = "",
+    var color: String = "",
     @ManyToMany(targetEntity = SRSVocabCard::class, mappedBy = "tags")
     var srsVocabCards: MutableList<SRSVocabCard>?
     ){

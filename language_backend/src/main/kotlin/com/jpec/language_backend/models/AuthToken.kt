@@ -11,7 +11,8 @@ class AuthToken (
     @Column(name="token", length=512)
     var token: String,
     var expiredOn: Long,
-    @ManyToOne() @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     var user: User
 ){
     constructor(): this(-1, "", 0, User())

@@ -1,5 +1,8 @@
 package com.jpec.language_backend.models
 
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonManagedReference
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.jpec.language_backend.enums.LanguageRegisterType
 import javax.persistence.*
 
@@ -8,14 +11,14 @@ class WordTranslation(
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     val id: Long?,
-    val languageCode: String,
-    var value: String,
-    @ManyToOne
-    @JoinColumn(name="vocab_card_id", nullable=false)
-    var vocabCard: VocabCard,
+    val languageCode: String = "",
+    var value: String = "",
+
+    @ManyToOne()
+    @JsonBackReference
+    var vocabCard: VocabCard?,
 ){
     constructor() : this(-1, "fr-FR", "jpec",
-        VocabCard(4, "", mutableListOf(), mutableListOf(),
-            LanguageRegisterType.CASUAL)
+        null
     )
 }

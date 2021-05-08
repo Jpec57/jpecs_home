@@ -1,5 +1,7 @@
 package com.jpec.language_backend.models
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import com.jpec.language_backend.enums.LanguageRegisterType
 import javax.persistence.*
 
@@ -8,18 +10,20 @@ class VocabCard(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long?,
-    val toTranslateWord: String,
+    val toTranslateWord: String = "",
+    @JsonManagedReference
     @OneToMany(
         mappedBy = "vocabCard", cascade = [CascadeType.ALL],
-        targetEntity = WordTranslation::class
+        targetEntity = WordTranslation::class, fetch=FetchType.EAGER
     )
-    var translations: MutableList<WordTranslation>,
+    var translations: MutableList<WordTranslation> = mutableListOf(),
+    @JsonManagedReference
     @OneToMany(
         mappedBy = "vocabCard", cascade = [CascadeType.ALL],
         targetEntity = SRSVocabCard::class
     )
     var srsVocabCards: MutableList<SRSVocabCard>?,
-    val languageRegisterType: LanguageRegisterType,
+    val languageRegisterType: LanguageRegisterType = LanguageRegisterType.CASUAL,
 ){
     constructor(): this(-1, "", mutableListOf(),
     mutableListOf(), LanguageRegisterType.CASUAL
