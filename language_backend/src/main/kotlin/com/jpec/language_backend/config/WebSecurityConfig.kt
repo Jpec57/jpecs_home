@@ -1,6 +1,6 @@
 package com.jpec.language_backend.config
 
-import com.jpec.language_backend.services.JWTUserDetailsService
+import com.jpec.language_backend.services.CustomJwtUserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 class WebSecurityConfig(
     private val jwtAuthenticationEntryPoint : JwtAuthenticationEntryPoint,
-    private val jwtUserDetailsService: JWTUserDetailsService,
+    private val customJwtUserDetailsService: CustomJwtUserDetailsService,
     private val jwtRequestFilter: JwtRequestFilter) : WebSecurityConfigurerAdapter() {
 
     @Autowired
@@ -31,7 +31,7 @@ class WebSecurityConfig(
         // configure AuthenticationManager so that it knows from where to load
         // user for matching credentials
         // Use BCryptPasswordEncoder
-        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder())
+        auth.userDetailsService(customJwtUserDetailsService).passwordEncoder(passwordEncoder())
     }
 
     @Bean
@@ -50,8 +50,8 @@ class WebSecurityConfig(
     {
         httpSecurity.csrf().disable()
         httpSecurity.authorizeRequests()
-            .antMatchers("/authenticate").permitAll()
-            .antMatchers(HttpMethod.POST, "/users/").permitAll()
+            .antMatchers("/login").permitAll()
+            .antMatchers(HttpMethod.POST, "/users/signup").permitAll()
 //            .antMatchers("/greetings/**").hasAuthority("ROLE_ADMIN")
 //            .antMatchers("/**").permitAll()
             .anyRequest().authenticated()

@@ -1,30 +1,21 @@
 package com.jpec.language_backend.controllers
 
-import com.jpec.language_backend.annotations.Auth
-import com.jpec.language_backend.models.AuthToken
 import com.jpec.language_backend.models.User
-import com.jpec.language_backend.models.dto.LoginDTO
 import com.jpec.language_backend.repositories.AuthTokenRepository
 import com.jpec.language_backend.repositories.UserRepository
 import com.jpec.language_backend.services.JwtTokenUtil
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.ui.Model
-import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.server.ResponseStatusException
 import javax.servlet.http.HttpServletResponse
 
 
 @RestController
 @RequestMapping("/users")
 class UserController(val userRepository: UserRepository, val authTokenRepository: AuthTokenRepository, val jwtTokenUtil: JwtTokenUtil) {
-    @GetMapping("/")
-    fun findAll() = userRepository.findAll()
 
-    @PostMapping("/")
+    @PostMapping("/signup")
     fun createUser(@RequestBody user: User): User {
         val encoder = BCryptPasswordEncoder()
         user.password = encoder.encode(user.password)
@@ -38,6 +29,10 @@ class UserController(val userRepository: UserRepository, val authTokenRepository
         }
         return savedUser
     }
+
+    @GetMapping("/")
+    fun findAll() = userRepository.findAll()
+
 
     @GetMapping("/{id}")
     fun showOne(@PathVariable id: Long) = userRepository.findById(id)
@@ -54,26 +49,9 @@ class UserController(val userRepository: UserRepository, val authTokenRepository
     }
 
     @GetMapping("/connected")
-    fun connectedOnly(@Auth user: User, response: HttpServletResponse): String {
-        print(user.firstName)
-        return "bravo";
+    fun connectedOnly(response: HttpServletResponse): String {
+        val userDetails = SecurityContextHolder.getContext().authentication
+            .principal as UserDetails
+        return userDetails.username;
     }
-
-//    @PostMapping("/login")
-//    fun loginUser(@RequestBody loginDTO: LoginDTO): ResponseEntity<String>{
-//        val user = userRepository.findOneByUsername(loginDTO.username);
-//        if (user.isPresent){
-//            val token = jwtTokenUtil.generateToken(user.get())
-//            authTokenRepository.save(token)
-//            if (user.get().tokens != null ){
-//                user.get().tokens!!.add(token)
-//            } else {
-//                user.get().tokens = mutableListOf(token)
-//            }
-//            return ResponseEntity.status(HttpStatus.OK)
-//                .body(token.token)
-//        }
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//            .body("Bad credentials")
-//    }
 }

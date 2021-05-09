@@ -47,13 +47,6 @@ class JwtTokenUtil : Serializable {
         return expiration.before(Date())
     }
 
-    //generate token for user
-//    fun generateToken(user: User): AuthToken {
-//        val claims: Map<String, Any> = HashMap()
-//        val token = doGenerateToken(claims, user.username)
-//        return AuthToken(user = user, token = token, expiredOn = getExpirationDateFromToken(token).time)
-//    }
-
     fun generateToken(user: UserDetails): AuthToken {
         val claims: Map<String, Any> = HashMap()
         val token = doGenerateToken(claims, user.username)

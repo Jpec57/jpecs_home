@@ -11,7 +11,7 @@ import javax.security.sasl.AuthenticationException;
 /*
 @ControllerAdvice is a specialization of the @Component annotation which allows to handle exceptions across the whole application in one global handling component. It can be viewed as an interceptor of exceptions thrown by methods annotated with @RequestMapping and similar.
  */
-class CustomExceptionsHandler {
+class CustomExceptionsResolver {
 
     @ExceptionHandler(AuthenticationException::class)
     fun authenticationExceptionHandler(e: Exception):ResponseEntity<String>

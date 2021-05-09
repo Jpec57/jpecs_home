@@ -1,8 +1,5 @@
 package com.jpec.language_backend.controllers
 
-import com.jpec.language_backend.annotations.Auth
-import com.jpec.language_backend.models.SRSVocabCard
-import com.jpec.language_backend.models.User
 import com.jpec.language_backend.models.VocabCard
 import com.jpec.language_backend.repositories.VocabCardRepository
 import org.springframework.http.ResponseEntity
@@ -23,17 +20,17 @@ class VocabCardController(val vocabCardRepository: VocabCardRepository) {
     }
 
     @PostMapping("/")
-    fun createCard(@Valid @RequestBody card: VocabCard, @Auth user: User?): ResponseEntity<VocabCard> {
+    fun createCard(@Valid @RequestBody card: VocabCard): ResponseEntity<VocabCard> {
         val vocabCard = vocabCardRepository.save(card)
         val location: URI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(vocabCard.id).toUri()
 
-        print(user.toString())
-        if (user != null){
-            print(user.id)
-            print(user.firstName)
-            print(user.lastName)
-        }
+//        print(user.toString())
+//        if (user != null){
+//            print(user.id)
+//            print(user.firstName)
+//            print(user.lastName)
+//        }
 
         /*
     val languageCode: String = "",

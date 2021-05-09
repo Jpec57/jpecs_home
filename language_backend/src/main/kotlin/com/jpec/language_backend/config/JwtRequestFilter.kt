@@ -1,10 +1,9 @@
 package com.jpec.language_backend.config
 
 import com.jpec.language_backend.models.User
-import com.jpec.language_backend.services.JWTUserDetailsService
+import com.jpec.language_backend.services.CustomJwtUserDetailsService
 import com.jpec.language_backend.services.JwtTokenUtil
 import io.jsonwebtoken.ExpiredJwtException
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
@@ -18,7 +17,10 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Component
-class JwtRequestFilter(private val jwtUserDetailsService: JWTUserDetailsService, private val jwtTokenUtil: JwtTokenUtil) : OncePerRequestFilter() {
+class JwtRequestFilter(
+    private val customJwtUserDetailsService: CustomJwtUserDetailsService,
+    private val jwtTokenUtil: JwtTokenUtil
+    ) : OncePerRequestFilter() {
 
     @Throws(ServletException::class, IOException::class)
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
@@ -40,7 +42,7 @@ class JwtRequestFilter(private val jwtUserDetailsService: JWTUserDetailsService,
         }
         // Once we get the token validate it.
         if (username != null && SecurityContextHolder.getContext().authentication == null) {
-            val userDetails: UserDetails = jwtUserDetailsService.loadUserByUsername(username)
+            val userDetails: UserDetails = customJwtUserDetailsService.loadUserByUsername(username)
             // if token is valid configure Spring Security to manually set authentication
             if (jwtTokenUtil.validateToken(jwtToken, User(-1, username=userDetails.username, password = userDetails.password))) {
                 val usernamePasswordAuthenticationToken = UsernamePasswordAuthenticationToken(
