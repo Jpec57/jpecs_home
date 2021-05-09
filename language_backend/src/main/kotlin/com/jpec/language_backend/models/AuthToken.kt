@@ -7,13 +7,11 @@ import javax.persistence.*
 class AuthToken (
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    val id: Long?,
+    val id: Long? = null,
     @Column(name="token", length=512)
-    var token: String,
-    var expiredOn: Long,
-    @ManyToOne(fetch = FetchType.LAZY)
+    var token: String = "",
+    var expiredOn: Long = 0,
+    @ManyToOne
     @JsonIgnore
-    var user: User
-){
-    constructor(): this(-1, "", 0, User())
-}
+    var user: User = User(-1)
+)

@@ -1,1 +1,1 @@
-rootProject.name = "language_backend_old"
+rootProject.name = "language_backend"

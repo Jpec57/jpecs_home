@@ -12,10 +12,4 @@ class DeckController {
   fun index(): String{
     return "toto";
   }
-
-  @GetMapping("/test")
-  fun indexTest(): String{
-    return "help";
-//    return VocabCard(57, "Jpec", listOf(WordTranslation(value = "toto", languageCode = "fr-FR")), );
-  }
 }

@@ -9,7 +9,7 @@ class SRSVocabCard(
     val id: Long?,
     @ManyToOne()
     @JoinColumn(name="user_id", nullable=false)
-    val user: User = User(),
+    val user: User = User(-1),
     @ManyToOne()
     @JoinColumn(name="vocab_card_id", nullable=false)
     val vocabCard: VocabCard = VocabCard(),
@@ -30,7 +30,7 @@ class SRSVocabCard(
 ) :
     SRSCard(nextAvailable, level, errorCount, successCount) {
 
-    constructor(): this(-1, User(), VocabCard(), "",
+    constructor(): this(-1, User(-1), VocabCard(), "",
         mutableListOf(), "", mutableListOf(), mutableListOf(),
     0, 0, 0, 0
     )
