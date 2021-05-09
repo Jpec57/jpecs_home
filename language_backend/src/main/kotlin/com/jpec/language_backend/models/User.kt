@@ -1,5 +1,6 @@
 package com.jpec.language_backend.models
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.*
 
 @Entity
@@ -13,8 +14,10 @@ class User(
     var firstName: String? = null,
     var lastName: String? = null,
     @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], targetEntity = AuthToken::class, fetch = FetchType.LAZY)
-    var tokens: MutableList<AuthToken>? = null,
+    var tokens: MutableList<AuthToken> = mutableListOf(),
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], targetEntity = SRSVocabCard::class)
-    var srsVocabCard: MutableList<SRSVocabCard>? = null
+    var srsVocabCard: MutableList<SRSVocabCard> = mutableListOf()
 )

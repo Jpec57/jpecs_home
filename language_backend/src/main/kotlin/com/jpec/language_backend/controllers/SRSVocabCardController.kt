@@ -4,6 +4,7 @@ import com.jpec.language_backend.models.SRSVocabCard
 import com.jpec.language_backend.models.VocabCard
 import com.jpec.language_backend.repositories.SRSVocabCardRepository
 import com.jpec.language_backend.repositories.VocabCardRepository
+import com.jpec.language_backend.resolvers.AuthenticatedUserResolver
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
@@ -14,7 +15,10 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/srs/vocab")
-class SRSVocabCardController(val srsVocabCardRepository: SRSVocabCardRepository) {
+class SRSVocabCardController(
+    val srsVocabCardRepository: SRSVocabCardRepository,
+    val authenticatedUserResolver: AuthenticatedUserResolver
+    ) {
 
     @GetMapping("/")
     fun index(): Iterable<SRSVocabCard> {
@@ -32,6 +36,23 @@ class SRSVocabCardController(val srsVocabCardRepository: SRSVocabCardRepository)
     @GetMapping("/{id}")
     fun getSRSVocabCard(@PathVariable id: Long): Optional<SRSVocabCard> {
         return srsVocabCardRepository.findById(id)
+    }
+
+    @GetMapping("/{id}/activate")
+    fun activateCard(@PathVariable id: Long): ResponseEntity<Any> {
+        val currentUser = authenticatedUserResolver.getAuthenticatedUser()
+        val vocabCardOptional = srsVocabCardRepository.findById(id)
+
+        if (vocabCardOptional.isPresent){
+            val srsCard = vocabCardOptional.get()
+            if (currentUser.id != srsCard.user.id){
+                return ResponseEntity.badRequest().body("You are not allow to change this card")
+            }
+            srsCard.isActive = true
+            srsVocabCardRepository.save(srsCard)
+            return ResponseEntity.ok(true)
+        }
+        return ResponseEntity.notFound().build()
     }
 
 

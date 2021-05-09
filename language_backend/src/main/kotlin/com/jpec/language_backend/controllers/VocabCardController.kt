@@ -1,18 +1,23 @@
 package com.jpec.language_backend.controllers
 
+import com.jpec.language_backend.models.SRSVocabCard
 import com.jpec.language_backend.models.VocabCard
 import com.jpec.language_backend.repositories.VocabCardRepository
+import com.jpec.language_backend.resolvers.AuthenticatedUserResolver
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 import java.net.URI
+import java.time.LocalDateTime
 import java.util.*
 import javax.validation.Valid
 
 
 @RestController
 @RequestMapping("/cards/vocab")
-class VocabCardController(val vocabCardRepository: VocabCardRepository) {
+class VocabCardController(
+    val authenticatedUserResolver: AuthenticatedUserResolver,
+    val vocabCardRepository: VocabCardRepository) {
 
     @GetMapping("/")
     fun index(): Iterable<VocabCard> {
@@ -21,34 +26,23 @@ class VocabCardController(val vocabCardRepository: VocabCardRepository) {
 
     @PostMapping("/")
     fun createCard(@Valid @RequestBody card: VocabCard): ResponseEntity<VocabCard> {
+        val currentUser = authenticatedUserResolver.getAuthenticatedUser()
+
+        for (translation in card.translations){
+            val languageCode = translation.languageCode
+            val srsCard = SRSVocabCard(user = currentUser, languageCode = languageCode, vocabCard = card)
+            srsCard.nextAvailable = Date().time
+            currentUser.srsVocabCard.add(srsCard)
+            if (card.srsVocabCards != null){
+                card.srsVocabCards!!.add(srsCard)
+            } else {
+                card.srsVocabCards= mutableListOf(srsCard)
+            }
+        }
+
         val vocabCard = vocabCardRepository.save(card)
         val location: URI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(vocabCard.id).toUri()
-
-//        print(user.toString())
-//        if (user != null){
-//            print(user.id)
-//            print(user.firstName)
-//            print(user.lastName)
-//        }
-
-        /*
-    val languageCode: String = "",
-    @ElementCollection
-    var exampleSentences: MutableList<String>?,
-    var notes: String?,
-    @ManyToMany(targetEntity = CardTag::class)
-    @JoinTable(name = "vocab_card_tag")
-    var tags: MutableList<CardTag> = mutableListOf(),
-    @OneToMany(cascade = [CascadeType.ALL], targetEntity = VocabCard::class)
-    var synonyms: Mu
-         */
-//        var srsCard = SRSVocabCard(user = user, languageCode = "")
-//        if (vocabCard.srsVocabCards == null){
-//            vocabCard.srsVocabCards = mutableListOf()
-//        } else {
-//            vocabCard.srsVocabCards.add()
-//        }
         return ResponseEntity.created(location).body(vocabCard)
     }
 

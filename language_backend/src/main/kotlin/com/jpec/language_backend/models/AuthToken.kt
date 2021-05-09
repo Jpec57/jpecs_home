@@ -1,6 +1,8 @@
 package com.jpec.language_backend.models
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.*
 
 @Entity
@@ -13,5 +15,6 @@ class AuthToken (
     var expiredOn: Long = 0,
     @ManyToOne
     @JsonIgnore
+    @JsonBackReference
     var user: User = User(-1)
 )
