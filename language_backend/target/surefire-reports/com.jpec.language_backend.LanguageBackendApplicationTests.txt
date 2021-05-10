@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.jpec.language_backend.LanguageBackendApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.714 s - in com.jpec.language_backend.LanguageBackendApplicationTests
