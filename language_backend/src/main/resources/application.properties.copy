@@ -10,3 +10,6 @@ jwt.secret=helpmeiminpain
 security.basic.enable: false
 security.ignored=/**
 server.port=3002
+spring.mustache.check-template-location=false
+spring.active.profile="dev"
+spring.devtools.add-properties=true

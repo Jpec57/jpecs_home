@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
+import java.util.*
 import javax.servlet.http.HttpServletResponse
 
 
@@ -40,7 +41,9 @@ class UserController(val userRepository: UserRepository, val authTokenRepository
 
 
     @GetMapping("/{id}")
-    fun showOne(@PathVariable id: Long) = userRepository.findById(id)
+    fun showOne(@PathVariable id: Long): Optional<User> {
+        return userRepository.findById(id)
+    }
 
     @DeleteMapping("/{id}")
     fun deleteUser(@PathVariable id: Long){
