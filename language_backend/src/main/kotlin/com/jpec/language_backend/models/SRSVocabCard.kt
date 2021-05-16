@@ -18,7 +18,8 @@ class SRSVocabCard(
     @JsonBackReference
     @JoinColumn(name="vocab_card_id", nullable=false)
     val vocabCard: VocabCard = VocabCard(),
-    val languageCode: String = "",
+    val fromLanguageCode: String = "",
+    val toLanguageCode: String = "",
     @ElementCollection
     var exampleSentences: MutableList<String>? = null,
     var notes: String? = null,
@@ -27,7 +28,7 @@ class SRSVocabCard(
     var tags: MutableList<CardTag> = mutableListOf(),
     @JsonManagedReference
     @OneToMany(cascade = [CascadeType.ALL], targetEntity = VocabCard::class)
-    var synonyms: MutableList<VocabCard> = mutableListOf(),
+    var synonymCards: MutableList<VocabCard> = mutableListOf(),
     nextAvailable: Long? = 0,
     level: Int = 0,
     errorCount: Int = 0,

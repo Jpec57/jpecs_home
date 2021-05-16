@@ -10,7 +10,10 @@ class VocabCard(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long?,
+    var englishWord: String = "",
     val toTranslateWord: String = "",
+    val alternativeReading: String = "",
+    val originalLanguageCode: String = "en-GB",
     @JsonManagedReference
     @OneToMany(
         mappedBy = "vocabCard", cascade = [CascadeType.ALL],
@@ -23,9 +26,11 @@ class VocabCard(
         targetEntity = SRSVocabCard::class
     )
     var srsVocabCards: MutableList<SRSVocabCard>?,
+    @ElementCollection
+    var synonyms: MutableList<String> = mutableListOf(),
     val languageRegisterType: LanguageRegisterType = LanguageRegisterType.CASUAL,
 ){
-    constructor(): this(-1, "", mutableListOf(),
-    mutableListOf(), LanguageRegisterType.CASUAL
+    constructor(): this(-1, "", "", "", "", mutableListOf(),
+    mutableListOf(), mutableListOf(), LanguageRegisterType.CASUAL
     )
 }

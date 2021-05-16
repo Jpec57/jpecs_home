@@ -1,5 +1,6 @@
 package com.jpec.language_backend.controllers
 
+import com.jpec.language_backend.AppConstants
 import com.jpec.language_backend.models.SRSVocabCard
 import com.jpec.language_backend.models.VocabCard
 import com.jpec.language_backend.repositories.VocabCardRepository
@@ -26,18 +27,29 @@ class VocabCardController(
 
     @PostMapping("/")
     fun createCard(@Valid @RequestBody card: VocabCard): ResponseEntity<VocabCard> {
-        val currentUser = authenticatedUserResolver.getAuthenticatedUser()
+    val currentUser = authenticatedUserResolver.getAuthenticatedUser()
+        val fromLanguageCode = card.originalLanguageCode
+        if (fromLanguageCode == AppConstants.DEFAULT_LANGUAGE_CODE){
+            card.englishWord = card.toTranslateWord
+        }
+
 
         for (translation in card.translations){
-            val languageCode = translation.languageCode
-            val srsCard = SRSVocabCard(user = currentUser, languageCode = languageCode, vocabCard = card)
+
+            val toLanguageCode = translation.languageCode
+            val srsCard = SRSVocabCard(user = currentUser, fromLanguageCode = fromLanguageCode, toLanguageCode = toLanguageCode, vocabCard = card)
+            val srsCardVerso = SRSVocabCard(user = currentUser, fromLanguageCode = toLanguageCode, toLanguageCode = fromLanguageCode, vocabCard = card)
+
             srsCard.nextAvailable = Date().time
+            srsCardVerso.nextAvailable = Date().time
             currentUser.srsVocabCard.add(srsCard)
+            currentUser.srsVocabCard.add(srsCardVerso)
             if (card.srsVocabCards != null){
                 card.srsVocabCards!!.add(srsCard)
             } else {
-                card.srsVocabCards= mutableListOf(srsCard)
+                card.srsVocabCards = mutableListOf(srsCard)
             }
+            card.srsVocabCards!!.add(srsCardVerso)
         }
 
         val vocabCard = vocabCardRepository.save(card)

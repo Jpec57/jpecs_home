@@ -4,10 +4,12 @@ import com.jpec.language_backend.models.User
 import com.jpec.language_backend.repositories.AuthTokenRepository
 import com.jpec.language_backend.repositories.UserRepository
 import com.jpec.language_backend.services.JwtTokenUtil
+import org.springframework.http.HttpStatus
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.server.ResponseStatusException
 import javax.servlet.http.HttpServletResponse
 
 
@@ -19,15 +21,18 @@ class UserController(val userRepository: UserRepository, val authTokenRepository
     fun createUser(@RequestBody user: User): User {
         val encoder = BCryptPasswordEncoder()
         user.password = encoder.encode(user.password)
-        val savedUser = userRepository.save(user)
-        val token = jwtTokenUtil.generateTokenFromUser(user)
-        authTokenRepository.save(token)
-        if (savedUser.tokens != null ){
-            savedUser.tokens!!.add(token)
+        val existingUser = userRepository.findOneByUsername(user.username)
+        if (existingUser.isEmpty){
+            val savedUser = userRepository.save(user)
+            val token = jwtTokenUtil.generateTokenFromUser(user)
+            authTokenRepository.save(token)
+            savedUser.tokens.add(token)
+            return savedUser
         } else {
-            savedUser.tokens = mutableListOf(token)
+            throw ResponseStatusException(
+                HttpStatus.BAD_REQUEST, "A user already exists with this id."
+            )
         }
-        return savedUser
     }
 
     @GetMapping("/")

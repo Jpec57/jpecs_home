@@ -21,9 +21,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 class WebSecurityConfig(
-    private val jwtAuthenticationEntryPoint : JwtAuthenticationEntryPoint,
+    private val jwtAuthenticationEntryPoint: JwtAuthenticationEntryPoint,
     private val customJwtUserDetailsService: CustomJwtUserDetailsService,
-    private val jwtRequestFilter: JwtRequestFilter) : WebSecurityConfigurerAdapter() {
+    private val jwtRequestFilter: JwtRequestFilter
+) : WebSecurityConfigurerAdapter() {
 
     @Autowired
     @Throws(Exception::class)
@@ -46,19 +47,21 @@ class WebSecurityConfig(
     }
 
     @Override
-    override fun configure(httpSecurity: HttpSecurity)
-    {
-        httpSecurity.csrf().disable()
-        httpSecurity.authorizeRequests()
+    override fun configure(httpSecurity: HttpSecurity) {
+        httpSecurity
+            .csrf().disable()
+            .cors().disable()
+            .authorizeRequests()
             .antMatchers("/login").permitAll()
             .antMatchers(HttpMethod.POST, "/users/signup").permitAll()
-//            .antMatchers("/greetings/**").hasAuthority("ROLE_ADMIN")
-//            .antMatchers("/**").permitAll()
-            .anyRequest().authenticated()
-            .and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+            .antMatchers("/authenticate").permitAll()
+            .antMatchers("/**").authenticated()
+            .anyRequest().permitAll()
+            .and()
+            // Add a filter to validate the tokens with every request
+            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
             .and().sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        // Add a filter to validate the tokens with every request
-        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
     }
 }
