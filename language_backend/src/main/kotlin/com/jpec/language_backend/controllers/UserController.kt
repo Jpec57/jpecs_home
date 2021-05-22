@@ -20,6 +20,7 @@ class UserController(val userRepository: UserRepository, val authTokenRepository
 
     @PostMapping("/signup")
     fun createUser(@RequestBody user: User): User {
+        print("In bg")
         val encoder = BCryptPasswordEncoder()
         user.password = encoder.encode(user.password)
         val existingUser = userRepository.findOneByUsername(user.username)

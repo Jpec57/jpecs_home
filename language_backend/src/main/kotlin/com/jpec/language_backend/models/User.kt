@@ -6,7 +6,8 @@ import javax.persistence.*
 
 @Entity
 class User(
-    @Id @GeneratedValue var id: Long?,
+    @Id @GeneratedValue
+    var id: Long? = -1,
     @Column(name = "username", nullable = false, unique = true)
     var username: String = "",
 //    @NotBlank(message = "Password is mandatory")
