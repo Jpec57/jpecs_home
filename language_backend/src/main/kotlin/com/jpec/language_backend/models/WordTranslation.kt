@@ -10,7 +10,7 @@ import javax.persistence.*
 class WordTranslation(
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    val id: Long?,
+    val id: Long? = -1,
     val languageCode: String = "",
     var value: String = "",
 

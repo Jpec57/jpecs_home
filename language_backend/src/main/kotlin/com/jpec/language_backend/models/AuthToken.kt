@@ -9,7 +9,7 @@ import javax.persistence.*
 class AuthToken (
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    val id: Long? = null,
+    val id: Long? = -1,
     @Column(name="token", length=512)
     var token: String = "",
     var expiredOn: Long = 0,
