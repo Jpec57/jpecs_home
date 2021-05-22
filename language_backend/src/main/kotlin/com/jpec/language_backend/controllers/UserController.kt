@@ -4,6 +4,7 @@ import com.jpec.language_backend.models.User
 import com.jpec.language_backend.repositories.AuthTokenRepository
 import com.jpec.language_backend.repositories.UserRepository
 import com.jpec.language_backend.services.JwtTokenUtil
+import org.hibernate.annotations.common.util.impl.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
@@ -17,16 +18,14 @@ import javax.servlet.http.HttpServletResponse
 @RestController
 @RequestMapping("/users")
 class UserController(val userRepository: UserRepository, val authTokenRepository: AuthTokenRepository, val jwtTokenUtil: JwtTokenUtil) {
-
     @PostMapping("/signup")
     fun createUser(@RequestBody user: User): User {
-        print("In bg")
         val encoder = BCryptPasswordEncoder()
         user.password = encoder.encode(user.password)
         val existingUser = userRepository.findOneByUsername(user.username)
         if (existingUser.isEmpty){
-            val savedUser = userRepository.save(user)
-            val token = jwtTokenUtil.generateTokenFromUser(user)
+            val savedUser = userRepository.saveAndFlush(user)
+            val token = jwtTokenUtil.generateTokenFromUser(savedUser)
             authTokenRepository.save(token)
             savedUser.tokens.add(token)
             return savedUser
