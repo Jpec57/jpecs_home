@@ -52,6 +52,7 @@ dependencies {
     //Validator
     implementation("javax.validation:validation-api:2.0.1.Final")
     implementation("org.hibernate.validator:hibernate-validator:6.0.13.Final")
+    implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 
 
 }

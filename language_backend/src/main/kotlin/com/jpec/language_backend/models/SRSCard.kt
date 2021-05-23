@@ -1,7 +1,8 @@
 package com.jpec.language_backend.models
 
-import javax.persistence.ManyToOne
+import javax.persistence.MappedSuperclass
 
+@MappedSuperclass
 abstract class SRSCard (
     var nextAvailable: Long? = -1,
     var level: Int = 0,

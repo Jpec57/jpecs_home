@@ -2,15 +2,20 @@ package com.jpec.language_backend.controllers
 
 import com.jpec.language_backend.models.SRSVocabCard
 import com.jpec.language_backend.models.VocabCard
+import com.jpec.language_backend.models.dto.SrsCardSessionDTO
 import com.jpec.language_backend.repositories.SRSVocabCardRepository
 import com.jpec.language_backend.repositories.VocabCardRepository
 import com.jpec.language_backend.resolvers.AuthenticatedUserResolver
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 import java.net.URI
 import java.util.*
+import java.util.logging.Logger
 import javax.validation.Valid
+import kotlin.collections.ArrayList
 
 
 @RestController
@@ -55,5 +60,40 @@ class SRSVocabCardController(
         return ResponseEntity.notFound().build()
     }
 
+    @GetMapping("/session")
+    fun getSRSVocabCardToDo(): Optional<List<SRSVocabCard>> {
+        val currentUser = authenticatedUserResolver.getAuthenticatedUser()
+        return srsVocabCardRepository.findAvailableByUser(currentUser.id!!, System.currentTimeMillis())
+    }
+
+    @PostMapping("/session")
+    fun doSRSVocabCardSession(@RequestBody session: List<SrsCardSessionDTO>): List<SRSVocabCard> {
+        val currentUser = authenticatedUserResolver.getAuthenticatedUser()
+        var updatedCards = ArrayList<SRSVocabCard>()
+        for (cardDTO in session){
+            val vocabCardOptional = srsVocabCardRepository.findById(cardDTO.cardId)
+            if (vocabCardOptional.isPresent){
+                val card = vocabCardOptional.get()
+                if (card.user != currentUser){
+//                    return ResponseEntity("", HttpStatus.UNAUTHORIZED)
+                }
+                //Get next time according to level
+                if (cardDTO.isCorrect){
+                    card.nextAvailable = (System.currentTimeMillis() + 300000000)
+                    card.level = card.level + 1
+                } else {
+                    card.nextAvailable = (System.currentTimeMillis() - 300000000)
+                    if (card.level > 0){
+                        card.level = card.level - 1
+                    }
+                }
+                srsVocabCardRepository.save(card)
+                updatedCards.add(card)
+            }
+
+        }
+
+        return updatedCards
+    }
 
 }

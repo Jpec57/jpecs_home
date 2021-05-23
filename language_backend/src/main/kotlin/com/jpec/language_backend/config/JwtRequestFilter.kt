@@ -42,14 +42,9 @@ class JwtRequestFilter(
         }
         // Once we get the token validate it.
         if (username != null && SecurityContextHolder.getContext().authentication == null) {
-            logger.warn("IN 1")
-
             val userDetails: UserDetails = customJwtUserDetailsService.loadUserByUsername(username)
             // if token is valid configure Spring Security to manually set authentication
-            logger.warn("IN 2")
             if (jwtTokenUtil.validateToken(jwtToken, User(-1, username=userDetails.username, password = userDetails.password))) {
-                logger.warn("Validate IN")
-
                 val usernamePasswordAuthenticationToken = UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.authorities
                 )
