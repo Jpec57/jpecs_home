@@ -59,9 +59,10 @@ class WebSecurityConfig(
             .anyRequest().permitAll()
             .and()
             // Add a filter to validate the tokens with every request
-            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
-            .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
-            .and().sessionManagement()
+            //.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
+            //.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+            //.and()
+            .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
     }
 }
